@@ -1,0 +1,22 @@
+[
+  {
+    "prediction_id": "pred_2025-05-24T22:20:48.593673",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 137.95633187772927,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was significantly upward, with a price increase of 137.96%. This represents a complete misalignment between the prediction and the actual market behavior. Given the extreme volatility and the substantial price increase, the prediction was not only incorrect but also failed to account for the prevailing market conditions that favored upward momentum. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-24T23:04:05.874060"
+  },
+  {
+    "prediction_id": "pred_2025-05-24T23:03:26.028151",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 137.95633187772927,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 137.96%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction was not only incorrect but also failed to account for the prevailing bullish sentiment. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-24T23:04:10.942651"
+  }
+]

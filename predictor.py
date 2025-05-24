@@ -1,9 +1,12 @@
 """Bitcoin price prediction logic using OHLCV data analysis."""
 
 import csv
+import json
 import logging
 from datetime import datetime
 from typing import Dict, List, Literal
+from pathlib import Path
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -108,10 +111,50 @@ def predict(price_data: List[Dict]) -> PredictionResult:
     return prediction
 
 
-def get_latest_prediction() -> Dict:
+def save_prediction_to_log(prediction_data: Dict):
+    """
+    Save prediction to JSON log file.
+    
+    Args:
+        prediction_data: Prediction data to save
+    """
+    predictions_file = Path("predictions_log.json")
+    predictions_log = {"predictions": []}
+    
+    # Load existing predictions
+    if predictions_file.exists():
+        try:
+            with open(predictions_file, 'r') as f:
+                data = json.load(f)
+                # Handle both flat list and nested structure
+                if isinstance(data, list):
+                    predictions_log["predictions"] = data
+                elif isinstance(data, dict) and "predictions" in data:
+                    predictions_log = data
+                else:
+                    logger.warning("Unexpected predictions file format, creating new structure")
+        except Exception as e:
+            logger.warning(f"Failed to load existing predictions: {e}")
+    
+    # Add new prediction
+    predictions_log["predictions"].append(prediction_data)
+    
+    # Save back to file
+    try:
+        with open(predictions_file, 'w') as f:
+            json.dump(predictions_log, f, indent=2)
+        logger.info(f"Saved prediction {prediction_data['id']} to log")
+    except Exception as e:
+        logger.error(f"Failed to save prediction: {e}")
+
+
+def get_latest_prediction(save_to_log: bool = True) -> Dict:
     """
     Load latest Bitcoin data and make a prediction.
     
+    Args:
+        save_to_log: Whether to save prediction to JSON log
+        
     Returns:
         Dict with prediction, timestamp, and analysis data
     """
@@ -124,14 +167,23 @@ def get_latest_prediction() -> Dict:
     
     prediction = predict(price_data)
     latest_price = price_data[-1]['close']
+    timestamp = datetime.now().isoformat()
+    prediction_id = f"pred_{timestamp.replace(':', '').replace('-', '').replace('.', '')}"
     
-    return {
+    prediction_data = {
+        "id": prediction_id,
         "prediction": prediction,
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": timestamp,
         "latest_price": latest_price,
         "data_points": len(price_data),
         "analysis_period": f"{price_data[0]['date']} to {price_data[-1]['date']}"
     }
+    
+    # Save to log if requested
+    if save_to_log:
+        save_prediction_to_log(prediction_data)
+    
+    return prediction_data
 
 
 if __name__ == "__main__":
@@ -145,6 +197,7 @@ if __name__ == "__main__":
     if "error" in result:
         print(f"Error: {result['error']}")
     else:
+        print(f"Prediction ID: {result['id']}")
         print(f"Latest Bitcoin Price: ${result['latest_price']:,.2f}")
         print(f"Data Period: {result['analysis_period']}")
         print(f"Data Points: {result['data_points']}")

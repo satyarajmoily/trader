@@ -1,8 +1,25 @@
 {
-    "predictions": [],
-    "metadata": {
-        "created": "2024-12-28",
-        "version": "1.0",
-        "description": "Bitcoin price prediction log for autonomous agent"
+  "predictions": [
+    {
+      "id": "pred_20250524T222048593673",
+      "prediction": "down",
+      "timestamp": "2025-05-24T22:20:48.593673",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30"
+    },
+    {
+      "id": "pred_20250524T230326028151",
+      "prediction": "down",
+      "timestamp": "2025-05-24T23:03:26.028151",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30"
     }
-} 
+  ],
+  "metadata": {
+    "created": "2024-12-28",
+    "version": "1.0",
+    "description": "Bitcoin price prediction log for autonomous agent"
+  }
+}
