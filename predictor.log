@@ -1,0 +1,63 @@
+2025-05-25 00:00:57,562 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:00:57,562 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:00:57,562 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:00:57,562 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:00:57,562 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T000057562456 to storage
+2025-05-25 00:00:57,562 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T000057562456: down
+2025-05-25 00:00:57,562 - bitcoin_predictor.storage - INFO - Loaded 6 predictions from storage
+2025-05-25 00:01:01,862 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:01:01,862 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:01:01,863 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:01:01,863 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T000101863054 to storage
+2025-05-25 00:01:01,863 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T000101863054: down
+2025-05-25 00:01:05,291 - bitcoin_predictor.storage - INFO - Loaded 7 predictions from storage
+2025-05-25 00:42:44,472 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:42:44,472 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:42:44,472 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:42:44,472 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T004244472482 to storage
+2025-05-25 00:42:44,472 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T004244472482: down
+2025-05-25 00:42:59,485 - bitcoin_predictor.storage - INFO - Loaded 10 predictions from storage
+2025-05-25 00:57:51,016 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:57:51,016 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:57:51,017 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:57:51,017 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:57:51,017 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T005751017133 to storage
+2025-05-25 00:57:51,017 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T005751017133: down
+2025-05-25 00:57:51,017 - bitcoin_predictor.storage - INFO - Loaded 12 predictions from storage
+2025-05-25 01:02:12,364 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:02:12,364 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:02:12,364 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:02:12,364 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:02:12,365 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010212364745 to storage
+2025-05-25 01:02:12,365 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010212364745: down
+2025-05-25 01:02:12,365 - bitcoin_predictor.storage - INFO - Loaded 14 predictions from storage
+2025-05-25 01:02:21,698 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:02:21,698 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:02:21,698 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:02:21,699 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:02:21,700 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010221699296 to storage
+2025-05-25 01:02:21,700 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010221699296: down
+2025-05-25 01:02:21,701 - bitcoin_predictor.storage - INFO - Loaded 16 predictions from storage
+2025-05-25 01:08:23,858 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:23,858 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:23,858 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:08:23,858 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:08:23,859 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010823858833 to storage
+2025-05-25 01:08:23,859 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010823858833: down
+2025-05-25 01:08:23,859 - bitcoin_predictor.storage - INFO - Loaded 17 predictions from storage
+2025-05-25 01:08:27,542 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:27,542 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:08:27,542 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:08:27,543 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010827542942 to storage
+2025-05-25 01:08:27,543 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010827542942: down
+2025-05-25 01:08:31,420 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:31,421 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:31,421 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:08:31,421 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:08:31,422 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010831421493 to storage
+2025-05-25 01:08:31,422 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010831421493: down
+2025-05-25 01:08:31,422 - bitcoin_predictor.storage - INFO - Loaded 19 predictions from storage
+2025-05-25 01:08:35,530 - bitcoin_predictor.storage - INFO - Loaded 19 predictions from storage
+2025-05-25 01:08:39,666 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:08:39,666 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:08:39,666 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down

@@ -1,0 +1,20 @@
+2025-05-25 00:58:35,064 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 00:58:35,065 - __main__ - INFO - Starting Autonomous Agent in test mode
+2025-05-25 00:58:35,065 - __main__ - INFO - Timestamp: 2025-05-25T00:58:35.065126
+2025-05-25 00:58:35,239 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 00:58:35,240 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:58:35,240 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:58:35,240 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:58:35,240 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T005835240264 to storage
+2025-05-25 00:58:35,240 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T005835240264: down
+2025-05-25 00:58:35,240 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 01:02:16,964 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 01:02:16,964 - __main__ - INFO - Starting Autonomous Agent in test mode
+2025-05-25 01:02:16,964 - __main__ - INFO - Timestamp: 2025-05-25T01:02:16.964510
+2025-05-25 01:02:17,145 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 01:02:17,145 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:02:17,145 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:02:17,145 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:02:17,146 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010217145672 to storage
+2025-05-25 01:02:17,146 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010217145672: down
+2025-05-25 01:02:17,146 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)

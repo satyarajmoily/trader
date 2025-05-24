@@ -98,3 +98,33 @@ ValueError: "EvaluationTool" object has no field "evaluator"
 2025-05-24 23:39:45,867 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2025-05-24 23:39:47,797 - __main__ - INFO - Single prediction completed successfully
 2025-05-24 23:39:47,797 - __main__ - INFO - Agent predict mode completed successfully
+2025-05-25 00:42:35,291 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 00:42:35,292 - __main__ - INFO - Starting Autonomous Agent in test mode
+2025-05-25 00:42:35,292 - __main__ - INFO - Timestamp: 2025-05-25T00:42:35.292216
+2025-05-25 00:42:35,469 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 00:42:35,469 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:42:35,469 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:42:35,470 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:42:35,470 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T004235470060 to storage
+2025-05-25 00:42:35,470 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T004235470060: down
+2025-05-25 00:42:35,470 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 00:42:39,808 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 00:42:39,808 - __main__ - INFO - Starting Autonomous Agent in predict mode
+2025-05-25 00:42:39,808 - __main__ - INFO - Timestamp: 2025-05-25T00:42:39.808187
+2025-05-25 00:42:39,956 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 00:42:39,956 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:42:39,956 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:42:39,956 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:42:39,957 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T004239956817 to storage
+2025-05-25 00:42:39,957 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T004239956817: down
+2025-05-25 00:42:39,957 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 00:43:00,105 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 00:43:00,105 - __main__ - INFO - Starting Autonomous Agent in predict mode
+2025-05-25 00:43:00,105 - __main__ - INFO - Timestamp: 2025-05-25T00:43:00.105445
+2025-05-25 00:43:00,254 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 00:43:00,254 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 00:43:00,254 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 00:43:00,254 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 00:43:00,255 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T004300254877 to storage
+2025-05-25 00:43:00,255 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T004300254877: down
+2025-05-25 00:43:00,255 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
