@@ -1,0 +1,1 @@
+"""External API integration tools for the Bitcoin Predictor Agent.""" 
