@@ -1,4 +1,42 @@
-# Product Context: Autonomous Agent System for Bitcoin Prediction
+# Product Context: What We're Building & Why
+
+## 🎯 Core Product Vision
+
+**Primary Goal**: Prove that an AI agent can autonomously improve its own Bitcoin prediction code through self-analysis and automated GitHub PRs.
+
+**The Innovation**: Not just another Bitcoin predictor, but a **self-improving AI system** that gets better over time by analyzing its own failures and generating improved prediction algorithms.
+
+## 💡 The Problem We're Solving
+
+### Real Problem
+Current AI prediction systems are static - they don't learn from their mistakes or improve their own code. Even when they fail, humans must manually update the logic.
+
+### Our Hypothesis  
+An AI agent can autonomously:
+- Analyze Bitcoin price trends using historical OHLCV data
+- Detect when its predictions fail against real market movements
+- Generate improved price analysis code using LLMs
+- Deploy improvements via GitHub PRs
+- Create a continuous self-improvement cycle
+
+## 🎯 Product Core: The Self-Improvement Loop
+
+```
+Make Prediction → Wait 24h → Evaluate Against Reality → 
+Improve Code (if wrong) → Create PR → Manual Review & Merge → Loop
+```
+
+### Prediction Method (Updated)
+**Input**: Historical Bitcoin OHLCV data (Open, High, Low, Close, Volume)
+**Analysis**: Simple price trend analysis (moving averages, momentum)
+**Output**: "UP" or "DOWN" prediction for next 24 hours
+**Validation**: Compare against actual Bitcoin price movement
+
+### Self-Improvement Trigger
+- **When**: ANY failed prediction (immediate trigger)
+- **How**: LLM analyzes price patterns that led to failure
+- **Output**: Improved prediction algorithm code
+- **Deployment**: Automated GitHub PR creation
 
 ## 🚀 Why This Project Exists
 

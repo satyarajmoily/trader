@@ -1,104 +1,105 @@
-# 🤖 Autonomous Agent System for Self-Improving Bitcoin Predictor
+# 🧠 Autonomous Agent System for Self-Improving Bitcoin Predictor
 
-> **Proof-of-Concept**: Can an AI agent improve its own Bitcoin prediction code through automated analysis and GitHub PRs?
+## 🎯 MVP Objective
 
-## 🎯 Overview
+**Core Hypothesis to Prove**: Can an AI agent improve its own Bitcoin prediction code through automated analysis and GitHub PRs?
 
-This project demonstrates **autonomous AI self-improvement** using Bitcoin price prediction as a concrete, measurable domain. The agent:
-
-- Makes Bitcoin price movement predictions using simple logic
-- Evaluates predictions against real market data  
+Build a minimal autonomous system where an AI agent:
+- Makes Bitcoin price movement predictions using **historical OHLCV data analysis**
+- Evaluates predictions against real Bitcoin market data  
 - Updates its prediction logic when wrong using LLM
 - Raises Pull Requests with improved code
-- Loops this cycle to demonstrate continuous self-improvement
+- Loops this cycle to demonstrate self-improvement
 
-## 🔄 How It Works
+## 🔁 System Overview
 
-### The Self-Improvement Loop
+### Core Prediction Process
+```
+Historical Bitcoin Data → Price Trend Analysis → UP/DOWN Prediction → 
+Wait 24h → Compare vs Reality → Improve Code (if wrong) → GitHub PR
+```
 
-1. **Prediction Phase**: Agent makes Bitcoin price prediction (up/down) using keyword analysis
-2. **Evaluation Phase** (24h later): Compares prediction vs actual Bitcoin price 
-3. **Improvement Phase** (on failure): LLM analyzes failure and generates improved code
-4. **Integration Phase** (manual): Human reviews and merges PR with improvements
-
-## 🛠️ Technology Stack
-
-- **Python 3.9+** - Core language
-- **LangChain** - Agent orchestration and LLM interactions
-- **OpenAI GPT-4** - Code improvement generation
-- **CoinGecko API** - Bitcoin price data (free tier)
-- **GitHub API** - Automated PR creation
-- **JSON files** - Simple data persistence (MVP approach)
+**Input**: Bitcoin OHLCV data (Open, High, Low, Close, Volume)
+**Analysis**: Simple moving averages, momentum, and volume trends
+**Output**: "UP" or "DOWN" prediction for next 24 hours
+**Validation**: Compare against actual Bitcoin price movement
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
-- Python 3.9 or higher
-- GitHub account and repository
-- OpenAI API key
-- Basic command line knowledge
+- Python 3.9+
+- Git repository for automated PRs
 
 ### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd bitcoin-predictor
-   ```
-
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/Mac
-   # venv\Scripts\activate   # Windows
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Configure environment**
-   ```bash
-   cp env.example .env
-   # Edit .env with your API keys
-   ```
-
-5. **Test the predictor**
-   ```bash
-   python predictor.py
-   ```
-
-### Required Environment Variables
-
 ```bash
-# .env file
-OPENAI_API_KEY=sk-your-openai-api-key-here
-GITHUB_TOKEN=ghp_your-github-token-here
-GITHUB_REPO_OWNER=your-username
-GITHUB_REPO_NAME=bitcoin-predictor
+git clone <repo-url>
+cd bitcoin-predictor
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your API keys
 ```
 
-## 📁 Project Structure
+### Make a Prediction
+```bash
+python predictor.py
+```
 
+**Sample Output**:
+```
+Bitcoin Price Prediction System
+========================================
+Latest Bitcoin Price: $45,800.00
+Data Period: 2024-01-01 to 2024-01-30
+Data Points: 30
+Prediction: UP
+Timestamp: 2024-01-30T15:30:45
+========================================
+Price-based prediction system ready!
+```
+
+## 📊 Prediction Logic (Current Implementation)
+
+The system analyzes Bitcoin price trends using:
+
+### Technical Indicators
+- **Short MA (3-day)** vs **Long MA (5-day)**: Trend direction
+- **Price Momentum**: 5-day price change percentage  
+- **Volume Trend**: Recent volume increase/decrease
+
+### Bullish Signals
+- Short MA > Long MA (trend reversal)
+- Positive momentum > 2% (strong momentum)
+- Increasing volume trend (confirmation)
+
+### Prediction Logic
+```python
+def predict(price_data: List[Dict]) -> Literal["up", "down"]:
+    # Calculate moving averages and momentum
+    # Count bullish signals
+    # Return "up" if >= 1.5 signals, "down" otherwise
+```
+
+## 🛠️ Technical Architecture
+
+### Current Tech Stack (MVP)
+- **Python 3.9+** - Main language
+- **CSV Data** - Mock Bitcoin OHLCV data (Phase 1)
+- **CoinGecko API** - Real Bitcoin data (Phase 2+)
+- **LangChain** - Agent orchestration (Phase 2+)
+- **OpenAI/Claude** - Code improvement (Phase 3+)
+- **PyGithub** - Automated PRs (Phase 4+)
+
+### Project Structure
 ```
 bitcoin-predictor/
-├── agent_main.py              # Main orchestrator (coming in Phase 2)
-├── predictor.py              # Core prediction logic ✅
-├── predictions_log.json     # Simple JSON persistence ✅
-├── config.py                # Configuration management ✅
-├── requirements.txt          # Dependencies ✅
-├── env.example              # Environment template ✅
-├── README.md                # This file ✅
-├── tools/                   # External API integrations
-│   ├── bitcoin_price.py     # CoinGecko integration (Phase 2)
-│   └── github_pr.py         # GitHub integration (Phase 4)
-├── chains/                  # LangChain components
-│   ├── evaluator.py         # Evaluation logic (Phase 2)
-│   └── improver.py          # Code improvement (Phase 3)
-└── tests/                   # Test suite
-    └── test_predictor.py    # Unit tests
+├── predictor.py              # Core price-based prediction logic
+├── mock_bitcoin_data.csv     # 30 days of Bitcoin OHLCV data
+├── predictions_log.json     # Prediction history
+├── requirements.txt
+├── .env.example
+├── tools/                   # API integrations (Phase 2+)
+├── chains/                  # LangChain agents (Phase 2+)
+└── .cursor/memory-bank/     # Project documentation
 ```
 
 ## 🗓️ Development Phases

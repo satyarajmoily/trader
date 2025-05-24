@@ -234,4 +234,37 @@ class BitcoinPriceTool(BaseTool):
     def _run(self, query: str) -> str:
         # Implementation with error handling
         pass
+```
+
+## 📊 Data Flow Architecture
+
+### Input Data Sources
+```
+Primary: Mock Bitcoin CSV → CoinGecko API (Phase 2)
+├── OHLCV Data: Open, High, Low, Close, Volume
+├── Historical: Past 30 days for trend analysis
+└── Current: Real-time price for evaluation
+
+Secondary: None (MVP focused on price data only)
+```
+
+### Core Prediction Engine
+```python
+# Updated prediction signature
+def predict(price_data: List[Dict]) -> Literal["up", "down"]:
+    """
+    Analyze Bitcoin price trends from OHLCV data.
+    
+    Args:
+        price_data: List of dicts with date, open, high, low, close, volume
+        
+    Returns:
+        "up" for bullish, "down" for bearish prediction
+    """
+```
+
+### Data Processing Pipeline
+```
+CSV/API → Price Data Validation → Trend Analysis → 
+Prediction Generation → JSON Logging → Evaluation Queue
 ``` 

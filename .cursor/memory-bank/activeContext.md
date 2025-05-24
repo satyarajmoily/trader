@@ -31,6 +31,13 @@
    - Configuration management and logging setup
    - README.md with comprehensive documentation
 
+### Major Architecture Update (Current Session)
+4. **Price-Based Prediction Migration** 🔄 IN PROGRESS
+   - Migrating from keyword/news-based to price-based Bitcoin prediction
+   - Adding mock CSV data for OHLCV historical analysis
+   - Updating Phase 1 tasks to include price trend analysis
+   - Modifying all documentation to reflect new approach
+
 ## 📋 Active Decisions & Considerations
 
 ### Architectural Decisions Made
@@ -70,16 +77,17 @@
 ## 🎯 Immediate Work Queue
 
 ### Next 3 Tasks (Priority Order)
-1. **Complete `progress.md`** - Track implementation phases and status
-2. **Create Basic Project Structure** - Set up directories and foundational files
-3. **Begin Phase 1 Implementation** - Start with basic prediction logic
+1. **Complete Price-Based Architecture Update** - Update all docs and code for OHLCV analysis
+2. **Create Mock Bitcoin CSV Data** - 30 days of realistic Bitcoin OHLCV data
+3. **Rewrite predictor.py** - Change from keyword to price trend analysis
 
-### This Week's Goals
+### This Week's Goals (Updated Phase 1)
 - [x] Complete memory bank documentation foundation ✅
 - [x] Set up basic Python project structure ✅
-- [x] Create initial `predictor.py` with simple keyword logic ✅
-- [x] Add JSON logging for predictions ✅
-- [x] Test basic prediction functionality locally ✅
+- [ ] Create mock Bitcoin OHLCV CSV data (past 30 days)
+- [ ] Create price-based `predictor.py` with trend analysis logic
+- [ ] Add JSON logging for price-based predictions
+- [ ] Test prediction functionality with mock CSV data
 
 ### Next Week's Goals (Phase 2)
 - [ ] Implement CoinGecko price fetching tool

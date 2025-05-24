@@ -1,75 +1,155 @@
-"""Simple keyword-based Bitcoin price prediction logic."""
+"""Bitcoin price prediction logic using OHLCV data analysis."""
 
+import csv
 import logging
-from typing import Literal
+from datetime import datetime
+from typing import Dict, List, Literal
 
 logger = logging.getLogger(__name__)
 
 PredictionResult = Literal["up", "down"]
 
 
-def predict(summary: str) -> PredictionResult:
+def load_bitcoin_data(csv_file: str = "mock_bitcoin_data.csv") -> List[Dict]:
     """
-    Make a simple Bitcoin price prediction based on keyword analysis.
-    
-    This is the core prediction function that will be improved by the agent.
-    Initial implementation uses basic keyword matching.
+    Load Bitcoin OHLCV data from CSV file.
     
     Args:
-        summary: Text summary to analyze for prediction signals
+        csv_file: Path to CSV file with Bitcoin data
+        
+    Returns:
+        List of dicts with date, open, high, low, close, volume
+    """
+    data = []
+    try:
+        with open(csv_file, 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                data.append({
+                    'date': row['date'],
+                    'open': float(row['open']),
+                    'high': float(row['high']),
+                    'low': float(row['low']),
+                    'close': float(row['close']),
+                    'volume': int(row['volume'])
+                })
+        logger.info(f"Loaded {len(data)} days of Bitcoin price data")
+        return data
+    except Exception as e:
+        logger.error(f"Error loading Bitcoin data: {e}")
+        return []
+
+
+def predict(price_data: List[Dict]) -> PredictionResult:
+    """
+    Make a Bitcoin price prediction based on OHLCV trend analysis.
+    
+    This is the core prediction function that will be improved by the agent.
+    Initial implementation uses simple moving averages and momentum.
+    
+    Args:
+        price_data: List of dicts with date, open, high, low, close, volume
         
     Returns:
         "up" if prediction is bullish, "down" if bearish
     """
-    summary_lower = summary.lower()
+    if not price_data or len(price_data) < 5:
+        logger.warning("Insufficient price data for prediction")
+        return "down"  # Conservative default
     
-    # Bullish keywords
-    bullish_signals = [
-        "rate cut", "rate cuts", "lower rates",
-        "adoption", "institutional", "etf approval",
-        "bull", "bullish", "positive", "rally",
-        "breakout", "support", "buy", "accumulate"
-    ]
+    # Get recent closing prices for trend analysis
+    recent_closes = [day['close'] for day in price_data[-7:]]  # Last 7 days
     
-    # Bearish keywords  
-    bearish_signals = [
-        "rate hike", "rate hikes", "higher rates", "fed raises",
-        "regulation", "ban", "crackdown", "restriction",
-        "bear", "bearish", "negative", "sell", "dump",
-        "resistance", "break down", "crash", "correction"
-    ]
+    # Calculate simple moving averages
+    short_ma = sum(recent_closes[-3:]) / 3  # 3-day MA
+    long_ma = sum(recent_closes[-5:]) / 5   # 5-day MA
     
-    # Count signal strength
-    bullish_count = sum(1 for signal in bullish_signals if signal in summary_lower)
-    bearish_count = sum(1 for signal in bearish_signals if signal in summary_lower)
+    # Calculate price momentum
+    current_price = recent_closes[-1]
+    price_5_days_ago = recent_closes[-5] if len(recent_closes) >= 5 else recent_closes[0]
+    momentum = (current_price - price_5_days_ago) / price_5_days_ago
     
-    logger.info(f"Prediction analysis: {bullish_count} bullish signals, {bearish_count} bearish signals")
+    # Calculate volume trend
+    recent_volumes = [day['volume'] for day in price_data[-3:]]
+    volume_trend = sum(recent_volumes[-2:]) / sum(recent_volumes[-3:-1]) if len(recent_volumes) >= 3 else 1.0
+    
+    logger.info(f"Analysis: Short MA={short_ma:.2f}, Long MA={long_ma:.2f}")
+    logger.info(f"Momentum: {momentum:.4f} ({momentum*100:.2f}%)")
+    logger.info(f"Volume trend: {volume_trend:.3f}")
+    
+    # Bullish signals
+    bullish_signals = 0
+    if short_ma > long_ma:  # Short MA above long MA
+        bullish_signals += 1
+        logger.info("✓ Bullish: Short MA > Long MA")
+    
+    if momentum > 0.02:  # Positive momentum > 2%
+        bullish_signals += 1
+        logger.info("✓ Bullish: Strong positive momentum")
+    elif momentum > 0:
+        bullish_signals += 0.5
+        logger.info("✓ Bullish: Positive momentum")
+    
+    if volume_trend > 1.1:  # Increasing volume
+        bullish_signals += 0.5
+        logger.info("✓ Bullish: Volume increasing")
     
     # Make prediction based on signal strength
-    if bullish_count > bearish_count:
+    if bullish_signals >= 2:
         prediction = "up"
-    elif bearish_count > bullish_count:
-        prediction = "down"
+    elif bullish_signals >= 1.5:
+        prediction = "up"  # Lean bullish
     else:
-        # Default to bearish when uncertain (conservative approach)
-        prediction = "down"
+        prediction = "down"  # Conservative default
     
-    logger.info(f"Prediction for '{summary}': {prediction}")
+    logger.info(f"Bullish signals: {bullish_signals}/3.0")
+    logger.info(f"Prediction: {prediction}")
+    
     return prediction
 
 
-if __name__ == "__main__":
-    # Simple test cases
-    test_cases = [
-        "Fed announces rate cut to boost economy",
-        "Central bank raises interest rates by 0.75%", 
-        "Major institution adopts Bitcoin for treasury",
-        "Government considers crypto regulation crackdown",
-        "Market shows strong bullish momentum"
-    ]
+def get_latest_prediction() -> Dict:
+    """
+    Load latest Bitcoin data and make a prediction.
     
-    for test in test_cases:
-        result = predict(test)
-        print(f"Input: {test}")
-        print(f"Prediction: {result}")
-        print("-" * 50) 
+    Returns:
+        Dict with prediction, timestamp, and analysis data
+    """
+    price_data = load_bitcoin_data()
+    if not price_data:
+        return {
+            "error": "Failed to load price data",
+            "timestamp": datetime.now().isoformat()
+        }
+    
+    prediction = predict(price_data)
+    latest_price = price_data[-1]['close']
+    
+    return {
+        "prediction": prediction,
+        "timestamp": datetime.now().isoformat(),
+        "latest_price": latest_price,
+        "data_points": len(price_data),
+        "analysis_period": f"{price_data[0]['date']} to {price_data[-1]['date']}"
+    }
+
+
+if __name__ == "__main__":
+    # Test the prediction system
+    print("Bitcoin Price Prediction System")
+    print("=" * 40)
+    
+    # Load data and make prediction
+    result = get_latest_prediction()
+    
+    if "error" in result:
+        print(f"Error: {result['error']}")
+    else:
+        print(f"Latest Bitcoin Price: ${result['latest_price']:,.2f}")
+        print(f"Data Period: {result['analysis_period']}")
+        print(f"Data Points: {result['data_points']}")
+        print(f"Prediction: {result['prediction'].upper()}")
+        print(f"Timestamp: {result['timestamp']}")
+    
+    print("\n" + "=" * 40)
+    print("Price-based prediction system ready!") 
