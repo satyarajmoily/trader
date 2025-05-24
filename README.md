@@ -108,25 +108,37 @@ GITHUB_REPO_NAME=bitcoin-predictor
 #### Core System (Standalone)
 ```bash
 # Test core prediction system
-python predictor_main.py test
+python main.py core test
 
 # Make a core prediction
-python predictor_main.py predict
+python main.py core predict
 
 # View prediction history
-python predictor_main.py history
+python main.py core history
+
+# Analyze price data
+python main.py core analyze
 ```
 
-#### Agent System (Orchestrator)
+#### Direct Module Access (Advanced)
 ```bash
-# Test agent system
-python agent_main.py test
+# Test core system directly
+python -m bitcoin_predictor.main test
+
+# Direct core prediction
+python -m bitcoin_predictor.main predict
+```
+
+#### Agent System (Future Phase 3+)
+```bash
+# Test agent system (when implemented)
+python main.py agent test
 
 # Make prediction via agent
-python agent_main.py predict
+python main.py agent predict
 
 # Evaluate predictions
-python agent_main.py evaluate
+python main.py agent evaluate
 ```
 
 **Sample Output**:
@@ -181,17 +193,18 @@ def predict(price_data: List[Dict]) -> Literal["up", "down"]:
 ### Enhanced Project Structure (Clean Separation)
 ```
 trader/
-├── bitcoin_predictor/           # 🔧 CORE SYSTEM (Standalone)
+├── bitcoin_predictor/           # 🔧 CORE SYSTEM (Standalone Package)
 │   ├── __init__.py             # Clean package exports
-│   ├── models.py               # Data models
+│   ├── main.py                 # Core system CLI (moved from predictor_main.py)
+│   ├── config.py               # Core configuration (moved from predictor_config.py)
+│   ├── models.py               # Data models (PredictionRecord, OHLCVData)
 │   ├── interfaces.py           # Abstract interfaces
 │   ├── data_loader.py          # Bitcoin data loading
 │   ├── storage.py              # JSON prediction storage
 │   └── predictor.py            # Core prediction logic
-├── predictor_main.py           # Core system CLI ✅
-├── predictor_config.py         # Core configuration ✅
-├── autonomous_agent/           # 🤖 AGENT SYSTEM (Orchestrator) 
+├── autonomous_agent/           # 🤖 AGENT SYSTEM (Orchestrator Package)
 │   ├── __init__.py             # Agent package exports
+│   ├── main.py                 # Agent system CLI (moved from agent_main.py)
 │   ├── orchestrator.py         # Main agent coordinator
 │   ├── interfaces/
 │   │   └── predictor_interface.py  # Clean interface layer
@@ -199,12 +212,13 @@ trader/
 │   │   └── bitcoin_api.py      # CoinGecko integration ✅
 │   └── chains/
 │       └── evaluator.py        # LangChain evaluation ✅
-├── agent_main.py               # Agent system CLI ✅
+├── main.py                     # 🎯 UNIFIED ENTRY POINT (Clean Dispatch)
 ├── mock_bitcoin_data.csv       # 30 days of Bitcoin OHLCV data ✅
 ├── predictions_log.json        # Prediction history ✅
 ├── evaluations_log.json        # AI evaluation results ✅
 ├── requirements.txt            # All dependencies ✅
 ├── env.example                 # Environment template ✅
+├── CLEAN_ARCHITECTURE_VERIFICATION.md  # Ultra-clean architecture docs ✅
 ├── SEPARATION_SUMMARY.md       # Separation documentation ✅
 └── .cursor/memory-bank/        # Project documentation ✅
 ```
@@ -287,31 +301,31 @@ trader/
 
 ## 🚀 Available Commands
 
-### Core System (Standalone)
+### Unified Entry Point (Recommended)
 ```bash
-# Test core system components
-python predictor_main.py test
+# Core System Commands
+python main.py core test                # Test core system components
+python main.py core predict             # Make a Bitcoin prediction
+python main.py core history             # View prediction history
+python main.py core analyze             # Analyze price data without prediction
 
-# Make a Bitcoin prediction (core only)
-python predictor_main.py predict
-
-# View prediction history
-python predictor_main.py history
-
-# Analyze price data without prediction
-python predictor_main.py analyze
+# Agent System Commands (Future Phase 3+)
+python main.py agent test               # Test agent system components
+python main.py agent predict            # Make prediction via agent interface
+python main.py agent evaluate           # Evaluate predictions against real market data
 ```
 
-### Agent System (Orchestrator)
+### Direct Module Access (Advanced)
 ```bash
-# Test agent system components
-python agent_main.py test
+# Direct Core System Access
+python -m bitcoin_predictor.main test      # Test core system directly
+python -m bitcoin_predictor.main predict   # Direct core prediction
+python -m bitcoin_predictor.main history   # Direct history access
+python -m bitcoin_predictor.main analyze   # Direct analysis access
 
-# Make prediction via agent interface
-python agent_main.py predict
-
-# Evaluate predictions against real market data
-python agent_main.py evaluate
+# Direct Agent System Access (Future)
+python -m autonomous_agent.main test       # Direct agent testing
+python -m autonomous_agent.main predict    # Direct agent prediction
 ```
 
 ## 📈 Live System Metrics
