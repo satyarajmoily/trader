@@ -1,3 +1,100 @@
 2025-05-24 23:03:54,952 - root - ERROR - Missing required environment variables: ['GITHUB_TOKEN', 'GITHUB_REPO_OWNER']
 2025-05-24 23:03:54,953 - __main__ - ERROR - Configuration validation failed. Please check your environment variables.
 2025-05-24 23:03:54,953 - __main__ - ERROR - Required variables: OPENAI_API_KEY, GITHUB_TOKEN, GITHUB_REPO_OWNER
+2025-05-24 23:34:13,832 - root - ERROR - Missing required environment variables: ['GITHUB_TOKEN', 'GITHUB_REPO_OWNER']
+2025-05-24 23:34:13,832 - __main__ - ERROR - Configuration validation failed. Please check your environment variables.
+2025-05-24 23:34:13,832 - __main__ - ERROR - Required variables: OPENAI_API_KEY, GITHUB_TOKEN, GITHUB_REPO_OWNER
+2025-05-24 23:38:27,918 - __main__ - INFO - Environment setup completed successfully
+2025-05-24 23:38:27,918 - __main__ - INFO - Starting Bitcoin Prediction Agent in test mode
+2025-05-24 23:38:27,918 - __main__ - INFO - Timestamp: 2025-05-24T23:38:27.918682
+2025-05-24 23:38:27,918 - __main__ - INFO - Running test mode...
+2025-05-24 23:38:27,918 - __main__ - INFO - Running single prediction...
+2025-05-24 23:38:28,071 - __main__ - ERROR - Unexpected error in test mode
+Traceback (most recent call last):
+  File "/Users/satyarajmoily/RustroverProjects/trader/main.py", line 212, in main
+    success = run_test_mode()
+  File "/Users/satyarajmoily/RustroverProjects/trader/main.py", line 130, in run_test_mode
+    if not run_single_prediction():
+  File "/Users/satyarajmoily/RustroverProjects/trader/main.py", line 34, in run_single_prediction
+    agent = create_agent()
+  File "/Users/satyarajmoily/RustroverProjects/trader/chains/agent.py", line 340, in create_agent
+    return BitcoinPredictionAgent(llm=llm)
+  File "/Users/satyarajmoily/RustroverProjects/trader/chains/agent.py", line 148, in __init__
+    self.tools = self._create_tools()
+  File "/Users/satyarajmoily/RustroverProjects/trader/chains/agent.py", line 155, in _create_tools
+    EvaluationTool(self.evaluator),
+  File "/Users/satyarajmoily/RustroverProjects/trader/chains/agent.py", line 67, in __init__
+    self.evaluator = evaluator or create_evaluator()
+  File "/Users/satyarajmoily/RustroverProjects/trader/.venv/lib/python3.9/site-packages/pydantic/main.py", line 997, in __setattr__
+    elif (setattr_handler := self._setattr_handler(name, value)) is not None:
+  File "/Users/satyarajmoily/RustroverProjects/trader/.venv/lib/python3.9/site-packages/pydantic/main.py", line 1044, in _setattr_handler
+    raise ValueError(f'"{cls.__name__}" object has no field "{name}"')
+ValueError: "EvaluationTool" object has no field "evaluator"
+2025-05-24 23:38:54,608 - __main__ - INFO - Environment setup completed successfully
+2025-05-24 23:38:54,608 - __main__ - INFO - Starting Bitcoin Prediction Agent in test mode
+2025-05-24 23:38:54,608 - __main__ - INFO - Timestamp: 2025-05-24T23:38:54.608851
+2025-05-24 23:38:54,608 - __main__ - INFO - Running test mode...
+2025-05-24 23:38:54,608 - __main__ - INFO - Running single prediction...
+2025-05-24 23:38:55,882 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:38:55,897 - predictor - INFO - Loaded 30 days of Bitcoin price data
+2025-05-24 23:38:55,897 - predictor - INFO - Analysis: Short MA=45933.33, Long MA=46140.00
+2025-05-24 23:38:55,897 - predictor - INFO - Momentum: -0.0172 (-1.72%)
+2025-05-24 23:38:55,897 - predictor - INFO - Volume trend: 0.982
+2025-05-24 23:38:55,897 - predictor - INFO - Bullish signals: 0/3.0
+2025-05-24 23:38:55,897 - predictor - INFO - Prediction: down
+2025-05-24 23:38:55,898 - predictor - INFO - Saved prediction pred_20250524T233855898029 to log
+2025-05-24 23:38:55,899 - chains.agent - INFO - Made prediction pred_20250524T233855898029: down
+2025-05-24 23:38:56,426 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:38:59,418 - __main__ - INFO - Single prediction completed successfully
+2025-05-24 23:38:59,419 - __main__ - INFO - Running single evaluation...
+2025-05-24 23:39:00,798 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:01,312 - tools.coingecko_tool - INFO - Current Bitcoin price: $109,007.00
+2025-05-24 23:39:04,996 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:05,003 - chains.evaluator - INFO - Saved evaluation for prediction pred_2025-05-24T22:20:48.593673
+2025-05-24 23:39:05,003 - chains.evaluator - INFO - Evaluated prediction pred_20250524T222048593673: ❌ Incorrect
+2025-05-24 23:39:05,054 - tools.coingecko_tool - INFO - Current Bitcoin price: $109,007.00
+2025-05-24 23:39:07,763 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:07,767 - chains.evaluator - INFO - Saved evaluation for prediction pred_2025-05-24T23:03:26.028151
+2025-05-24 23:39:07,767 - chains.evaluator - INFO - Evaluated prediction pred_20250524T230326028151: ❌ Incorrect
+2025-05-24 23:39:07,825 - tools.coingecko_tool - INFO - Current Bitcoin price: $109,007.00
+2025-05-24 23:39:12,781 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:12,785 - chains.evaluator - INFO - Saved evaluation for prediction pred_2025-05-24T23:38:55.898029
+2025-05-24 23:39:12,785 - chains.evaluator - INFO - Evaluated prediction pred_20250524T233855898029: ❌ Incorrect
+2025-05-24 23:39:12,786 - chains.evaluator - INFO - Completed evaluation of 3 predictions
+2025-05-24 23:39:12,786 - chains.agent - INFO - Evaluated 3 predictions
+2025-05-24 23:39:13,496 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:27,139 - __main__ - INFO - Single evaluation completed successfully
+2025-05-24 23:39:27,139 - __main__ - INFO - Running complete analysis cycle...
+2025-05-24 23:39:28,880 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:28,888 - chains.evaluator - INFO - Completed evaluation of 0 predictions
+2025-05-24 23:39:28,889 - predictor - INFO - Loaded 30 days of Bitcoin price data
+2025-05-24 23:39:28,889 - predictor - INFO - Analysis: Short MA=45933.33, Long MA=46140.00
+2025-05-24 23:39:28,889 - predictor - INFO - Momentum: -0.0172 (-1.72%)
+2025-05-24 23:39:28,889 - predictor - INFO - Volume trend: 0.982
+2025-05-24 23:39:28,889 - predictor - INFO - Bullish signals: 0/3.0
+2025-05-24 23:39:28,889 - predictor - INFO - Prediction: down
+2025-05-24 23:39:28,889 - predictor - INFO - Saved prediction pred_20250524T233928889471 to log
+2025-05-24 23:39:28,890 - chains.agent - INFO - Made prediction pred_20250524T233928889471: down
+2025-05-24 23:39:29,778 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:29,856 - tools.coingecko_tool - INFO - Current Bitcoin price: $109,007.00
+2025-05-24 23:39:29,856 - chains.agent - INFO - Fetched current Bitcoin price: $109,007.00
+2025-05-24 23:39:30,495 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:37,013 - __main__ - INFO - Analysis cycle completed successfully
+2025-05-24 23:39:37,013 - __main__ - INFO - All tests passed successfully
+2025-05-24 23:39:37,013 - __main__ - INFO - Agent test mode completed successfully
+2025-05-24 23:39:44,335 - __main__ - INFO - Environment setup completed successfully
+2025-05-24 23:39:44,336 - __main__ - INFO - Starting Bitcoin Prediction Agent in predict mode
+2025-05-24 23:39:44,336 - __main__ - INFO - Timestamp: 2025-05-24T23:39:44.336166
+2025-05-24 23:39:44,336 - __main__ - INFO - Running single prediction...
+2025-05-24 23:39:45,264 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:45,307 - predictor - INFO - Loaded 30 days of Bitcoin price data
+2025-05-24 23:39:45,307 - predictor - INFO - Analysis: Short MA=45933.33, Long MA=46140.00
+2025-05-24 23:39:45,307 - predictor - INFO - Momentum: -0.0172 (-1.72%)
+2025-05-24 23:39:45,307 - predictor - INFO - Volume trend: 0.982
+2025-05-24 23:39:45,307 - predictor - INFO - Bullish signals: 0/3.0
+2025-05-24 23:39:45,307 - predictor - INFO - Prediction: down
+2025-05-24 23:39:45,308 - predictor - INFO - Saved prediction pred_20250524T233945307793 to log
+2025-05-24 23:39:45,308 - chains.agent - INFO - Made prediction pred_20250524T233945307793: down
+2025-05-24 23:39:45,867 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-24 23:39:47,797 - __main__ - INFO - Single prediction completed successfully
+2025-05-24 23:39:47,797 - __main__ - INFO - Agent predict mode completed successfully

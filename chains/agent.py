@@ -61,10 +61,10 @@ class EvaluationTool(BaseTool):
     
     name: str = "evaluate_predictions"
     description: str = "Evaluate Bitcoin predictions against actual market data"
+    evaluator: Optional[BitcoinPredictionEvaluator] = None
     
     def __init__(self, evaluator: Optional[BitcoinPredictionEvaluator] = None):
-        super().__init__()
-        self.evaluator = evaluator or create_evaluator()
+        super().__init__(evaluator=evaluator or create_evaluator())
     
     def _run(self, min_age_hours: int = 24) -> str:
         """Evaluate predictions that are old enough."""

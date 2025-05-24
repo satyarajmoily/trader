@@ -15,6 +15,30 @@
       "latest_price": 45800.0,
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30"
+    },
+    {
+      "id": "pred_20250524T233855898029",
+      "prediction": "down",
+      "timestamp": "2025-05-24T23:38:55.898029",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30"
+    },
+    {
+      "id": "pred_20250524T233928889471",
+      "prediction": "down",
+      "timestamp": "2025-05-24T23:39:28.889471",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30"
+    },
+    {
+      "id": "pred_20250524T233945307793",
+      "prediction": "down",
+      "timestamp": "2025-05-24T23:39:45.307793",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30"
     }
   ],
   "metadata": {
