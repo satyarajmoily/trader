@@ -48,5 +48,325 @@
     "price_change_percent": 138.0065502183406,
     "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 138.01%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction was not only incorrect but also failed to account for the prevailing bullish sentiment. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
     "timestamp": "2025-05-24T23:39:07.825613"
+  },
+  {
+    "prediction_id": "pred_20250524T222048593673",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.3471615720524,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.35%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility and the substantial price change, the prediction's accuracy is severely compromised, leading to a confidence score of 0.0.",
+    "timestamp": "2025-05-25T10:41:38.961440"
+  },
+  {
+    "prediction_id": "pred_20250524T230326028151",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.3471615720524,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.35%. This stark contrast between the predicted direction and actual movement indicates a failure in the prediction. Given the extreme volatility of the market and the substantial price change, the prediction's accuracy is notably low. The confidence score reflects the high degree of error in the prediction.",
+    "timestamp": "2025-05-25T10:41:42.785501"
+  },
+  {
+    "prediction_id": "pred_20250524T233855898029",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.3471615720524,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.35%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market context, the prediction did not align with the prevailing trend, leading to a low confidence score.",
+    "timestamp": "2025-05-25T10:41:45.862233"
+  },
+  {
+    "prediction_id": "pred_20250524T233928889471",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.3471615720524,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.35%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, leading to a low confidence score.",
+    "timestamp": "2025-05-25T10:41:49.223951"
+  },
+  {
+    "prediction_id": "pred_20250524T233945307793",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.3471615720524,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.35%. This stark contrast between the predicted direction and the actual outcome demonstrates a complete failure of the prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, leading to a low confidence score.",
+    "timestamp": "2025-05-25T10:41:52.203331"
+  },
+  {
+    "prediction_id": "pred_20250525T000057562456",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward by 136.34%. This represents a significant deviation from the predicted direction, leading to a determination that the prediction was incorrect. Given the extreme volatility in the market and the substantial increase in price, the prediction's accuracy is rated very low, resulting in a confidence score of 0.0.",
+    "timestamp": "2025-05-25T10:42:56.482584"
+  },
+  {
+    "prediction_id": "pred_20250525T000101863054",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.34%. Given the extreme volatility of the market and the substantial price change, the prediction was incorrect. The confidence score is low due to the stark contrast between the predicted and actual movements, indicating a poor prediction quality in this context.",
+    "timestamp": "2025-05-25T10:42:59.502120"
+  },
+  {
+    "prediction_id": "pred_20250525T004235470060",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.34%. This stark contrast between the predicted direction and the actual movement indicates a failure in the prediction. Given the extreme volatility of the market and the substantial price change, the prediction's accuracy is severely compromised. The confidence score reflects the low reliability of the prediction in this context.",
+    "timestamp": "2025-05-25T10:43:04.187485"
+  },
+  {
+    "prediction_id": "pred_20250525T004239956817",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.34%. This stark contrast between the predicted direction and actual movement indicates a failure in the prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, leading to a low confidence score. The prediction's accuracy is further diminished by the magnitude of the price change, which was substantial and contrary to the forecast.",
+    "timestamp": "2025-05-25T10:43:07.855329"
+  },
+  {
+    "prediction_id": "pred_20250525T004244472482",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.34%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-25T10:43:11.472635"
+  },
+  {
+    "prediction_id": "pred_20250525T004300254877",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.33842794759826,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.34%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction lacks accuracy and reliability. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-25T10:43:14.440443"
+  },
+  {
+    "prediction_id": "pred_20250525T005751017133",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.32096069868996,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.32%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market, the prediction did not account for the potential for such a large upward movement, further diminishing its quality. Therefore, the confidence score is set to 0.0, reflecting the inaccuracy of the prediction.",
+    "timestamp": "2025-05-25T10:44:18.399482"
+  },
+  {
+    "prediction_id": "pred_20250525T005835240264",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.32096069868996,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward by 136.32%. This represents a significant deviation from the predicted direction, leading to a false prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, which were evident in the price movement. The confidence score reflects the low accuracy of the prediction in this context.",
+    "timestamp": "2025-05-25T10:44:22.847617"
+  },
+  {
+    "prediction_id": "pred_20250525T010212364745",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.32096069868996,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.32%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-25T10:44:25.521633"
+  },
+  {
+    "prediction_id": "pred_20250525T010217145672",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.2991266375546,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was significantly upward, with a price increase of 136.30%. This represents a substantial deviation from the predicted direction, indicating a failure in the prediction. Given the extreme volatility in the market context, the prediction's accuracy is further diminished. The confidence score reflects the low reliability of the prediction based on the actual outcome.",
+    "timestamp": "2025-05-25T10:45:29.362469"
+  },
+  {
+    "prediction_id": "pred_20250525T010221699296",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.2991266375546,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.30%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility of the market and the substantial price change, the prediction's accuracy is severely compromised, leading to a confidence score of 0.0.",
+    "timestamp": "2025-05-25T10:45:32.798674"
+  },
+  {
+    "prediction_id": "pred_20250525T010823858833",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.2991266375546,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.30%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised, leading to a confidence score of 0.0.",
+    "timestamp": "2025-05-25T10:45:35.849543"
+  },
+  {
+    "prediction_id": "pred_20250525T010827542942",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.2991266375546,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.30%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised. Therefore, the confidence score is set to 0.0, reflecting the total inaccuracy of the prediction.",
+    "timestamp": "2025-05-25T10:45:39.435593"
+  },
+  {
+    "prediction_id": "pred_20250525T010831421493",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.2991266375546,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.30%. Given the stark contrast between the predicted direction and the actual outcome, the prediction is deemed incorrect. The extreme volatility in the market further emphasizes the unpredictability of Bitcoin's price movements, which further diminishes the reliability of the prediction.",
+    "timestamp": "2025-05-25T10:45:44.755361"
+  },
+  {
+    "prediction_id": "pred_20250525T010911793474",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.10480349344977,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.10%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction lacks accuracy and reliability. Therefore, the confidence score is set to 0.0.",
+    "timestamp": "2025-05-25T11:09:32.700700"
+  },
+  {
+    "prediction_id": "pred_20250525T012049757915",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.10480349344977,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.10%. Given the stark contrast between the predicted direction and the actual outcome, the prediction is deemed incorrect. The extreme volatility in the market further emphasizes the unpredictability of Bitcoin's price movements, which further diminishes the reliability of the prediction. Therefore, the confidence score is set to 0.0, reflecting a complete failure in predicting the market direction.",
+    "timestamp": "2025-05-25T11:09:36.413211"
+  },
+  {
+    "prediction_id": "pred_20250525T013232734234",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.10480349344977,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.10%. This stark contrast between the predicted direction and actual movement indicates a failure in the prediction. Given the extreme volatility of the market and the substantial price change, the prediction's accuracy is notably low. The confidence score reflects the clear misalignment between the prediction and the actual market behavior.",
+    "timestamp": "2025-05-25T11:09:41.042830"
+  },
+  {
+    "prediction_id": "pred_20250525T104053444218",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.10480349344977,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.10%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, leading to a low confidence score.",
+    "timestamp": "2025-05-25T11:09:44.732124"
+  },
+  {
+    "prediction_id": "pred_20250525T104107769435",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.10480349344977,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.10%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction was not only incorrect but also failed to account for the prevailing bullish sentiment. Therefore, the confidence score is set to 0.0.",
+    "timestamp": "2025-05-25T11:09:48.506298"
+  },
+  {
+    "prediction_id": "pred_20250525T104114299710",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.07860262008734,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.08%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised, leading to a confidence score of 0.0.",
+    "timestamp": "2025-05-25T11:10:54.519115"
+  },
+  {
+    "prediction_id": "pred_20250525T105431949783",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.07860262008734,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.08%. This stark contrast between the predicted direction and the actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market context, the prediction did not account for potential upward trends, leading to a low confidence score.",
+    "timestamp": "2025-05-25T11:10:57.632976"
+  },
+  {
+    "prediction_id": "pred_20250525T110858935794",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.07860262008734,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.08%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market, the prediction did not account for potential upward trends, leading to a low confidence score.",
+    "timestamp": "2025-05-25T11:11:01.119956"
+  },
+  {
+    "prediction_id": "pred_20250525T113346158985",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.01528384279476,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.02%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility of the market and the substantial price change, the prediction lacks accuracy and reliability, warranting a confidence score of 0.0.",
+    "timestamp": "2025-05-25T11:36:07.389984"
+  },
+  {
+    "prediction_id": "pred_20250525T113353351093",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.1,
+    "price_change_percent": 136.01528384279476,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.02%. Given the extreme volatility in the market context, the prediction was incorrect. The magnitude of the price change further emphasizes the inaccuracy of the prediction. Therefore, the confidence score is low, reflecting the failure to anticipate the market's upward trend.",
+    "timestamp": "2025-05-25T11:36:11.632797"
+  },
+  {
+    "prediction_id": "pred_20250525T113359090840",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.01528384279476,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.02%. Given the stark contrast between the predicted direction and the actual outcome, the prediction is deemed incorrect. The extreme volatility in the market further emphasizes the unpredictability of Bitcoin's price movements, which may have contributed to the inaccurate prediction.",
+    "timestamp": "2025-05-25T11:36:15.210497"
+  },
+  {
+    "prediction_id": "pred_20250525T113525960153",
+    "prediction": "down",
+    "actual_movement": "down",
+    "is_correct": true,
+    "confidence_score": 0.85,
+    "price_change_percent": -0.09888911480379291,
+    "evaluation_reasoning": "The prediction correctly anticipated a downward movement in Bitcoin's price, which aligns with the actual movement observed. The price change was minimal at -0.10%, indicating low volatility in the market. Given the context of low volatility, the prediction's accuracy is commendable, and the confidence score reflects a strong likelihood of correctness based on the observed market conditions.",
+    "timestamp": "2025-05-25T11:36:19.206765"
+  },
+  {
+    "prediction_id": "pred_20250525T113600524853",
+    "prediction": "down",
+    "actual_movement": "up",
+    "is_correct": false,
+    "confidence_score": 0.0,
+    "price_change_percent": 136.0240174672489,
+    "evaluation_reasoning": "The prediction indicated a downward movement for Bitcoin, while the actual movement was upward, resulting in a significant price increase of 136.02%. This stark contrast between the predicted direction and actual movement indicates a complete failure of the prediction. Given the extreme volatility in the market and the substantial price change, the prediction's accuracy is severely compromised, leading to a confidence score of 0.0.",
+    "timestamp": "2025-05-25T11:37:23.470323"
   }
 ]

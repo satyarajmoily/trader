@@ -1,0 +1,326 @@
+[
+  {
+    "prediction_id": "pred_20250525T010831421493",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility and a sudden surge in buying interest, which was not reflected in the historical data used for analysis.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to include a longer look-back period to capture more significant price movements.",
+      "Implement a more sophisticated volume analysis that considers relative volume compared to historical averages.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price fluctuations.",
+      "Refine threshold adjustments for predictions based on different market conditions, such as bullish or bearish trends."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing critical signals.",
+      "momentum": "The momentum calculation was based on a short timeframe, which did not capture the broader market trends effectively.",
+      "volume": "The volume trend analysis did not account for relative volume changes, leading to misinterpretation of market strength.",
+      "signal_weighting": "The combination logic for bullish signals did not adequately reflect the significance of each indicator in volatile conditions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to improve sensitivity to recent price changes.",
+      "Extend the momentum calculation to use a 10-day look-back period instead of 5 days to capture more significant trends.",
+      "Modify volume trend analysis to compare current volume against a rolling average of the last 30 days to better assess market strength.",
+      "Adjust the weighting of bullish signals based on historical performance during different market conditions, allowing for dynamic thresholds.",
+      "Implement a volatility filter that adjusts prediction thresholds based on current market volatility metrics."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:46:47.803364"
+  },
+  {
+    "prediction_id": "pred_20250525T010827542942",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with sudden price surges that were not reflected in the historical data used for analysis.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculation to consider a longer look-back period to capture more significant trends.",
+      "Implement a more sophisticated volume analysis that includes average volume over a longer period to identify true trends.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold adjustments for bullish and bearish signals based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, leading to inaccurate predictions.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not have captured the overall market trend effectively.",
+      "volume": "The volume trend analysis did not adequately reflect significant changes in trading activity that could indicate market sentiment.",
+      "signal_weighting": "The combination logic for bullish signals did not account for the varying importance of each indicator based on market conditions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to improve sensitivity to recent price changes.",
+      "Extend the momentum calculation to use a 10-day look-back period instead of 5 days to capture longer-term trends.",
+      "Modify the volume trend analysis to include a 10-day average volume to better identify significant shifts in trading activity.",
+      "Implement a dynamic weighting system for bullish signals that adjusts based on recent volatility and market conditions.",
+      "Adjust the thresholds for bullish and bearish predictions based on historical data analysis to improve accuracy."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:46:55.525919"
+  },
+  {
+    "prediction_id": "pred_20250525T010823858833",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with sudden price spikes that were not reflected in the historical data used for analysis.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to consider a longer lookback period to capture more significant trends.",
+      "Implement a more sophisticated volume analysis that includes average volume over different time frames to identify anomalies.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold adjustments for bullish and bearish signals based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, leading to inaccurate predictions.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not have captured the overall market trend effectively.",
+      "volume": "The volume trend analysis did not account for sudden spikes in trading activity that could indicate market sentiment shifts.",
+      "signal_weighting": "The combination logic for bullish signals did not adequately reflect the strength of the signals in a volatile market."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages to give more weight to recent prices.",
+      "Extend the momentum calculation to include a 10-day lookback period for a more comprehensive view of price trends.",
+      "Incorporate a volume anomaly detection mechanism to identify unusual trading activity that could signal market shifts.",
+      "Adjust the bullish signal thresholds dynamically based on recent volatility metrics to improve prediction accuracy.",
+      "Implement a feedback loop that adjusts the confidence score based on the accuracy of previous predictions."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:47:03.805577"
+  },
+  {
+    "prediction_id": "pred_20250525T010221699296",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with sudden price surges that were not reflected in the historical data used for analysis.",
+    "improvement_opportunities": [
+      "Implement exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculation to consider a longer timeframe for better trend detection.",
+      "Enhance volume analysis by incorporating average volume over a longer period to identify significant changes.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold values for bullish signals based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages (SMAs) used may lag behind rapid price changes, failing to capture the true market trend.",
+      "momentum": "The current momentum calculation may not adequately reflect the strength of price movements, particularly in volatile conditions.",
+      "volume": "The volume trend analysis is based on a short timeframe, which may not provide a reliable indication of market sentiment.",
+      "signal_weighting": "The combination logic for bullish signals does not account for the varying significance of each indicator under different market conditions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages to give more weight to recent prices.",
+      "Modify the momentum calculation to use a 10-day period instead of 5 days for better trend analysis.",
+      "Incorporate a 30-day average volume to better assess volume trends and their significance.",
+      "Adjust the bullish signal thresholds dynamically based on recent volatility metrics.",
+      "Implement a weighting system for signals that considers the historical accuracy of each indicator."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:47:11.396091"
+  },
+  {
+    "prediction_id": "pred_20250525T010217145672",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with significant upward price movements, which were not anticipated by the existing analysis framework.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to price changes.",
+      "Adjust momentum calculations to consider a longer time frame or different thresholds based on market volatility.",
+      "Implement a more sophisticated volume analysis that includes average volume over different periods to identify trends more accurately.",
+      "Optimize signal weighting to account for varying market conditions, allowing for dynamic adjustments based on recent volatility.",
+      "Introduce additional indicators such as RSI or MACD to provide a more comprehensive view of market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The moving averages used were too simplistic and did not account for recent price spikes, leading to delayed signals.",
+      "momentum": "The momentum calculation was based on a fixed 5-day period, which may not reflect rapid market changes effectively.",
+      "volume": "The volume trend analysis was limited to a short period, failing to capture broader trends that could indicate market strength.",
+      "signal_weighting": "The current signal combination logic does not adapt to changing market conditions, resulting in static thresholds that may not be appropriate."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to improve sensitivity to recent price changes.",
+      "Modify the momentum calculation to use a longer lookback period or to dynamically adjust based on recent volatility.",
+      "Enhance volume analysis by incorporating average volume over multiple time frames to better identify trends.",
+      "Revise the signal weighting logic to allow for dynamic adjustments based on market volatility and historical performance.",
+      "Integrate additional technical indicators such as RSI or MACD to provide a more robust analysis framework."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:47:21.938640"
+  },
+  {
+    "prediction_id": "pred_20250525T010831421493",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility and a sudden surge in buying pressure, which was not anticipated by the existing indicators.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to include a longer look-back period to capture more significant trends.",
+      "Implement a more sophisticated volume analysis that considers relative volume compared to historical averages.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold adjustments for bullish and bearish signals based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing critical signals.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not reflect longer-term trends effectively.",
+      "volume": "The volume trend analysis did not account for relative volume changes, leading to potential misinterpretation of market strength.",
+      "signal_weighting": "The current signal combination logic does not adequately differentiate between strong and weak signals, leading to inaccurate predictions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages to improve sensitivity to recent price changes.",
+      "Extend the momentum calculation to consider a 10-day period instead of 5 days for a more comprehensive view of price trends.",
+      "Incorporate a relative volume metric that compares current volume to a moving average of past volumes to better assess market activity.",
+      "Adjust the bullish signal thresholds dynamically based on recent volatility metrics to improve prediction accuracy.",
+      "Implement a machine learning model to analyze historical prediction performance and refine signal weighting based on past outcomes."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:47:36.079517"
+  },
+  {
+    "prediction_id": "pred_20250525T010827542942",
+    "failure_reason": "The prediction failed due to an unexpected bullish market surge that was not captured by the technical indicators, leading to a miscalculation of momentum and trend signals.",
+    "market_context": "During the prediction period, the market experienced high volatility with rapid price increases driven by external factors such as news events or market sentiment shifts.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to price changes.",
+      "Adjust momentum calculation to consider a longer historical period for more stable readings.",
+      "Implement a more nuanced volume analysis that accounts for relative volume changes compared to historical averages.",
+      "Optimize signal weighting to reflect the varying importance of indicators based on market conditions.",
+      "Refine threshold adjustments for bullish and bearish signals to reduce false predictions during volatile periods."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing key bullish signals.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not accurately reflect longer-term trends.",
+      "volume": "The volume trend analysis did not account for significant spikes in trading volume that could indicate market sentiment shifts.",
+      "signal_weighting": "The current signal combination logic does not differentiate between strong and weak signals effectively, leading to inaccurate predictions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages to improve sensitivity to recent price changes.",
+      "Modify the momentum calculation to use a 14-day period instead of 5 days for a more stable momentum reading.",
+      "Enhance volume analysis by comparing current volume against a rolling average of the last 30 days to identify significant changes.",
+      "Adjust the bullish signal thresholds to require a higher number of signals during volatile market conditions to avoid false positives.",
+      "Implement a dynamic weighting system for signals based on historical performance during different market conditions."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:47:43.420305"
+  },
+  {
+    "prediction_id": "pred_20250525T010823858833",
+    "failure_reason": "The prediction failed due to an unexpected bullish market surge that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with sudden price spikes, which were not adequately reflected in the moving averages and momentum calculations.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) to better respond to recent price changes.",
+      "Adjust momentum calculation to consider a longer historical context for better trend detection.",
+      "Implement a more sophisticated volume analysis that accounts for sudden spikes and drops in trading volume.",
+      "Optimize signal weighting to give more importance to recent trends and less to older data points.",
+      "Establish dynamic thresholds for bullish and bearish signals based on historical volatility patterns."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The moving averages used were simple and did not account for recent price volatility, leading to delayed responses to market changes.",
+      "momentum": "The momentum calculation was based on a fixed 5-day period, which may not capture rapid market shifts effectively.",
+      "volume": "The volume trend analysis did not adequately account for sudden changes in trading activity, which can indicate market sentiment shifts.",
+      "signal_weighting": "The current signal combination logic does not differentiate between the strength of signals based on market conditions, leading to potential misclassifications."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to give more weight to recent prices.",
+      "Modify the momentum calculation to use a longer period (e.g., 10 days) and include a threshold for significant price changes.",
+      "Enhance volume analysis by implementing a weighted average that considers recent spikes in trading volume.",
+      "Revise the signal weighting logic to adjust the importance of each indicator based on recent market volatility.",
+      "Create adaptive thresholds for bullish and bearish predictions based on historical volatility metrics."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T10:48:51.812133"
+  },
+  {
+    "prediction_id": "pred_20250525T110858935794",
+    "failure_reason": "The prediction failed due to an unexpected bullish market surge that was not captured by the technical indicators, leading to a miscalculation of momentum and trend signals.",
+    "market_context": "During the prediction period, the market experienced high volatility with rapid price increases, which were not reflected in the historical data used for analysis.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to consider a longer historical context or different time frames to capture sudden market shifts.",
+      "Implement a more sophisticated volume analysis that includes average volume over different periods to identify significant changes.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold adjustments for predictions based on historical volatility patterns to improve accuracy in different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing key bullish signals.",
+      "momentum": "The momentum calculation did not account for extreme price movements, leading to underestimation of bullish trends.",
+      "volume": "The volume trend analysis was based on a limited number of recent data points, failing to capture broader market trends.",
+      "signal_weighting": "The combination logic for bullish signals did not adequately reflect the strength of the signals in a volatile market."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to improve sensitivity to recent price changes.",
+      "Modify the momentum calculation to include a longer lookback period or use a weighted approach to better capture price shifts.",
+      "Enhance volume analysis by incorporating a moving average of volume over different time frames to identify significant trends.",
+      "Adjust the signal weighting system to dynamically respond to market volatility, allowing for more accurate predictions.",
+      "Implement a volatility index to adjust prediction thresholds based on current market conditions."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T11:11:16.324027"
+  },
+  {
+    "prediction_id": "pred_20250525T105431949783",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility and a sudden surge in buying interest, pushing prices significantly higher than anticipated.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations to include exponential moving averages (EMAs) for better responsiveness to price changes.",
+      "Adjust momentum calculation to consider a longer historical period for better trend detection.",
+      "Implement a more sophisticated volume analysis that accounts for relative volume compared to historical averages.",
+      "Optimize signal weighting to dynamically adjust based on market volatility and recent price movements.",
+      "Refine threshold adjustments for bullish and bearish signals based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used may not react quickly enough to rapid price changes, leading to delayed signals.",
+      "momentum": "The current momentum calculation may not adequately reflect the strength of price movements, particularly in volatile conditions.",
+      "volume": "The volume trend analysis lacks context regarding historical averages, which could lead to misinterpretation of volume signals.",
+      "signal_weighting": "The combination logic for bullish signals does not account for varying market conditions, potentially skewing predictions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to improve sensitivity to recent price changes.",
+      "Modify the momentum calculation to use a longer lookback period, such as 10 days, to better capture trends.",
+      "Enhance volume analysis by comparing current volume to a rolling average of the last 30 days to identify significant changes.",
+      "Implement a dynamic weighting system for bullish signals that adjusts based on recent volatility metrics.",
+      "Revise thresholds for bullish and bearish predictions to be more adaptive based on historical data patterns."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T11:11:25.594533"
+  },
+  {
+    "prediction_id": "pred_20250525T104114299710",
+    "failure_reason": "The prediction failed due to an unexpected bullish market surge that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with significant upward momentum driven by external factors such as increased institutional investment and positive regulatory news.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations by incorporating exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculation to consider a longer historical period to capture broader trends and reduce noise from short-term fluctuations.",
+      "Implement a more sophisticated volume analysis that includes relative volume comparisons to historical averages.",
+      "Optimize signal weighting by introducing a dynamic weighting system that adjusts based on market volatility and trend strength.",
+      "Refine threshold adjustments for predictions based on historical performance during different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing key bullish signals.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not have captured the underlying strength of the market trend.",
+      "volume": "The volume trend analysis did not account for relative volume changes compared to historical averages, leading to potential misinterpretation of market strength.",
+      "signal_weighting": "The current signal combination logic does not adapt to varying market conditions, potentially leading to over-reliance on certain indicators."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) for short and long-term trends.",
+      "Modify the momentum calculation to use a 10-day period instead of 5 days to better reflect market trends.",
+      "Enhance volume analysis by comparing current volume against a 30-day moving average of volume to identify significant changes.",
+      "Implement a dynamic weighting system for bullish signals that adjusts based on recent market volatility.",
+      "Adjust prediction thresholds based on historical data to better align with observed market behavior during similar conditions."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T11:11:33.923965"
+  },
+  {
+    "prediction_id": "pred_20250525T104107769435",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the price trend.",
+    "market_context": "During the prediction period, the market experienced high volatility with sudden price surges that were not anticipated by the existing indicators.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations to include exponential moving averages (EMAs) for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to consider a longer time frame for more stable readings during volatile periods.",
+      "Implement a more sophisticated volume analysis that includes average volume over different periods to identify trends more accurately.",
+      "Optimize signal weighting to account for market volatility, allowing for dynamic adjustments based on recent price movements.",
+      "Refine threshold adjustments for predictions based on historical volatility patterns to improve accuracy in different market conditions."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The simple moving averages used were too slow to react to rapid price changes, missing critical signals.",
+      "momentum": "The momentum calculation was based on a short timeframe, which may not reflect the overall market trend during volatile conditions.",
+      "volume": "The volume trend analysis did not account for significant spikes in trading volume that often precede price movements.",
+      "signal_weighting": "The current logic for combining signals does not adequately differentiate between strong and weak signals, leading to inaccurate predictions."
+    },
+    "suggested_modifications": [
+      "Replace simple moving averages with exponential moving averages (EMAs) to better capture recent price trends.",
+      "Extend the momentum calculation to consider a 10-day period instead of 5 days for a more stable reading.",
+      "Incorporate a volume average over the last 10 days to better identify significant volume trends.",
+      "Adjust the signal weighting logic to give more importance to recent bullish signals during high volatility periods.",
+      "Implement dynamic thresholds for bullish signals based on historical volatility metrics."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T11:11:42.082290"
+  }
+]

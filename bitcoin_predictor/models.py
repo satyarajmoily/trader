@@ -46,6 +46,7 @@ class PredictionRecord:
     data_points: int
     analysis_period: str
     confidence: Optional[float] = None
+    timeframe: Optional[str] = "1d"  # Default to 1d for backward compatibility
     actual_outcome: Optional[str] = None
     actual_price: Optional[float] = None
     evaluation_timestamp: Optional[str] = None

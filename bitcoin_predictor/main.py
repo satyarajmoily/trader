@@ -13,6 +13,7 @@ from datetime import datetime
 from pathlib import Path
 
 from . import BitcoinPredictor, PredictionStorage, BitcoinDataLoader
+from .config import PredictorConfig
 
 
 def setup_logging(level: str = "INFO"):
@@ -29,11 +30,12 @@ def setup_logging(level: str = "INFO"):
 
 def cmd_predict(args):
     """Make a single Bitcoin price prediction."""
-    print("🔮 Bitcoin Price Prediction")
+    timeframe = getattr(args, 'timeframe', '1d')
+    print(f"🔮 Bitcoin Price Prediction ({timeframe})")
     print("=" * 40)
     
     try:
-        predictor = BitcoinPredictor()
+        predictor = BitcoinPredictor(timeframe=timeframe)
         prediction = predictor.predict(args.data_source)
         
         print(f"✅ Prediction completed successfully!")
@@ -41,6 +43,7 @@ def cmd_predict(args):
         print(f"💰 Latest Bitcoin Price: ${prediction.latest_price:,.2f}")
         print(f"📈 Prediction: {prediction.prediction.upper()}")
         print(f"🎯 Confidence: {prediction.confidence:.2f}" if prediction.confidence else "🎯 Confidence: N/A")
+        print(f"⏱️  Timeframe: {prediction.timeframe}")
         print(f"📅 Data Period: {prediction.analysis_period}")
         print(f"📊 Data Points: {prediction.data_points}")
         print(f"⏰ Timestamp: {prediction.timestamp}")
@@ -86,15 +89,16 @@ def cmd_history(args):
 
 def cmd_analyze(args):
     """Analyze price data without making a prediction."""
-    print("🔍 Bitcoin Price Analysis")
+    timeframe = getattr(args, 'timeframe', '1d')
+    print(f"🔍 Bitcoin Price Analysis ({timeframe})")
     print("=" * 40)
     
     try:
-        predictor = BitcoinPredictor()
+        predictor = BitcoinPredictor(timeframe=timeframe)
         data_loader = BitcoinDataLoader()
         
         # Load data
-        price_data = data_loader.load_data(args.data_source)
+        price_data = data_loader.load_data(args.data_source, timeframe)
         if not price_data:
             print("❌ Failed to load price data")
             return False
@@ -102,9 +106,12 @@ def cmd_analyze(args):
         # Perform analysis
         analysis = predictor.analyze(price_data)
         
+        # Get timeframe config for display
+        config = PredictorConfig.get_timeframe_config(timeframe)
+        
         print(f"📊 Technical Analysis Results:")
-        print(f"   📈 Short MA (3-day): ${analysis.short_ma:,.2f}")
-        print(f"   📉 Long MA (5-day): ${analysis.long_ma:,.2f}")
+        print(f"   📈 Short MA ({config['short_ma_periods']}-period): ${analysis.short_ma:,.2f}")
+        print(f"   📉 Long MA ({config['long_ma_periods']}-period): ${analysis.long_ma:,.2f}")
         print(f"   ⚡ Momentum: {analysis.momentum:.4f} ({analysis.momentum*100:.2f}%)")
         print(f"   📊 Volume Trend: {analysis.volume_trend:.3f}")
         print(f"   🎯 Bullish Signals: {analysis.bullish_signals}/3.0")
@@ -177,6 +184,30 @@ def cmd_test(args):
     return success
 
 
+def cmd_timeframes(args):
+    """List supported timeframes and their configurations."""
+    print("⏱️  Supported Timeframes")
+    print("=" * 50)
+    
+    try:
+        timeframes = PredictorConfig.get_supported_timeframes()
+        
+        for timeframe in timeframes:
+            config = PredictorConfig.get_timeframe_config(timeframe)
+            print(f"\n📊 {timeframe} ({config['display_name']})")
+            print(f"   📈 Short MA: {config['short_ma_periods']} periods")
+            print(f"   📉 Long MA: {config['long_ma_periods']} periods")
+            print(f"   ⚡ Momentum: {config['momentum_periods']} periods")
+            print(f"   ⏰ Evaluation: {config['eval_after_minutes']} minutes")
+            print(f"   📊 Data needed: {config['data_points_needed']} points")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Failed to load timeframes: {e}")
+        return False
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
@@ -208,6 +239,12 @@ Examples:
         '--data-source',
         help='Path to Bitcoin price data CSV file'
     )
+    predict_parser.add_argument(
+        '--timeframe',
+        choices=PredictorConfig.get_supported_timeframes(),
+        default='1d',
+        help='Time interval for prediction (default: 1d)'
+    )
     
     # History command
     history_parser = subparsers.add_parser('history', help='Show prediction history')
@@ -224,9 +261,18 @@ Examples:
         '--data-source',
         help='Path to Bitcoin price data CSV file'
     )
+    analyze_parser.add_argument(
+        '--timeframe',
+        choices=PredictorConfig.get_supported_timeframes(),
+        default='1d',
+        help='Time interval for analysis (default: 1d)'
+    )
     
     # Test command
     test_parser = subparsers.add_parser('test', help='Test the prediction system')
+    
+    # Timeframes command
+    timeframes_parser = subparsers.add_parser('timeframes', help='List supported timeframes')
     
     args = parser.parse_args()
     
@@ -243,7 +289,8 @@ Examples:
         'predict': cmd_predict,
         'history': cmd_history,
         'analyze': cmd_analyze,
-        'test': cmd_test
+        'test': cmd_test,
+        'timeframes': cmd_timeframes
     }
     
     try:

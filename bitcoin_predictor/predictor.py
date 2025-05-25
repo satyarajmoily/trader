@@ -2,13 +2,14 @@
 
 import logging
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 import uuid
 
 from .interfaces import PredictionInterface
 from .models import PredictionRecord, OHLCVData, AnalysisResult, PredictionResult
 from .data_loader import BitcoinDataLoader
 from .storage import PredictionStorage
+from .config import PredictorConfig, TIMEFRAME_CONFIG
 
 logger = logging.getLogger(__name__)
 
@@ -23,16 +24,27 @@ class BitcoinPredictor(PredictionInterface):
     
     def __init__(self, 
                  data_loader: Optional[BitcoinDataLoader] = None,
-                 storage: Optional[PredictionStorage] = None):
+                 storage: Optional[PredictionStorage] = None,
+                 timeframe: str = "1d"):
         """
         Initialize the Bitcoin predictor.
         
         Args:
             data_loader: Custom data loader (uses default if None)
             storage: Custom storage (uses default if None)
+            timeframe: Time interval for predictions (1m, 5m, 15m, 1h, 4h, 1d)
         """
         self.data_loader = data_loader or BitcoinDataLoader()
         self.storage = storage or PredictionStorage()
+        self.timeframe = timeframe
+        self.timeframe_config = self._get_timeframe_config(timeframe)
+    
+    def _get_timeframe_config(self, timeframe: str) -> Dict[str, Any]:
+        """Get configuration for the specified timeframe."""
+        if timeframe not in TIMEFRAME_CONFIG:
+            logger.warning(f"Unknown timeframe {timeframe}, using 1d default")
+            timeframe = "1d"
+        return TIMEFRAME_CONFIG[timeframe]
         
     def predict(self, data_source: Optional[str] = None) -> PredictionRecord:
         """
@@ -44,8 +56,8 @@ class BitcoinPredictor(PredictionInterface):
         Returns:
             PredictionRecord with prediction and metadata
         """
-        # Load price data
-        price_data = self.data_loader.load_data(data_source)
+        # Load price data with timeframe
+        price_data = self.data_loader.load_data(data_source, self.timeframe)
         if not price_data:
             raise ValueError("Failed to load price data for prediction")
         
@@ -67,7 +79,8 @@ class BitcoinPredictor(PredictionInterface):
             latest_price=price_data[-1].close,
             data_points=len(price_data),
             analysis_period=f"{price_data[0].date} to {price_data[-1].date}",
-            confidence=analysis.confidence
+            confidence=analysis.confidence,
+            timeframe=self.timeframe  # Add timeframe to prediction record
         )
         
         # Save prediction
@@ -88,25 +101,50 @@ class BitcoinPredictor(PredictionInterface):
         Returns:
             AnalysisResult with technical indicators and prediction
         """
-        if not price_data or len(price_data) < 5:
-            raise ValueError("Insufficient price data for analysis (minimum 5 points required)")
+        # Get configurable periods from timeframe config
+        short_ma_periods = self.timeframe_config["short_ma_periods"]
+        long_ma_periods = self.timeframe_config["long_ma_periods"]
+        momentum_periods = self.timeframe_config["momentum_periods"]
+        
+        # Validate minimum data requirements
+        min_required = max(short_ma_periods, long_ma_periods, momentum_periods)
+        if not price_data or len(price_data) < min_required:
+            raise ValueError(f"Insufficient price data for analysis (minimum {min_required} points required for {self.timeframe})")
         
         # Extract closing prices for trend analysis
-        recent_closes = [day.close for day in price_data[-7:]]  # Last 7 days
+        recent_closes = [day.close for day in price_data]
         
-        # Calculate moving averages
-        short_ma = sum(recent_closes[-3:]) / 3  # 3-day MA
-        long_ma = sum(recent_closes[-5:]) / 5   # 5-day MA
+        # Calculate configurable moving averages
+        short_ma = sum(recent_closes[-short_ma_periods:]) / short_ma_periods
+        long_ma = sum(recent_closes[-long_ma_periods:]) / long_ma_periods
         
-        # Calculate price momentum
+        # Calculate configurable price momentum
         current_price = recent_closes[-1]
-        price_5_days_ago = recent_closes[-5] if len(recent_closes) >= 5 else recent_closes[0]
-        momentum = (current_price - price_5_days_ago) / price_5_days_ago
+        momentum_base_price = (recent_closes[-momentum_periods] if len(recent_closes) >= momentum_periods 
+                              else recent_closes[0])
+        momentum = (current_price - momentum_base_price) / momentum_base_price
         
-        # Calculate volume trend
-        recent_volumes = [day.volume for day in price_data[-3:]]
-        volume_trend = (sum(recent_volumes[-2:]) / sum(recent_volumes[-3:-1]) 
-                       if len(recent_volumes) >= 3 else 1.0)
+        # Calculate volume trend (using short MA period for consistency)
+        volume_periods = min(short_ma_periods, len(price_data))
+        recent_volumes = [day.volume for day in price_data[-volume_periods:]]
+        
+        if len(recent_volumes) >= 2:
+            # Compare recent half vs earlier half
+            half_point = len(recent_volumes) // 2
+            recent_half = recent_volumes[half_point:]
+            earlier_half = recent_volumes[:half_point] if half_point > 0 else [recent_volumes[0]]
+            
+            # Calculate averages with zero-division protection
+            recent_avg = sum(recent_half) / len(recent_half) if recent_half else 0
+            earlier_avg = sum(earlier_half) / len(earlier_half) if earlier_half else 0
+            
+            # Avoid division by zero
+            if earlier_avg > 0:
+                volume_trend = recent_avg / earlier_avg
+            else:
+                volume_trend = 1.0  # Neutral if no earlier volume data
+        else:
+            volume_trend = 1.0
         
         # Analyze bullish signals
         bullish_signals = 0
@@ -114,9 +152,9 @@ class BitcoinPredictor(PredictionInterface):
         
         if short_ma > long_ma:
             bullish_signals += 1
-            reasoning.append(f"Short MA ({short_ma:.2f}) > Long MA ({long_ma:.2f})")
+            reasoning.append(f"{short_ma_periods}-period MA ({short_ma:.2f}) > {long_ma_periods}-period MA ({long_ma:.2f})")
         else:
-            reasoning.append(f"Short MA ({short_ma:.2f}) ≤ Long MA ({long_ma:.2f})")
+            reasoning.append(f"{short_ma_periods}-period MA ({short_ma:.2f}) ≤ {long_ma_periods}-period MA ({long_ma:.2f})")
         
         if momentum > 0.02:  # Strong positive momentum
             bullish_signals += 1
@@ -148,7 +186,7 @@ class BitcoinPredictor(PredictionInterface):
         reasoning.append(f"Prediction: {prediction} (confidence: {confidence:.2f})")
         
         # Log analysis details
-        logger.info(f"Technical Analysis - MA: {short_ma:.2f}/{long_ma:.2f}, "
+        logger.info(f"Technical Analysis ({self.timeframe}) - MA: {short_ma:.2f}/{long_ma:.2f}, "
                    f"Momentum: {momentum:.4f}, Volume: {volume_trend:.3f}")
         logger.info(f"Bullish signals: {bullish_signals}/3.0 → {prediction}")
         

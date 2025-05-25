@@ -85,5 +85,92 @@
     },
     "overall_valid": false,
     "summary": "\u274c Validation failed: Execution test failed"
+  },
+  {
+    "validation_id": "val_20250525_104133",
+    "timestamp": "2025-05-25T10:41:33.614160",
+    "code_length": 3139,
+    "interface_compatibility": {
+      "valid": true,
+      "syntax": {
+        "valid": true,
+        "has_function": true,
+        "message": "Syntax validation passed",
+        "ast_nodes": 551
+      },
+      "signature": {
+        "valid": true,
+        "function_found": true,
+        "has_self": true,
+        "has_price_data": true,
+        "arg_count": 2,
+        "args": [
+          "self",
+          "price_data"
+        ],
+        "message": "Function signature validation passed"
+      },
+      "imports": {
+        "valid": true,
+        "imports": [],
+        "dangerous_imports": [],
+        "message": "Safe imports"
+      },
+      "return_type": {
+        "valid": true,
+        "return_count": 1,
+        "has_analysis_result": true,
+        "message": "Return type validation passed"
+      },
+      "message": "Interface compatibility validated"
+    },
+    "execution_test": {
+      "valid": false,
+      "executed": false,
+      "error": "  File \"/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpa1usxn_u.py\", line 30\n    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:\n    ^\nIndentationError: expected an indented block\n",
+      "message": "Code execution failed"
+    },
+    "overall_valid": false,
+    "summary": "\u274c Validation failed: Execution test failed"
+  },
+  {
+    "validation_id": "val_20250525_105031",
+    "timestamp": "2025-05-25T10:50:31.557573",
+    "code_length": 3664,
+    "interface_compatibility": {
+      "valid": false,
+      "syntax": {
+        "valid": false,
+        "error": "Syntax error",
+        "message": "invalid syntax (<unknown>, line 73)",
+        "line": 73,
+        "offset": 22,
+        "text": "        logger.info(f\"Technical Analysis - EMA: {short_ema:.2f}/{long_ema:.2f}, \\\n                   f\"Momentum: {momentum:.4f}, Volume: {volume_trend:.3f}\")\n"
+      },
+      "signature": {
+        "valid": false,
+        "error": "Signature validation failed",
+        "message": "invalid syntax (<unknown>, line 73)"
+      },
+      "imports": {
+        "valid": false,
+        "error": "Import validation failed",
+        "message": "invalid syntax (<unknown>, line 73)"
+      },
+      "return_type": {
+        "valid": false,
+        "error": "Return type validation failed",
+        "message": "invalid syntax (<unknown>, line 73)"
+      },
+      "message": "Interface compatibility issues found"
+    },
+    "execution_test": {
+      "valid": false,
+      "executed": false,
+      "error": "  File \"/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpxr869rjg.py\", line 30\n    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:\n    ^\nIndentationError: expected an indented block\n",
+      "message": "Code execution failed"
+    },
+    "overall_valid": false,
+    "summary": "\u274c Validation failed: Syntax errors, Function signature issues, Unsafe imports, Return type issues, Execution test failed"
   }
 ]

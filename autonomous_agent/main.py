@@ -70,12 +70,13 @@ def setup_environment():
 
 def cmd_predict(args):
     """Make a single Bitcoin price prediction."""
-    print("🤖 Autonomous Agent - Bitcoin Prediction")
+    timeframe = getattr(args, 'timeframe', '1d')
+    print(f"🤖 Autonomous Agent - Bitcoin Prediction ({timeframe})")
     print("=" * 45)
     
     try:
         agent = AutonomousAgent()
-        result = agent.make_prediction(args.data_source)
+        result = agent.make_prediction(args.data_source, timeframe=timeframe)
         
         print(result["response"])
         return result["success"]
@@ -197,23 +198,21 @@ def cmd_improve(args):
                 for change in improvement.changes_made[:3]:  # Show first 3
                     print(f"  • {change}")
                 print(f"✨ Expected Benefits:")
-                for benefit in improvement.expected_benefits[:3]:  # Show first 3  
+                for benefit in improvement.expected_benefits[:3]:  # Show first 3
                     print(f"  • {benefit}")
-                print(f"🎯 Confidence: {improvement.confidence_score:.2f}")
                 
-                if args.show_code:
-                    print(f"\n💻 Generated Code Preview:")
-                    code_lines = improvement.improved_code.split('\n')
-                    for line in code_lines[:10]:  # Show first 10 lines
-                        print(f"    {line}")
-                    if len(code_lines) > 10:
-                        print(f"    ... ({len(code_lines)-10} more lines)")
-                
+                if args.show_code and hasattr(improvement, 'improved_code'):
+                    print(f"\n💻 Code Preview (first 200 chars):")
+                    preview = improvement.improved_code[:200] + "..." if len(improvement.improved_code) > 200 else improvement.improved_code
+                    print(f"```python\n{preview}\n```")
+            
+            print(f"\n✅ Code improvements generated successfully!")
+            print(f"💡 Use 'validate' command to validate improvements before deployment")
             return True
         else:
-            print("❌ Failed to generate code improvements")
+            print("❌ No improvements could be generated")
             return False
-            
+        
     except Exception as e:
         print(f"❌ Code improvement failed: {e}")
         logger.error(f"Improvement error: {e}")
@@ -341,13 +340,13 @@ def cmd_deploy(args):
 
 
 def cmd_test(args):
-    """Test all agent components including Phase 3."""
-    print("🧪 Testing Autonomous Agent Components (Phase 3)")
+    """Test all agent components including Phase 4."""
+    print("🧪 Testing Autonomous Agent Components (Phase 4)")
     print("=" * 55)
     
     success = True
     
-    # Test 1: Agent initialization
+    # Test 1: Agent initialization  
     print("1. Testing agent initialization...")
     try:
         agent = AutonomousAgent()
@@ -361,11 +360,12 @@ def cmd_test(args):
     # Test 2: Prediction interface
     print("2. Testing prediction interface...")
     try:
+        agent = AutonomousAgent()
         result = agent.make_prediction()
         if result["success"]:
             print("   ✅ Prediction interface working")
         else:
-            print(f"   ❌ Prediction failed: {result['error']}")
+            print(f"   ❌ Prediction interface failed: {result['error']}")
             success = False
     except Exception as e:
         print(f"   ❌ Prediction interface failed: {e}")
@@ -373,29 +373,43 @@ def cmd_test(args):
     
     print()
     
-    # Test 3: Code analyzer
+    # Test 3: Phase 3 - Code analyzer
     print("3. Testing code analyzer...")
     try:
-        analyzer = CodeAnalyzerChain()
-        print("   ✅ Code analyzer initialized")
+        from .chains.code_analyzer import CodeAnalyzerChain
+        import os
+        
+        api_key = os.getenv('OPENAI_API_KEY')
+        if api_key:
+            analyzer = CodeAnalyzerChain()
+            print("   ✅ Code analyzer initialized")
+        else:
+            print("   ⚠️ Code analyzer skipped (OPENAI_API_KEY not found)")
     except Exception as e:
         print(f"   ❌ Code analyzer failed: {e}")
         success = False
     
     print()
     
-    # Test 4: Code improver
+    # Test 4: Phase 3 - Code improver
     print("4. Testing code improver...")
     try:
-        improver = CodeImproverChain()
-        print("   ✅ Code improver initialized")
+        from .chains.code_improver import CodeImproverChain
+        import os
+        
+        api_key = os.getenv('OPENAI_API_KEY')
+        if api_key:
+            improver = CodeImproverChain()
+            print("   ✅ Code improver initialized")
+        else:
+            print("   ⚠️ Code improver skipped (OPENAI_API_KEY not found)")
     except Exception as e:
         print(f"   ❌ Code improver failed: {e}")
         success = False
     
     print()
     
-    # Test 5: Code validator
+    # Test 5: Phase 3 - Code validator
     print("5. Testing code validator...")
     try:
         validator = CodeValidator()
@@ -418,7 +432,7 @@ def analyze(self, price_data):
     
     print()
     
-    # Test 6: Core system manager
+    # Test 6: Phase 3 - Core system manager
     print("6. Testing core system manager...")
     try:
         core_manager = CoreSystemManager()
@@ -428,19 +442,209 @@ def analyze(self, price_data):
         print(f"   ❌ Core system manager failed: {e}")
         success = False
     
+    print()
+    
+    # Test 7: Phase 4 - GitHub manager
+    print("7. Testing GitHub manager...")
+    try:
+        import os
+        
+        github_token = os.getenv('GITHUB_TOKEN')
+        if github_token:
+            from .tools.github_manager import GitHubManager
+            github_manager = GitHubManager()
+            print("   ✅ GitHub manager initialized")
+        else:
+            print("   ⚠️ GitHub manager skipped (GITHUB_TOKEN not found)")
+    except Exception as e:
+        print(f"   ❌ GitHub manager failed: {e}")
+        success = False
+    
+    print()
+    
+    # Test 8: Phase 4 - PR generator
+    print("8. Testing PR generator...")
+    try:
+        import os
+        
+        api_key = os.getenv('OPENAI_API_KEY')
+        if api_key:
+            from .chains.pr_generator import PRGenerator
+            pr_generator = PRGenerator(api_key)
+            print("   ✅ PR generator initialized")
+        else:
+            print("   ⚠️ PR generator skipped (OPENAI_API_KEY not found)")
+    except Exception as e:
+        print(f"   ❌ PR generator failed: {e}")
+        success = False
+    
+    print()
+    
+    # Test 9: Phase 4 - End-to-end GitHub integration
+    print("9. Testing GitHub integration...")
+    try:
+        import os
+        
+        github_token = os.getenv('GITHUB_TOKEN')
+        github_owner = os.getenv('GITHUB_REPO_OWNER')
+        github_repo = os.getenv('GITHUB_REPO_NAME')
+        
+        if all([github_token, github_owner, github_repo]):
+            agent = AutonomousAgent()
+            result = agent.setup_github_integration()
+            
+            if result["success"]:
+                print("   ✅ GitHub integration working")
+                print(f"   📋 Repository: {result['repo_info']['full_name']}")
+                print(f"   👤 Permissions: Push={result['repo_info']['permissions']['push']}")
+            else:
+                print(f"   ❌ GitHub integration failed: {result['error']}")
+                success = False
+        else:
+            missing = []
+            if not github_token: missing.append('GITHUB_TOKEN')
+            if not github_owner: missing.append('GITHUB_REPO_OWNER')
+            if not github_repo: missing.append('GITHUB_REPO_NAME')
+            print(f"   ⚠️ GitHub integration skipped (missing: {', '.join(missing)})")
+    except Exception as e:
+        print(f"   ❌ GitHub integration test failed: {e}")
+        success = False
+    
     print("\n" + "=" * 55)
     if success:
-        print("✅ All Phase 3 tests passed! Agent is ready for code improvement.")
+        print("✅ All Phase 4 tests passed! Agent is ready for GitHub automation.")
     else:
         print("❌ Some tests failed. Please check the errors above.")
+        print("\n💡 Note: Some features require environment variables:")
+        print("   - OPENAI_API_KEY (for Phase 3 & 4 features)")
+        print("   - GITHUB_TOKEN (for Phase 4 GitHub integration)")
+        print("   - GITHUB_REPO_OWNER, GITHUB_REPO_NAME (for GitHub operations)")
     
     return success
+
+
+# ===== PHASE 4: GITHUB AUTOMATION COMMANDS =====
+
+def cmd_setup_github(args):
+    """Setup and test GitHub integration."""
+    print("🐙 GitHub Integration Setup")
+    print("=" * 30)
+    
+    try:
+        agent = AutonomousAgent()
+        result = agent.setup_github_integration()
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ GitHub setup failed: {e}")
+        return False
+
+
+def cmd_create_pr(args):
+    """Create GitHub PR for a validated improvement."""
+    print("📋 Creating GitHub PR for Improvement")
+    print("=" * 40)
+    
+    try:
+        agent = AutonomousAgent()
+        result = agent.create_pr_for_improvement(args.improvement_id)
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ PR creation failed: {e}")
+        return False
+
+
+def cmd_list_prs(args):
+    """List open autonomous improvement PRs."""
+    print("📋 Autonomous Improvement PRs")
+    print("=" * 30)
+    
+    try:
+        agent = AutonomousAgent()
+        result = agent.list_github_prs(args.label)
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ PR listing failed: {e}")
+        return False
+
+
+def cmd_check_pr(args):
+    """Check status of a specific PR."""
+    print(f"🔍 Checking PR #{args.pr_number}")
+    print("=" * 30)
+    
+    try:
+        agent = AutonomousAgent()
+        result = agent.check_pr_status(args.pr_number)
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ PR status check failed: {e}")
+        return False
+
+
+def cmd_auto_cycle(args):
+    """Run complete autonomous improvement cycle."""
+    print("🤖 Autonomous Improvement Cycle")
+    print("=" * 35)
+    
+    if args.dry_run:
+        print("🔍 DRY RUN MODE - No changes will be made")
+        print()
+    
+    try:
+        agent = AutonomousAgent()
+        
+        if args.dry_run:
+            # For dry run, just do analysis
+            print("Step 1: Evaluating predictions...")
+            eval_result = agent.evaluate_predictions()
+            print(eval_result["response"])
+            
+            if eval_result["success"] and eval_result.get("evaluations"):
+                failed_predictions = [e for e in eval_result["evaluations"] if not e.is_correct]
+                
+                if failed_predictions:
+                    print(f"\n🔍 Would analyze {len(failed_predictions)} failed predictions")
+                    print("🛠️ Would generate code improvements")
+                    print("✅ Would validate improvements")
+                    print("🚀 Would deploy locally")
+                    
+                    if not args.no_pr:
+                        print("📋 Would create GitHub PR")
+                    
+                    print("\n💡 Use without --dry-run to execute the cycle")
+                else:
+                    print("\nℹ️ No failed predictions to improve from")
+            
+            return True
+        else:
+            # Run actual cycle
+            create_pr = not args.no_pr
+            result = agent.run_autonomous_cycle(create_pr=create_pr)
+            
+            print(result["response"])
+            return result["success"]
+        
+    except Exception as e:
+        print(f"❌ Autonomous cycle failed: {e}")
+        return False
 
 
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Autonomous Bitcoin Prediction Agent - Phase 3",
+        description="Autonomous Bitcoin Prediction Agent - Phase 4",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -448,11 +652,20 @@ Examples:
   python -m autonomous_agent.main predict              # Make a prediction
   python -m autonomous_agent.main evaluate             # Evaluate predictions
   
-  # New Phase 3 Commands
+  # Phase 3: Code Improvement Commands
   python -m autonomous_agent.main analyze              # Analyze failed predictions
   python -m autonomous_agent.main improve              # Generate improved code
   python -m autonomous_agent.main validate             # Validate generated code
   python -m autonomous_agent.main deploy               # Deploy improved code
+  
+  # Phase 4: GitHub Automation Commands
+  python -m autonomous_agent.main setup-github         # Setup GitHub integration
+  python -m autonomous_agent.main create-pr <id>       # Create PR for improvement
+  python -m autonomous_agent.main list-prs             # List autonomous PRs
+  python -m autonomous_agent.main check-pr <number>    # Check PR status
+  python -m autonomous_agent.main auto-cycle           # Run complete autonomous cycle
+  
+  # Testing
   python -m autonomous_agent.main test                 # Test all components
         """
     )
@@ -473,6 +686,12 @@ Examples:
     predict_parser.add_argument(
         '--data-source',
         help='Path to Bitcoin price data CSV file'
+    )
+    predict_parser.add_argument(
+        '--timeframe',
+        choices=['1m', '5m', '15m', '1h', '4h', '1d'],
+        default='1d',
+        help='Time interval for prediction (default: 1d)'
     )
     
     # Evaluate command
@@ -541,6 +760,53 @@ Examples:
         help='Skip validation before deployment (not recommended)'
     )
     
+    # === PHASE 4: GITHUB AUTOMATION COMMANDS ===
+    
+    # Setup GitHub command
+    setup_github_parser = subparsers.add_parser('setup-github', help='Setup and test GitHub integration')
+    
+    # Create PR command
+    create_pr_parser = subparsers.add_parser('create-pr', help='Create GitHub PR for improvement')
+    create_pr_parser.add_argument(
+        'improvement_id',
+        help='Improvement ID to create PR for'
+    )
+    
+    # List PRs command
+    list_prs_parser = subparsers.add_parser('list-prs', help='List open autonomous improvement PRs')
+    list_prs_parser.add_argument(
+        '--label',
+        default='autonomous-improvement',
+        help='Filter PRs by label (default: autonomous-improvement)'
+    )
+    
+    # Check PR command
+    check_pr_parser = subparsers.add_parser('check-pr', help='Check status of a specific PR')
+    check_pr_parser.add_argument(
+        'pr_number',
+        type=int,
+        help='PR number to check'
+    )
+    
+    # Auto cycle command
+    auto_cycle_parser = subparsers.add_parser('auto-cycle', help='Run complete autonomous improvement cycle')
+    auto_cycle_parser.add_argument(
+        '--no-pr',
+        action='store_true',
+        help='Skip GitHub PR creation'
+    )
+    auto_cycle_parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Analyze and plan but do not deploy or create PR'
+    )
+    auto_cycle_parser.add_argument(
+        '--timeframe',
+        choices=['1m', '5m', '15m', '1h', '4h', '1d'],
+        default='1d',
+        help='Time interval for predictions (default: 1d)'
+    )
+    
     # Test command
     test_parser = subparsers.add_parser('test', help='Test all agent components')
     
@@ -571,6 +837,12 @@ Examples:
         'improve': cmd_improve,      # Phase 3
         'validate': cmd_validate,    # Phase 3
         'deploy': cmd_deploy,        # Phase 3
+        # Phase 4: GitHub automation commands
+        'setup-github': cmd_setup_github,
+        'create-pr': cmd_create_pr,
+        'list-prs': cmd_list_prs,
+        'check-pr': cmd_check_pr,
+        'auto-cycle': cmd_auto_cycle,
         'test': cmd_test
     }
     

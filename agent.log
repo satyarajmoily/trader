@@ -46,3 +46,514 @@
 2025-05-25 10:20:07,244 - __main__ - INFO - Timestamp: 2025-05-25T10:20:07.244961
 2025-05-25 10:20:07,444 - bitcoin_predictor.storage - INFO - Loaded 22 predictions from storage
 2025-05-25 10:20:07,444 - autonomous_agent.chains.code_analyzer - INFO - No recent failed predictions found
+2025-05-25 10:41:07,591 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:07,591 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 10:41:07,591 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:07.591672
+2025-05-25 10:41:07,768 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 10:41:07,769 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 10:41:07,769 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 10:41:07,769 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 10:41:07,770 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T104107769435 to storage
+2025-05-25 10:41:07,770 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T104107769435: down
+2025-05-25 10:41:07,770 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 10:41:14,156 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:14,157 - autonomous_agent.main - INFO - Starting Autonomous Agent in predict mode
+2025-05-25 10:41:14,157 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:14.157140
+2025-05-25 10:41:14,299 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 10:41:14,299 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 10:41:14,299 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 10:41:14,299 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 10:41:14,300 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T104114299710 to storage
+2025-05-25 10:41:14,300 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T104114299710: down
+2025-05-25 10:41:14,300 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 10:41:23,256 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:23,256 - autonomous_agent.main - INFO - Starting Autonomous Agent in analyze mode
+2025-05-25 10:41:23,256 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:23.256661
+2025-05-25 10:41:23,399 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:23,399 - autonomous_agent.chains.code_analyzer - INFO - No recent failed predictions found
+2025-05-25 10:41:28,647 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:28,647 - autonomous_agent.main - INFO - Starting Autonomous Agent in improve mode
+2025-05-25 10:41:28,647 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:28.647527
+2025-05-25 10:41:28,801 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:28,801 - autonomous_agent.chains.code_analyzer - INFO - No recent failed predictions found
+2025-05-25 10:41:33,612 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:33,612 - autonomous_agent.main - INFO - Starting Autonomous Agent in validate mode
+2025-05-25 10:41:33,612 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:33.612922
+2025-05-25 10:41:33,637 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_104133
+2025-05-25 10:41:38,420 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:41:38,420 - autonomous_agent.main - INFO - Starting Autonomous Agent in evaluate mode
+2025-05-25 10:41:38,420 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:41:38.420197
+2025-05-25 10:41:38,561 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 0 hours...
+2025-05-25 10:41:38,561 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:38,562 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:38,961 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,247.00 (-0.22%)
+2025-05-25 10:41:42,750 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:41:42,757 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:42,757 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250524T222048593673
+2025-05-25 10:41:42,758 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250524T222048593673
+2025-05-25 10:41:42,758 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250524T222048593673: False
+2025-05-25 10:41:42,759 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:42,785 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,247.00 (-0.22%)
+2025-05-25 10:41:45,823 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:41:45,828 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:45,830 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250524T230326028151
+2025-05-25 10:41:45,832 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250524T230326028151
+2025-05-25 10:41:45,832 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250524T230326028151: False
+2025-05-25 10:41:45,832 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:45,861 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,247.00 (-0.22%)
+2025-05-25 10:41:49,185 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:41:49,189 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:49,191 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250524T233855898029
+2025-05-25 10:41:49,192 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250524T233855898029
+2025-05-25 10:41:49,192 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250524T233855898029: False
+2025-05-25 10:41:49,193 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:49,223 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,247.00 (-0.22%)
+2025-05-25 10:41:52,171 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:41:52,172 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:52,174 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250524T233928889471
+2025-05-25 10:41:52,175 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250524T233928889471
+2025-05-25 10:41:52,175 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250524T233928889471: False
+2025-05-25 10:41:52,175 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:52,203 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,247.00 (-0.22%)
+2025-05-25 10:41:56,062 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:41:56,063 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:41:56,064 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250524T233945307793
+2025-05-25 10:41:56,064 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250524T233945307793
+2025-05-25 10:41:56,064 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250524T233945307793: False
+2025-05-25 10:41:56,064 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:42:56,480 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:42:59,450 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:42:59,457 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:42:59,459 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T000057562456
+2025-05-25 10:42:59,460 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T000057562456
+2025-05-25 10:42:59,461 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T000057562456: False
+2025-05-25 10:42:59,461 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:42:59,501 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:43:04,132 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:43:04,134 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:04,134 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T000101863054
+2025-05-25 10:43:04,135 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T000101863054
+2025-05-25 10:43:04,135 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T000101863054: False
+2025-05-25 10:43:04,135 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:04,187 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:43:07,816 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:43:07,820 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:07,823 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T004235470060
+2025-05-25 10:43:07,824 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T004235470060
+2025-05-25 10:43:07,825 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T004235470060: False
+2025-05-25 10:43:07,825 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:07,854 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:43:11,431 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:43:11,435 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:11,437 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T004239956817
+2025-05-25 10:43:11,439 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T004239956817
+2025-05-25 10:43:11,439 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T004239956817: False
+2025-05-25 10:43:11,440 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:11,472 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:43:14,400 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:43:14,405 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:14,407 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T004244472482
+2025-05-25 10:43:14,409 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T004244472482
+2025-05-25 10:43:14,410 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T004244472482: False
+2025-05-25 10:43:14,410 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:14,440 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,243.00 (-0.18%)
+2025-05-25 10:43:17,984 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:43:17,988 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:43:17,991 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T004300254877
+2025-05-25 10:43:17,993 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T004300254877
+2025-05-25 10:43:17,993 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T004300254877: False
+2025-05-25 10:43:17,994 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:18,399 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,235.00 (-0.18%)
+2025-05-25 10:44:22,804 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:44:22,808 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:22,810 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T005751017133
+2025-05-25 10:44:22,812 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T005751017133
+2025-05-25 10:44:22,812 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T005751017133: False
+2025-05-25 10:44:22,812 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:22,847 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,235.00 (-0.18%)
+2025-05-25 10:44:25,489 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:44:25,490 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:25,492 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T005835240264
+2025-05-25 10:44:25,493 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T005835240264
+2025-05-25 10:44:25,493 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T005835240264: False
+2025-05-25 10:44:25,493 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:25,521 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,235.00 (-0.18%)
+2025-05-25 10:44:28,946 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:44:28,948 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:44:28,949 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010212364745
+2025-05-25 10:44:28,950 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010212364745
+2025-05-25 10:44:28,950 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010212364745: False
+2025-05-25 10:44:28,950 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:29,362 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,225.00 (-0.19%)
+2025-05-25 10:45:32,756 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:45:32,759 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:32,761 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010217145672
+2025-05-25 10:45:32,762 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010217145672
+2025-05-25 10:45:32,763 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010217145672: False
+2025-05-25 10:45:32,763 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:32,798 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,225.00 (-0.19%)
+2025-05-25 10:45:35,814 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:45:35,816 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:35,817 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010221699296
+2025-05-25 10:45:35,817 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010221699296
+2025-05-25 10:45:35,817 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010221699296: False
+2025-05-25 10:45:35,818 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:35,849 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,225.00 (-0.19%)
+2025-05-25 10:45:39,397 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:45:39,399 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:39,400 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010823858833
+2025-05-25 10:45:39,401 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010823858833
+2025-05-25 10:45:39,401 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010823858833: False
+2025-05-25 10:45:39,401 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:39,435 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,225.00 (-0.19%)
+2025-05-25 10:45:44,724 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:45:44,726 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:44,727 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010827542942
+2025-05-25 10:45:44,727 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010827542942
+2025-05-25 10:45:44,727 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010827542942: False
+2025-05-25 10:45:44,728 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:44,755 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,225.00 (-0.19%)
+2025-05-25 10:45:47,598 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:45:47,609 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:45:47,610 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010831421493
+2025-05-25 10:45:47,611 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010831421493
+2025-05-25 10:45:47,612 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010831421493: False
+2025-05-25 10:45:47,612 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:46:11,226 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:46:11,226 - autonomous_agent.main - INFO - Starting Autonomous Agent in analyze mode
+2025-05-25 10:46:11,226 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:46:11.226596
+2025-05-25 10:46:11,386 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:46:11,386 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010831421493
+2025-05-25 10:46:11,386 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:46:47,802 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:46:55,484 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:46:55,496 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010831421493
+2025-05-25 10:46:55,496 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010831421493
+2025-05-25 10:46:55,496 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010827542942
+2025-05-25 10:46:55,496 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:46:55,525 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:03,776 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:03,778 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010827542942
+2025-05-25 10:47:03,778 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010827542942
+2025-05-25 10:47:03,778 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010823858833
+2025-05-25 10:47:03,778 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:03,805 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:11,356 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:11,358 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010823858833
+2025-05-25 10:47:11,358 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010823858833
+2025-05-25 10:47:11,358 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010221699296
+2025-05-25 10:47:11,358 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:11,395 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:21,901 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:21,904 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010221699296
+2025-05-25 10:47:21,904 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010221699296
+2025-05-25 10:47:21,904 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010217145672
+2025-05-25 10:47:21,904 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:21,938 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:29,581 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:29,583 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010217145672
+2025-05-25 10:47:29,583 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010217145672
+2025-05-25 10:47:29,583 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis of 5 failed predictions
+2025-05-25 10:47:35,855 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:47:35,855 - autonomous_agent.main - INFO - Starting Autonomous Agent in improve mode
+2025-05-25 10:47:35,855 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:47:35.855371
+2025-05-25 10:47:36,008 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:36,008 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010831421493
+2025-05-25 10:47:36,008 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:36,079 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:43,366 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:43,381 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010831421493
+2025-05-25 10:47:43,381 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010831421493
+2025-05-25 10:47:43,381 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010827542942
+2025-05-25 10:47:43,381 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:47:43,419 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,217.00 (-0.15%)
+2025-05-25 10:47:51,393 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:47:51,398 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010827542942
+2025-05-25 10:47:51,398 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010827542942
+2025-05-25 10:47:51,398 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T010823858833
+2025-05-25 10:47:51,398 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 10:48:51,811 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,209.00 (-0.16%)
+2025-05-25 10:48:59,836 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:48:59,842 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T010823858833
+2025-05-25 10:48:59,842 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T010823858833
+2025-05-25 10:48:59,842 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis of 3 failed predictions
+2025-05-25 10:48:59,842 - autonomous_agent.chains.code_improver - INFO - Generating improvement for analysis pred_20250525T010831421493
+2025-05-25 10:49:22,515 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:49:22,521 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_104922
+2025-05-25 10:49:22,521 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_104922 for analysis pred_20250525T010831421493
+2025-05-25 10:49:22,521 - autonomous_agent.chains.code_improver - INFO - Generating improvement for analysis pred_20250525T010827542942
+2025-05-25 10:49:44,035 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:49:44,041 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_104944
+2025-05-25 10:49:44,041 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_104944 for analysis pred_20250525T010827542942
+2025-05-25 10:49:44,041 - autonomous_agent.chains.code_improver - INFO - Generating improvement for analysis pred_20250525T010823858833
+2025-05-25 10:50:10,863 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 10:50:10,869 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_105010
+2025-05-25 10:50:10,869 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_105010 for analysis pred_20250525T010823858833
+2025-05-25 10:50:10,869 - autonomous_agent.chains.code_improver - INFO - Generated 3 code improvements from 3 analyses
+2025-05-25 10:50:31,412 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 10:50:31,412 - __main__ - INFO - Starting Autonomous Agent in validate mode
+2025-05-25 10:50:31,412 - __main__ - INFO - Timestamp: 2025-05-25T10:50:31.412821
+2025-05-25 10:50:31,581 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_105031
+2025-05-25 10:54:31,773 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 10:54:31,774 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 10:54:31,774 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T10:54:31.774252
+2025-05-25 10:54:31,949 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 10:54:31,949 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 10:54:31,949 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 10:54:31,949 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 10:54:31,950 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T105431949783 to storage
+2025-05-25 10:54:31,950 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T105431949783: down
+2025-05-25 10:54:31,950 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 11:08:58,775 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 11:08:58,775 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 11:08:58,775 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T11:08:58.775408
+2025-05-25 11:08:58,935 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 11:08:58,935 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:08:58,935 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 11:08:58,935 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:08:58,936 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T110858935794 to storage
+2025-05-25 11:08:58,936 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T110858935794: down
+2025-05-25 11:08:58,936 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 11:08:59,424 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:08:59,424 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:08:59,443 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:08:59,458 - autonomous_agent.orchestrator - INFO - Setting up GitHub integration...
+2025-05-25 11:08:59,861 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:08:59,862 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:08:59,881 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:08:59,881 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 11:09:00,481 - autonomous_agent.tools.github_manager - INFO - GitHub access validation successful
+2025-05-25 11:09:13,565 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:09:13,565 - __main__ - INFO - Starting Autonomous Agent in setup-github mode
+2025-05-25 11:09:13,565 - __main__ - INFO - Timestamp: 2025-05-25T11:09:13.565864
+2025-05-25 11:09:13,691 - autonomous_agent.orchestrator - INFO - Setting up GitHub integration...
+2025-05-25 11:09:14,113 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:09:14,113 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:09:14,124 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:09:14,124 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 11:09:14,734 - autonomous_agent.tools.github_manager - INFO - GitHub access validation successful
+2025-05-25 11:09:20,993 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:09:20,993 - __main__ - INFO - Starting Autonomous Agent in list-prs mode
+2025-05-25 11:09:20,993 - __main__ - INFO - Timestamp: 2025-05-25T11:09:20.993419
+2025-05-25 11:09:21,542 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:09:21,542 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:09:21,558 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:09:21,558 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 11:09:21,559 - autonomous_agent.orchestrator - INFO - Listing GitHub PRs...
+2025-05-25 11:09:27,492 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:09:27,492 - __main__ - INFO - Starting Autonomous Agent in auto-cycle mode
+2025-05-25 11:09:27,492 - __main__ - INFO - Timestamp: 2025-05-25T11:09:27.492422
+2025-05-25 11:09:27,618 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 24 hours...
+2025-05-25 11:09:27,619 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:27,619 - autonomous_agent.chains.evaluator - INFO - Evaluated 0 pending predictions
+2025-05-25 11:09:27,619 - autonomous_agent.orchestrator - INFO - No predictions ready for evaluation
+2025-05-25 11:09:32,195 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:09:32,195 - __main__ - INFO - Starting Autonomous Agent in evaluate mode
+2025-05-25 11:09:32,195 - __main__ - INFO - Timestamp: 2025-05-25T11:09:32.195333
+2025-05-25 11:09:32,319 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 0 hours...
+2025-05-25 11:09:32,319 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:32,320 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:32,700 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,136.00 (-0.18%)
+2025-05-25 11:09:36,368 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:09:36,383 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:36,385 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T010911793474
+2025-05-25 11:09:36,386 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T010911793474
+2025-05-25 11:09:36,386 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T010911793474: False
+2025-05-25 11:09:36,386 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:36,413 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,136.00 (-0.18%)
+2025-05-25 11:09:40,999 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:09:41,004 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:41,006 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T012049757915
+2025-05-25 11:09:41,008 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T012049757915
+2025-05-25 11:09:41,008 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T012049757915: False
+2025-05-25 11:09:41,009 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:41,042 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,136.00 (-0.18%)
+2025-05-25 11:09:44,684 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:09:44,688 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:44,691 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T013232734234
+2025-05-25 11:09:44,693 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T013232734234
+2025-05-25 11:09:44,693 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T013232734234: False
+2025-05-25 11:09:44,694 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:44,731 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,136.00 (-0.18%)
+2025-05-25 11:09:48,471 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:09:48,473 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:48,475 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T104053444218
+2025-05-25 11:09:48,476 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T104053444218
+2025-05-25 11:09:48,476 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T104053444218: False
+2025-05-25 11:09:48,477 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:48,506 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,136.00 (-0.18%)
+2025-05-25 11:09:52,111 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:09:52,118 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:09:52,120 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T104107769435
+2025-05-25 11:09:52,121 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T104107769435
+2025-05-25 11:09:52,121 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T104107769435: False
+2025-05-25 11:09:52,121 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:10:54,518 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:10:57,591 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:10:57,594 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:10:57,595 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T104114299710
+2025-05-25 11:10:57,596 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T104114299710
+2025-05-25 11:10:57,596 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T104114299710: False
+2025-05-25 11:10:57,597 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:10:57,632 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:01,055 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:01,060 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:01,063 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T105431949783
+2025-05-25 11:11:01,065 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T105431949783
+2025-05-25 11:11:01,065 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T105431949783: False
+2025-05-25 11:11:01,066 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:01,119 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:04,554 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:04,556 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:04,557 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T110858935794
+2025-05-25 11:11:04,559 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T110858935794
+2025-05-25 11:11:04,559 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T110858935794: False
+2025-05-25 11:11:04,559 - autonomous_agent.chains.evaluator - INFO - Evaluated 8 pending predictions
+2025-05-25 11:11:04,559 - autonomous_agent.orchestrator - INFO - Evaluation completed: 0.0% accuracy
+2025-05-25 11:11:10,810 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:11:10,810 - __main__ - INFO - Starting Autonomous Agent in auto-cycle mode
+2025-05-25 11:11:10,810 - __main__ - INFO - Timestamp: 2025-05-25T11:11:10.810233
+2025-05-25 11:11:10,937 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 24 hours...
+2025-05-25 11:11:10,937 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:10,937 - autonomous_agent.chains.evaluator - INFO - Evaluated 0 pending predictions
+2025-05-25 11:11:10,937 - autonomous_agent.orchestrator - INFO - No predictions ready for evaluation
+2025-05-25 11:11:16,124 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:11:16,124 - __main__ - INFO - Starting Autonomous Agent in analyze mode
+2025-05-25 11:11:16,124 - __main__ - INFO - Timestamp: 2025-05-25T11:11:16.124695
+2025-05-25 11:11:16,250 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:16,250 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T110858935794
+2025-05-25 11:11:16,250 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:16,323 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:25,549 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:25,564 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T110858935794
+2025-05-25 11:11:25,564 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T110858935794
+2025-05-25 11:11:25,564 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T105431949783
+2025-05-25 11:11:25,565 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:25,594 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:33,888 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:33,893 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T105431949783
+2025-05-25 11:11:33,893 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T105431949783
+2025-05-25 11:11:33,893 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T104114299710
+2025-05-25 11:11:33,893 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:33,923 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:42,034 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:42,037 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T104114299710
+2025-05-25 11:11:42,037 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T104114299710
+2025-05-25 11:11:42,037 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T104107769435
+2025-05-25 11:11:42,037 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:11:42,081 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,124.00 (-0.20%)
+2025-05-25 11:11:49,304 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:11:49,308 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T104107769435
+2025-05-25 11:11:49,308 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T104107769435
+2025-05-25 11:11:49,308 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T104053444218
+2025-05-25 11:11:49,308 - bitcoin_predictor.storage - INFO - Loaded 27 predictions from storage
+2025-05-25 11:33:58,611 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:33:58,611 - __main__ - INFO - Starting Autonomous Agent in predict mode
+2025-05-25 11:33:58,611 - __main__ - INFO - Timestamp: 2025-05-25T11:33:58.611313
+2025-05-25 11:33:58,766 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction (5m)...
+2025-05-25 11:33:58,766 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 5m data from API...
+2025-05-25 11:33:59,089 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=5
+2025-05-25 11:33:59,090 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=5
+2025-05-25 11:33:59,090 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=5
+2025-05-25 11:33:59,090 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=5
+2025-05-25 11:33:59,090 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:33:59,090 - bitcoin_predictor.predictor - INFO - Technical Analysis (5m) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 11:33:59,090 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:33:59,091 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T113359090840 to storage
+2025-05-25 11:33:59,091 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T113359090840: down
+2025-05-25 11:33:59,092 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 11:34:36,796 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 11:34:36,796 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 11:34:36,796 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T11:34:36.796502
+2025-05-25 11:34:36,952 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction (1d)...
+2025-05-25 11:34:36,952 - bitcoin_predictor.data_loader - INFO - Fetching 30 days of 1d data from API...
+2025-05-25 11:34:37,265 - autonomous_agent.tools.bitcoin_api - INFO - Fetched 180 daily OHLC data points for 30 days
+2025-05-25 11:34:37,266 - bitcoin_predictor.data_loader - INFO - Loaded 30 1d data points from API
+2025-05-25 11:34:37,266 - autonomous_agent.orchestrator - ERROR - Prediction failed: float division by zero
+2025-05-25 11:34:37,789 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:34:37,790 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:34:37,809 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:34:37,822 - autonomous_agent.orchestrator - INFO - Setting up GitHub integration...
+2025-05-25 11:34:38,239 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:34:38,239 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:34:38,256 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:34:38,257 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 11:34:38,868 - autonomous_agent.tools.github_manager - INFO - GitHub access validation successful
+2025-05-25 11:35:25,683 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 11:35:25,683 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 11:35:25,683 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T11:35:25.683411
+2025-05-25 11:35:25,889 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction (1d)...
+2025-05-25 11:35:25,889 - bitcoin_predictor.data_loader - INFO - Fetching 30 days of 1d data from API...
+2025-05-25 11:35:25,959 - autonomous_agent.tools.bitcoin_api - INFO - Fetched 180 daily OHLC data points for 30 days
+2025-05-25 11:35:25,959 - bitcoin_predictor.data_loader - INFO - Loaded 30 1d data points from API
+2025-05-25 11:35:25,960 - bitcoin_predictor.predictor - INFO - Technical Analysis (1d) - MA: 108313.00/108634.20, Momentum: -0.0101, Volume: 1.000
+2025-05-25 11:35:25,960 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:35:25,961 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T113525960153 to storage
+2025-05-25 11:35:25,961 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T113525960153: down
+2025-05-25 11:35:25,961 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($108,202.00)
+2025-05-25 11:35:26,405 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:35:26,406 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:35:26,422 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:35:26,433 - autonomous_agent.orchestrator - INFO - Setting up GitHub integration...
+2025-05-25 11:35:26,940 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 11:35:26,941 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 11:35:26,959 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 11:35:26,959 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 11:35:27,556 - autonomous_agent.tools.github_manager - INFO - GitHub access validation successful
+2025-05-25 11:36:00,045 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:36:00,045 - __main__ - INFO - Starting Autonomous Agent in predict mode
+2025-05-25 11:36:00,045 - __main__ - INFO - Timestamp: 2025-05-25T11:36:00.045951
+2025-05-25 11:36:00,169 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction (1h)...
+2025-05-25 11:36:00,170 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 1h data from API...
+2025-05-25 11:36:00,523 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:36:00,524 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:36:00,524 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:36:00,524 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:36:00,524 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:36:00,524 - bitcoin_predictor.predictor - INFO - Technical Analysis (1h) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 11:36:00,524 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:36:00,526 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T113600524853 to storage
+2025-05-25 11:36:00,526 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T113600524853: down
+2025-05-25 11:36:00,526 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 11:36:06,956 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 11:36:06,956 - __main__ - INFO - Starting Autonomous Agent in evaluate mode
+2025-05-25 11:36:06,957 - __main__ - INFO - Timestamp: 2025-05-25T11:36:06.957007
+2025-05-25 11:36:07,083 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 0 hours...
+2025-05-25 11:36:07,083 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:07,084 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:07,389 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,095.00 (-0.11%)
+2025-05-25 11:36:11,587 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:36:11,604 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:11,605 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T113346158985
+2025-05-25 11:36:11,606 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T113346158985
+2025-05-25 11:36:11,606 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T113346158985: False
+2025-05-25 11:36:11,606 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:11,632 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,095.00 (-0.11%)
+2025-05-25 11:36:15,169 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:36:15,173 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:15,175 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T113353351093
+2025-05-25 11:36:15,177 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T113353351093
+2025-05-25 11:36:15,177 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T113353351093: False
+2025-05-25 11:36:15,178 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:15,210 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,095.00 (-0.11%)
+2025-05-25 11:36:19,059 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:36:19,062 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:19,064 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T113359090840
+2025-05-25 11:36:19,066 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T113359090840
+2025-05-25 11:36:19,066 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T113359090840: False
+2025-05-25 11:36:19,067 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:19,206 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,095.00 (-0.11%)
+2025-05-25 11:36:22,978 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:36:22,979 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:36:22,980 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T113525960153
+2025-05-25 11:36:22,981 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T113525960153
+2025-05-25 11:36:22,981 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T113525960153: True
+2025-05-25 11:36:22,982 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:37:23,469 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $108,099.00 (-0.16%)
+2025-05-25 11:37:27,463 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 11:37:27,467 - bitcoin_predictor.storage - INFO - Loaded 32 predictions from storage
+2025-05-25 11:37:27,469 - bitcoin_predictor.storage - INFO - Updated prediction pred_20250525T113600524853
+2025-05-25 11:37:27,472 - autonomous_agent.chains.evaluator - INFO - Saved evaluation for prediction pred_20250525T113600524853
+2025-05-25 11:37:27,472 - autonomous_agent.chains.evaluator - INFO - Evaluated prediction pred_20250525T113600524853: False
+2025-05-25 11:37:27,472 - autonomous_agent.chains.evaluator - INFO - Evaluated 5 pending predictions
+2025-05-25 11:37:27,472 - autonomous_agent.orchestrator - INFO - Evaluation completed: 20.0% accuracy

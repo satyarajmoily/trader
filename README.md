@@ -177,14 +177,22 @@ python main.py agent deploy <id>     # Deploy improvements safely
 ✅ All Phase 3 tests passed! Agent is ready for code improvement.
 ```
 
-## 📊 Current Prediction Logic
+## 📊 Configurable Prediction Logic
 
-The system analyzes Bitcoin price trends using:
+The system supports multiple timeframes with dynamic technical analysis scaling:
 
-### Technical Indicators
-- **Short MA (3-day)** vs **Long MA (5-day)**: Trend direction
-- **Price Momentum**: 5-day price change percentage  
-- **Volume Trend**: Recent volume increase/decrease
+### 🕐 Supported Timeframes
+- **1m** - 1-minute predictions (3min MA vs 5min MA, 2min evaluation)
+- **5m** - 5-minute predictions (15min MA vs 25min MA, 10min evaluation)  
+- **15m** - 15-minute predictions (45min MA vs 75min MA, 30min evaluation)
+- **1h** - 1-hour predictions (3h MA vs 5h MA, 2h evaluation)
+- **4h** - 4-hour predictions (12h MA vs 20h MA, 8h evaluation)
+- **1d** - Daily predictions (3d MA vs 5d MA, 24h evaluation) *[default]*
+
+### 📈 Dynamic Technical Indicators
+- **Short MA vs Long MA**: Automatically scaled periods based on timeframe
+- **Price Momentum**: Configurable period momentum analysis
+- **Volume Trend**: Timeframe-appropriate volume analysis
 
 ### Bullish Signals
 - Short MA > Long MA (trend reversal)
@@ -283,11 +291,12 @@ trader/
 - [x] **Enhanced CLI**: New commands for analyze, improve, validate, deploy ✅
 - [x] **Complete Integration**: All components working with clean architecture ✅
 
-### Phase 4: GitHub Automation (Week 4) - PLANNED
-- [ ] PyGithub PR creation for core system improvements
-- [ ] PR templates with architectural context
-- [ ] End-to-end testing with separated systems
-- [ ] Manual review workflow
+### Phase 4: GitHub Automation ✅ COMPLETE (Week 4)
+- [x] PyGithub PR creation for core system improvements ✅
+- [x] PR templates with architectural context ✅
+- [x] End-to-end testing with GitHub integration ✅
+- [x] Complete autonomous improvement cycle ✅
+- [x] Manual review workflow ✅
 
 ### Phase 5: Integration & Polish (Week 5) - PLANNED
 - [ ] Enhanced autonomous operation with clean architecture
@@ -320,18 +329,18 @@ trader/
 
 ## 📊 Current Status
 
-**Phase**: 3 - Code Improvement Agent ✅ COMPLETE
-**Progress**: All autonomous code improvement capabilities operational
-**Live Bitcoin Price**: $109,007.00 (via CoinGecko API)
-**System Health**: 100% operational - all systems including Phase 3 tested
-**Next**: Phase 4 - GitHub automation for autonomous PRs
+**Phase**: 4 - GitHub Automation ✅ COMPLETE + Configurable Timeframes ✅ COMPLETE
+**Progress**: Full autonomous improvement cycle with GitHub integration operational
+**Live Bitcoin Price**: Real-time via CoinGecko API (configurable intervals)
+**System Health**: 100% operational - all systems including Phase 4 + timeframes tested
+**Next**: Phase 5 - Integration & Polish
 
-### 🎯 Phase 3 Complete Features ✅
-- **Code Analysis**: Analyzes failed predictions for improvement opportunities
-- **Code Generation**: LLM-powered generation of improved prediction code
-- **Safe Validation**: Comprehensive code validation before deployment
-- **Backup System**: Automatic backups and rollback capabilities
-- **Interface Compatibility**: All improvements maintain system contracts
+### 🎯 Phase 4 Complete Features ✅
+- **GitHub Integration**: Automated PR creation for code improvements
+- **Complete Autonomous Cycle**: Evaluation → Analysis → Improvement → Validation → Deploy → PR
+- **Configurable Timeframes**: Support for 1m, 5m, 15m, 1h, 4h, 1d predictions with dynamic scaling
+- **Dynamic Technical Indicators**: Technical analysis periods automatically scale with timeframe
+- **Enhanced CLI**: Timeframe parameters, GitHub automation commands, and comprehensive testing
 
 ## 🚀 Available Commands
 
@@ -348,11 +357,22 @@ python main.py agent test               # Test all agent components including Ph
 python main.py agent predict            # Make prediction via agent interface
 python main.py agent evaluate           # Evaluate predictions against real market data
 
-# Phase 3: Code Improvement Commands ✅ NEW
+# Phase 3: Code Improvement Commands ✅
 python main.py agent analyze            # Analyze failed predictions for improvements
 python main.py agent improve            # Generate improved prediction code
 python main.py agent validate           # Validate generated code for safety
 python main.py agent deploy <id>        # Deploy improvements with backup/rollback
+
+# Phase 4: GitHub Automation Commands ✅ NEW
+python main.py agent setup-github       # Setup GitHub integration
+python main.py agent create-pr <id>     # Create PR for improvement
+python main.py agent list-prs           # List autonomous improvement PRs
+python main.py agent auto-cycle         # Run complete autonomous cycle
+
+# Configurable Timeframes ✅ NEW
+python main.py core predict --timeframe 1m    # 1-minute predictions
+python main.py core predict --timeframe 1h    # 1-hour predictions
+python main.py core timeframes                # List all supported timeframes
 ```
 
 ### Direct Module Access (Advanced)

@@ -21,20 +21,25 @@ class PredictorInterface:
     
     def __init__(self):
         """Initialize the predictor interface."""
-        self.predictor = BitcoinPredictor()
+        self.predictor = None  # Will be initialized with timeframe
         self.storage = PredictionStorage()
     
-    def make_prediction(self, data_source: Optional[str] = None) -> Dict[str, Any]:
+    def make_prediction(self, data_source: Optional[str] = None, timeframe: str = "1d") -> Dict[str, Any]:
         """
         Make a Bitcoin price prediction.
         
         Args:
             data_source: Optional data source path
+            timeframe: Time interval for prediction (1m, 5m, 15m, 1h, 4h, 1d)
             
         Returns:
             Dict with prediction result and metadata
         """
         try:
+            # Initialize predictor with timeframe if not already done or timeframe changed
+            if self.predictor is None or getattr(self.predictor, 'timeframe', None) != timeframe:
+                self.predictor = BitcoinPredictor(timeframe=timeframe)
+            
             prediction = self.predictor.predict(data_source)
             return {
                 "success": True,

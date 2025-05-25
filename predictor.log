@@ -75,3 +75,39 @@
 2025-05-25 01:20:49,758 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T012049757915 to storage
 2025-05-25 01:20:49,758 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T012049757915: down
 2025-05-25 01:20:49,758 - bitcoin_predictor.storage - INFO - Loaded 21 predictions from storage
+2025-05-25 10:40:53,443 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 10:40:53,444 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 10:40:53,444 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 10:40:53,444 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 10:40:53,444 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T104053444218 to storage
+2025-05-25 10:40:53,444 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T104053444218: down
+2025-05-25 10:40:53,445 - bitcoin_predictor.storage - INFO - Loaded 23 predictions from storage
+2025-05-25 10:41:18,548 - bitcoin_predictor.storage - INFO - Loaded 25 predictions from storage
+2025-05-25 11:33:45,794 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 1m data from API...
+2025-05-25 11:33:46,156 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 11:33:46,156 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 11:33:46,156 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 11:33:46,156 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 11:33:46,158 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:33:46,158 - bitcoin_predictor.predictor - INFO - Technical Analysis (1m) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 11:33:46,158 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:33:46,160 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T113346158985 to storage
+2025-05-25 11:33:46,160 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T113346158985: down
+2025-05-25 11:33:53,004 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 1h data from API...
+2025-05-25 11:33:53,350 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:33:53,350 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:33:53,350 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:33:53,350 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=hourly
+2025-05-25 11:33:53,350 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:33:53,351 - bitcoin_predictor.predictor - INFO - Technical Analysis (1h) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 11:33:53,351 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 11:33:53,351 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T113353351093 to storage
+2025-05-25 11:33:53,351 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T113353351093: down
+2025-05-25 11:34:05,466 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 15m data from API...
+2025-05-25 11:34:05,835 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=15
+2025-05-25 11:34:05,835 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=15
+2025-05-25 11:34:05,835 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=15
+2025-05-25 11:34:05,835 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=15
+2025-05-25 11:34:05,835 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 11:34:05,835 - bitcoin_predictor.predictor - INFO - Technical Analysis (15m) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 11:34:05,835 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down

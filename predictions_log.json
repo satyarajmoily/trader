@@ -6,7 +6,11 @@
       "timestamp": "2025-05-24T22:20:48.593673",
       "latest_price": 45800.0,
       "data_points": 30,
-      "analysis_period": "2024-01-01 to 2024-01-30"
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "actual_outcome": "up",
+      "actual_price": 108247,
+      "evaluation_timestamp": "2025-05-25T10:41:42.756842",
+      "success": false
     },
     {
       "id": "pred_20250524T230326028151",
@@ -14,7 +18,11 @@
       "timestamp": "2025-05-24T23:03:26.028151",
       "latest_price": 45800.0,
       "data_points": 30,
-      "analysis_period": "2024-01-01 to 2024-01-30"
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "actual_outcome": "up",
+      "actual_price": 108247,
+      "evaluation_timestamp": "2025-05-25T10:41:45.827542",
+      "success": false
     },
     {
       "id": "pred_20250524T233855898029",
@@ -22,7 +30,11 @@
       "timestamp": "2025-05-24T23:38:55.898029",
       "latest_price": 45800.0,
       "data_points": 30,
-      "analysis_period": "2024-01-01 to 2024-01-30"
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "actual_outcome": "up",
+      "actual_price": 108247,
+      "evaluation_timestamp": "2025-05-25T10:41:49.188442",
+      "success": false
     },
     {
       "id": "pred_20250524T233928889471",
@@ -30,7 +42,11 @@
       "timestamp": "2025-05-24T23:39:28.889471",
       "latest_price": 45800.0,
       "data_points": 30,
-      "analysis_period": "2024-01-01 to 2024-01-30"
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "actual_outcome": "up",
+      "actual_price": 108247,
+      "evaluation_timestamp": "2025-05-25T10:41:52.172485",
+      "success": false
     },
     {
       "id": "pred_20250524T233945307793",
@@ -38,7 +54,11 @@
       "timestamp": "2025-05-24T23:39:45.307793",
       "latest_price": 45800.0,
       "data_points": 30,
-      "analysis_period": "2024-01-01 to 2024-01-30"
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "actual_outcome": "up",
+      "actual_price": 108247,
+      "evaluation_timestamp": "2025-05-25T10:41:56.063278",
+      "success": false
     },
     {
       "id": "pred_20250525T000057562456",
@@ -48,10 +68,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:42:59.455229",
+      "success": false
     },
     {
       "id": "pred_20250525T000101863054",
@@ -61,10 +81,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:43:04.133831",
+      "success": false
     },
     {
       "id": "pred_20250525T004235470060",
@@ -74,10 +94,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:43:07.820085",
+      "success": false
     },
     {
       "id": "pred_20250525T004239956817",
@@ -87,10 +107,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:43:11.434647",
+      "success": false
     },
     {
       "id": "pred_20250525T004244472482",
@@ -100,10 +120,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:43:14.404457",
+      "success": false
     },
     {
       "id": "pred_20250525T004300254877",
@@ -113,10 +133,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108243,
+      "evaluation_timestamp": "2025-05-25T10:43:17.988154",
+      "success": false
     },
     {
       "id": "pred_20250525T005751017133",
@@ -126,10 +146,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108235,
+      "evaluation_timestamp": "2025-05-25T10:44:22.807702",
+      "success": false
     },
     {
       "id": "pred_20250525T005835240264",
@@ -139,10 +159,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108235,
+      "evaluation_timestamp": "2025-05-25T10:44:25.490229",
+      "success": false
     },
     {
       "id": "pred_20250525T010212364745",
@@ -152,10 +172,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108235,
+      "evaluation_timestamp": "2025-05-25T10:44:28.948264",
+      "success": false
     },
     {
       "id": "pred_20250525T010217145672",
@@ -165,10 +185,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108225,
+      "evaluation_timestamp": "2025-05-25T10:45:32.758607",
+      "success": false
     },
     {
       "id": "pred_20250525T010221699296",
@@ -178,10 +198,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108225,
+      "evaluation_timestamp": "2025-05-25T10:45:35.815955",
+      "success": false
     },
     {
       "id": "pred_20250525T010823858833",
@@ -191,10 +211,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108225,
+      "evaluation_timestamp": "2025-05-25T10:45:39.399072",
+      "success": false
     },
     {
       "id": "pred_20250525T010827542942",
@@ -204,10 +224,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108225,
+      "evaluation_timestamp": "2025-05-25T10:45:44.725781",
+      "success": false
     },
     {
       "id": "pred_20250525T010831421493",
@@ -217,10 +237,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108225,
+      "evaluation_timestamp": "2025-05-25T10:45:47.608507",
+      "success": false
     },
     {
       "id": "pred_20250525T010911793474",
@@ -230,10 +250,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108136,
+      "evaluation_timestamp": "2025-05-25T11:09:36.383590",
+      "success": false
     },
     {
       "id": "pred_20250525T012049757915",
@@ -243,10 +263,10 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108136,
+      "evaluation_timestamp": "2025-05-25T11:09:41.003239",
+      "success": false
     },
     {
       "id": "pred_20250525T013232734234",
@@ -256,10 +276,145 @@
       "data_points": 30,
       "analysis_period": "2024-01-01 to 2024-01-30",
       "confidence": 0.8999999999999999,
-      "actual_outcome": null,
-      "actual_price": null,
-      "evaluation_timestamp": null,
-      "success": null
+      "actual_outcome": "up",
+      "actual_price": 108136,
+      "evaluation_timestamp": "2025-05-25T11:09:44.688066",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T104053444218",
+      "prediction": "down",
+      "timestamp": "2025-05-25T10:40:53.444218",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "actual_outcome": "up",
+      "actual_price": 108136,
+      "evaluation_timestamp": "2025-05-25T11:09:48.473466",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T104107769435",
+      "prediction": "down",
+      "timestamp": "2025-05-25T10:41:07.769435",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "actual_outcome": "up",
+      "actual_price": 108136,
+      "evaluation_timestamp": "2025-05-25T11:09:52.118297",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T104114299710",
+      "prediction": "down",
+      "timestamp": "2025-05-25T10:41:14.299710",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "actual_outcome": "up",
+      "actual_price": 108124,
+      "evaluation_timestamp": "2025-05-25T11:10:57.593614",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T105431949783",
+      "prediction": "down",
+      "timestamp": "2025-05-25T10:54:31.949783",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "actual_outcome": "up",
+      "actual_price": 108124,
+      "evaluation_timestamp": "2025-05-25T11:11:01.059851",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T110858935794",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:08:58.935794",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "actual_outcome": "up",
+      "actual_price": 108124,
+      "evaluation_timestamp": "2025-05-25T11:11:04.555966",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T113346158985",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:33:46.158985",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1m",
+      "actual_outcome": "up",
+      "actual_price": 108095,
+      "evaluation_timestamp": "2025-05-25T11:36:11.603538",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T113353351093",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:33:53.351093",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1h",
+      "actual_outcome": "up",
+      "actual_price": 108095,
+      "evaluation_timestamp": "2025-05-25T11:36:15.172319",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T113359090840",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:33:59.090840",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "5m",
+      "actual_outcome": "up",
+      "actual_price": 108095,
+      "evaluation_timestamp": "2025-05-25T11:36:19.061787",
+      "success": false
+    },
+    {
+      "id": "pred_20250525T113525960153",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:35:25.960153",
+      "latest_price": 108202.0,
+      "data_points": 30,
+      "analysis_period": "2025-05-20 to 2025-05-25",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1d",
+      "actual_outcome": "down",
+      "actual_price": 108095,
+      "evaluation_timestamp": "2025-05-25T11:36:22.979420",
+      "success": true
+    },
+    {
+      "id": "pred_20250525T113600524853",
+      "prediction": "down",
+      "timestamp": "2025-05-25T11:36:00.524853",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1h",
+      "actual_outcome": "up",
+      "actual_price": 108099,
+      "evaluation_timestamp": "2025-05-25T11:37:27.466811",
+      "success": false
     }
   ],
   "metadata": {
