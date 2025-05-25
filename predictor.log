@@ -111,3 +111,14 @@
 2025-05-25 11:34:05,835 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
 2025-05-25 11:34:05,835 - bitcoin_predictor.predictor - INFO - Technical Analysis (15m) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
 2025-05-25 11:34:05,835 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 12:00:11,077 - bitcoin_predictor.data_loader - INFO - Fetching 1 days of 1m data from API...
+2025-05-25 12:00:11,543 - autonomous_agent.tools.bitcoin_api - ERROR - CoinGecko API request failed: coins/bitcoin/market_chart - 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 12:00:11,543 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch intraday OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 12:00:11,543 - autonomous_agent.tools.bitcoin_api - ERROR - Failed to fetch historical OHLCV data: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 12:00:11,544 - bitcoin_predictor.data_loader - WARNING - Failed to load API data, falling back to CSV: 401 Client Error: Unauthorized for url: https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&interval=1
+2025-05-25 12:00:11,545 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 12:00:11,546 - bitcoin_predictor.predictor - INFO - Technical Analysis (1m) - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 1.008
+2025-05-25 12:00:11,546 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 12:00:11,549 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T120011546608 to storage
+2025-05-25 12:00:11,549 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T120011546608: down
+2025-05-25 12:00:48,685 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage

@@ -10,13 +10,19 @@ import argparse
 import logging
 import os
 import sys
+from pathlib import Path
 from datetime import datetime
 
-from . import AutonomousAgent
+# Add the parent directory to path for imports
+sys.path.append(str(Path(__file__).parent.parent))
+
+from .orchestrator import AutonomousAgent
 from .chains.code_analyzer import CodeAnalyzerChain
 from .chains.code_improver import CodeImproverChain
+from .tools.bitcoin_api import BitcoinPriceTool
 from .tools.code_validator import CodeValidator
 from .tools.core_system_manager import CoreSystemManager
+from .interfaces.predictor_interface import PredictorInterface
 
 logger = logging.getLogger(__name__)
 
@@ -135,8 +141,8 @@ def cmd_analyze(args):
                 return False
         else:
             # Analyze recent failures
-            print(f"Analyzing last {args.max_failures} failed predictions...")
-            analyses = analyzer.analyze_recent_failures(args.max_failures)
+            print(f"Analyzing last {args.max_predictions} failed predictions...")
+            analyses = analyzer.analyze_recent_failures(args.max_predictions)
             
             if analyses:
                 print(f"✅ Analyzed {len(analyses)} failed predictions")
@@ -167,56 +173,160 @@ def cmd_analyze(args):
 
 
 def cmd_improve(args):
-    """Generate improved prediction code based on analysis."""
-    print("🛠️ Autonomous Agent - Code Improvement")
+    """Generate improved prediction code from failed predictions."""
+    print("🚀 Autonomous Agent - Code Improvement")
     print("=" * 45)
     
     try:
-        # First analyze failures to get improvement targets
-        analyzer = CodeAnalyzerChain()
+        from .chains.code_improver import CodeImproverChain
+        from .chains.code_analyzer import CodeAnalyzerChain
+        
         improver = CodeImproverChain()
         
-        print("Step 1: Analyzing recent failures...")
-        analyses = analyzer.analyze_recent_failures(args.max_failures)
-        
-        if not analyses:
-            print("ℹ️ No recent failed predictions found to improve from")
-            return True
-        
-        print(f"✅ Found {len(analyses)} failed predictions to improve from")
-        
-        print("\nStep 2: Generating improved code...")
-        improvements = improver.generate_improvements_from_analyses(analyses)
-        
-        if improvements:
-            print(f"✅ Generated {len(improvements)} code improvements")
+        if args.analysis_id:
+            # Improve based on specific analysis
+            analyzer = CodeAnalyzerChain()
+            analyses = analyzer.get_analysis_history()
             
-            for improvement in improvements:
-                print(f"\n🆔 Improvement ID: {improvement.improvement_id}")
-                print(f"📝 Description: {improvement.improvement_description}")
-                print(f"🔧 Changes Made:")
-                for change in improvement.changes_made[:3]:  # Show first 3
-                    print(f"  • {change}")
-                print(f"✨ Expected Benefits:")
-                for benefit in improvement.expected_benefits[:3]:  # Show first 3
-                    print(f"  • {benefit}")
-                
-                if args.show_code and hasattr(improvement, 'improved_code'):
-                    print(f"\n💻 Code Preview (first 200 chars):")
-                    preview = improvement.improved_code[:200] + "..." if len(improvement.improved_code) > 200 else improvement.improved_code
-                    print(f"```python\n{preview}\n```")
+            analysis = None
+            for a in analyses:
+                if a.get('prediction_id') == args.analysis_id:
+                    # Convert dict to AnalysisResult object
+                    from .chains.code_analyzer import AnalysisResult
+                    analysis = AnalysisResult(
+                        prediction_id=a['prediction_id'],
+                        failure_reason=a['failure_reason'],
+                        market_context=a['market_context'],
+                        improvement_opportunities=a['improvement_opportunities'],
+                        technical_indicators_analysis=a['technical_indicators_analysis'],
+                        suggested_modifications=a['suggested_modifications'],
+                        confidence_score=a['confidence_score'],
+                        timestamp=a['timestamp']
+                    )
+                    break
             
-            print(f"\n✅ Code improvements generated successfully!")
-            print(f"💡 Use 'validate' command to validate improvements before deployment")
-            return True
+            if not analysis:
+                print(f"❌ Analysis {args.analysis_id} not found")
+                return False
+            
+            print(f"Generating improvement based on analysis {args.analysis_id}...")
+            
+            # Use retry logic if requested
+            if args.retry:
+                print(f"🔄 Using self-correcting retry logic (max {args.max_retries} retries)")
+                result = improver.generate_improved_code_with_retry(
+                    analysis, 
+                    improvement_focus=args.focus,
+                    max_retries=args.max_retries
+                )
+            else:
+                result = improver.generate_improved_code(analysis, args.focus)
         else:
-            print("❌ No improvements could be generated")
-            return False
+            # Generate improvements from recent failed predictions
+            print("Analyzing recent failed predictions for improvements...")
+            
+            analyzer = CodeAnalyzerChain()
+            predictor_interface = PredictorInterface()
+            
+            # Get recent failed predictions
+            failed_predictions = predictor_interface.get_failed_predictions(limit=5)
+            
+            if not failed_predictions:
+                print("❌ No failed predictions found to improve from")
+                return False
+            
+            print(f"Found {len(failed_predictions)} failed predictions")
+            
+            # Analyze predictions first
+            analysis_results = []
+            for pred in failed_predictions:
+                analysis = analyzer.analyze_failed_prediction(pred)
+                if analysis:
+                    analysis_results.append(analysis)
+            
+            if not analysis_results:
+                print("❌ Failed to analyze predictions")
+                return False
+            
+            # Generate improvements from analyses
+            print(f"Generating improvements from {len(analysis_results)} analyses...")
+            
+            if args.retry:
+                print(f"🔄 Using self-correcting retry logic (max {args.max_retries} retries)")
+                # Use retry for the most recent analysis
+                latest_analysis = analysis_results[0]
+                result = improver.generate_improved_code_with_retry(
+                    latest_analysis,
+                    improvement_focus=args.focus,
+                    max_retries=args.max_retries
+                )
+                results = [result] if result else []
+            else:
+                results = improver.generate_improvements_from_analyses(analysis_results)
         
+        # Process results
+        if args.retry:
+            # Single result from retry logic
+            if result:
+                print(f"\n✅ IMPROVEMENT GENERATED:")
+                print(f"ID: {result.improvement_id}")
+                print(f"Validation: {'✅ PASSED' if result.validation_status == 'passed' else '❌ FAILED'}")
+                print(f"Description: {result.improvement_description}")
+                print(f"Confidence: {result.confidence_score:.2f}")
+                print(f"Changes: {len(result.changes_made)} modifications")
+                print(f"Benefits: {len(result.expected_benefits)} expected improvements")
+                
+                if args.show_code:
+                    print(f"\n📝 IMPROVED CODE:")
+                    print("=" * 40)
+                    print(result.improved_code)
+                    print("=" * 40)
+                
+                return True
+            else:
+                print("❌ Failed to generate valid improvement after all retries")
+                return False
+        else:
+            # Multiple results from batch processing
+            if results:
+                print(f"\n✅ IMPROVEMENTS GENERATED: {len(results)}")
+                for i, result in enumerate(results, 1):
+                    print(f"\n{i}. {result.improvement_id}")
+                    print(f"   Description: {result.improvement_description}")
+                    print(f"   Confidence: {result.confidence_score:.2f}")
+                    print(f"   Changes: {len(result.changes_made)} modifications")
+                
+                if args.show_code and results:
+                    print(f"\n📝 LATEST IMPROVED CODE:")
+                    print("=" * 40)
+                    print(results[0].improved_code)
+                    print("=" * 40)
+                
+                return True
+            else:
+                print("❌ No improvements generated")
+                return False
+                
     except Exception as e:
         print(f"❌ Code improvement failed: {e}")
-        logger.error(f"Improvement error: {e}")
+        logger.error(f"Code improvement error: {e}")
         return False
+
+
+def cmd_improve_with_retry(args):
+    """Generate improved prediction code with automatic retry on validation failures."""
+    print("🔄 Autonomous Agent - Self-Correcting Code Improvement")
+    print("=" * 55)
+    
+    # Set retry parameters
+    args.retry = True
+    if not hasattr(args, 'max_retries'):
+        args.max_retries = 3
+    
+    print(f"🤖 Using AI self-correction with up to {args.max_retries} retry attempts")
+    print("The agent will automatically fix validation errors and retry until successful\n")
+    
+    return cmd_improve(args)
 
 
 def cmd_validate(args):
@@ -693,6 +803,7 @@ Examples:
         default='1d',
         help='Time interval for prediction (default: 1d)'
     )
+    predict_parser.set_defaults(func=cmd_predict)
     
     # Evaluate command
     evaluate_parser = subparsers.add_parser('evaluate', help='Evaluate pending predictions')
@@ -702,33 +813,77 @@ Examples:
         default=0,  # For testing, allow immediate evaluation
         help='Minimum age in hours before evaluation'
     )
+    evaluate_parser.set_defaults(func=cmd_evaluate)
     
     # Analyze command (Phase 3)
     analyze_parser = subparsers.add_parser('analyze', help='Analyze failed predictions for improvements')
+    analyze_parser.add_argument(
+        '--max-predictions',
+        type=int,
+        default=5,
+        help='Maximum number of recent failed predictions to analyze'
+    )
     analyze_parser.add_argument(
         '--prediction-id',
         help='Specific prediction ID to analyze'
     )
     analyze_parser.add_argument(
-        '--max-failures',
-        type=int,
-        default=5,
-        help='Maximum number of recent failures to analyze'
+        '--detailed',
+        action='store_true',
+        help='Show detailed analysis results'
     )
+    analyze_parser.set_defaults(func=cmd_analyze)
     
     # Improve command (Phase 3)
     improve_parser = subparsers.add_parser('improve', help='Generate improved prediction code')
     improve_parser.add_argument(
-        '--max-failures',
+        '--analysis-id',
+        help='Specific analysis ID to improve from'
+    )
+    improve_parser.add_argument(
+        '--retry',
+        action='store_true',
+        help='Use self-correcting retry logic'
+    )
+    improve_parser.add_argument(
+        '--max-retries',
         type=int,
         default=3,
-        help='Maximum number of recent failures to improve from'
+        help='Maximum number of retry attempts'
+    )
+    improve_parser.add_argument(
+        '--focus',
+        help='Improvement focus area'
     )
     improve_parser.add_argument(
         '--show-code',
         action='store_true',
-        help='Show generated code preview'
+        help='Show generated code'
     )
+    improve_parser.set_defaults(func=cmd_improve)
+    
+    # Self-correcting improve command
+    improve_retry_parser = subparsers.add_parser('improve-retry', help='Generate improved code with automatic validation retry')
+    improve_retry_parser.add_argument(
+        '--analysis-id',
+        help='Specific analysis ID to improve from'
+    )
+    improve_retry_parser.add_argument(
+        '--max-retries',
+        type=int,
+        default=3,
+        help='Maximum number of retry attempts'
+    )
+    improve_retry_parser.add_argument(
+        '--focus',
+        help='Improvement focus area'
+    )
+    improve_retry_parser.add_argument(
+        '--show-code',
+        action='store_true',
+        help='Show generated code'
+    )
+    improve_retry_parser.set_defaults(func=cmd_improve_with_retry)
     
     # Validate command (Phase 3)
     validate_parser = subparsers.add_parser('validate', help='Validate generated code')
@@ -747,11 +902,12 @@ Examples:
         action='store_true',
         help='Show detailed validation results'
     )
+    validate_parser.set_defaults(func=cmd_validate)
     
     # Deploy command (Phase 3)
     deploy_parser = subparsers.add_parser('deploy', help='Deploy improved code to core system')
     deploy_parser.add_argument(
-        'improvement_id',
+        'improvement-id',
         help='Improvement ID to deploy'
     )
     deploy_parser.add_argument(
@@ -759,18 +915,21 @@ Examples:
         action='store_true',
         help='Skip validation before deployment (not recommended)'
     )
+    deploy_parser.set_defaults(func=cmd_deploy)
     
     # === PHASE 4: GITHUB AUTOMATION COMMANDS ===
     
     # Setup GitHub command
     setup_github_parser = subparsers.add_parser('setup-github', help='Setup and test GitHub integration')
+    setup_github_parser.set_defaults(func=cmd_setup_github)
     
     # Create PR command
     create_pr_parser = subparsers.add_parser('create-pr', help='Create GitHub PR for improvement')
     create_pr_parser.add_argument(
-        'improvement_id',
+        'improvement-id',
         help='Improvement ID to create PR for'
     )
+    create_pr_parser.set_defaults(func=cmd_create_pr)
     
     # List PRs command
     list_prs_parser = subparsers.add_parser('list-prs', help='List open autonomous improvement PRs')
@@ -779,6 +938,7 @@ Examples:
         default='autonomous-improvement',
         help='Filter PRs by label (default: autonomous-improvement)'
     )
+    list_prs_parser.set_defaults(func=cmd_list_prs)
     
     # Check PR command
     check_pr_parser = subparsers.add_parser('check-pr', help='Check status of a specific PR')
@@ -787,6 +947,7 @@ Examples:
         type=int,
         help='PR number to check'
     )
+    check_pr_parser.set_defaults(func=cmd_check_pr)
     
     # Auto cycle command
     auto_cycle_parser = subparsers.add_parser('auto-cycle', help='Run complete autonomous improvement cycle')
@@ -806,9 +967,11 @@ Examples:
         default='1d',
         help='Time interval for predictions (default: 1d)'
     )
+    auto_cycle_parser.set_defaults(func=cmd_auto_cycle)
     
     # Test command
     test_parser = subparsers.add_parser('test', help='Test all agent components')
+    test_parser.set_defaults(func=cmd_test)
     
     args = parser.parse_args()
     
@@ -828,26 +991,15 @@ Examples:
     if not args.command:
         parser.print_help()
         return 1
-    
-    # Execute command
-    command_map = {
-        'predict': cmd_predict,
-        'evaluate': cmd_evaluate,
-        'analyze': cmd_analyze,      # Phase 3
-        'improve': cmd_improve,      # Phase 3
-        'validate': cmd_validate,    # Phase 3
-        'deploy': cmd_deploy,        # Phase 3
-        # Phase 4: GitHub automation commands
-        'setup-github': cmd_setup_github,
-        'create-pr': cmd_create_pr,
-        'list-prs': cmd_list_prs,
-        'check-pr': cmd_check_pr,
-        'auto-cycle': cmd_auto_cycle,
-        'test': cmd_test
-    }
-    
+
+    # Execute command using the func attribute set by set_defaults
     try:
-        success = command_map[args.command](args)
+        if hasattr(args, 'func'):
+            success = args.func(args)
+        else:
+            print(f"❌ Unknown command: {args.command}")
+            return 1
+        
         return 0 if success else 1
         
     except KeyboardInterrupt:

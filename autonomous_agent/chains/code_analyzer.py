@@ -313,38 +313,69 @@ Make sure the JSON is valid and complete."""
     
     def get_improvement_summary(self, analyses: List[AnalysisResult]) -> Dict:
         """
-        Generate summary of improvement opportunities from multiple analyses.
+        Generate a summary of improvement opportunities from multiple analyses.
         
         Args:
-            analyses: List of analysis results
+            analyses: List of AnalysisResult objects
             
         Returns:
-            Dict with improvement summary
+            Dict with summary statistics and common patterns
         """
         if not analyses:
-            return {"message": "No analyses to summarize"}
+            return {
+                "total_analyses": 0,
+                "average_confidence": 0.0,
+                "common_opportunities": [],
+                "common_modifications": []
+            }
         
-        # Aggregate improvement opportunities
-        all_opportunities = []
-        all_modifications = []
+        # Count opportunities and modifications
+        opportunity_counts = {}
+        modification_counts = {}
+        
+        total_confidence = 0
         
         for analysis in analyses:
-            all_opportunities.extend(analysis.improvement_opportunities)
-            all_modifications.extend(analysis.suggested_modifications)
+            total_confidence += analysis.confidence_score
+            
+            for opp in analysis.improvement_opportunities:
+                opportunity_counts[opp] = opportunity_counts.get(opp, 0) + 1
+            
+            for mod in analysis.suggested_modifications:
+                modification_counts[mod] = modification_counts.get(mod, 0) + 1
         
-        # Count frequency of similar suggestions
-        opportunity_counts = {}
-        for opp in all_opportunities:
-            opportunity_counts[opp] = opportunity_counts.get(opp, 0) + 1
-        
-        modification_counts = {}
-        for mod in all_modifications:
-            modification_counts[mod] = modification_counts.get(mod, 0) + 1
+        # Sort by frequency
+        common_opportunities = sorted(opportunity_counts.items(), key=lambda x: x[1], reverse=True)
+        common_modifications = sorted(modification_counts.items(), key=lambda x: x[1], reverse=True)
         
         return {
             "total_analyses": len(analyses),
-            "common_opportunities": sorted(opportunity_counts.items(), key=lambda x: x[1], reverse=True)[:5],
-            "common_modifications": sorted(modification_counts.items(), key=lambda x: x[1], reverse=True)[:5],
-            "average_confidence": sum(a.confidence_score for a in analyses) / len(analyses),
-            "latest_analysis": analyses[-1].timestamp if analyses else None
-        } 
+            "average_confidence": total_confidence / len(analyses),
+            "common_opportunities": common_opportunities,
+            "common_modifications": common_modifications
+        }
+    
+    def get_analysis_history(self, limit: Optional[int] = None) -> List[Dict]:
+        """
+        Get history of code analyses from the log file.
+        
+        Args:
+            limit: Maximum number of analyses to return
+            
+        Returns:
+            List of analysis records
+        """
+        if not self.analyses_file.exists():
+            return []
+        
+        try:
+            with open(self.analyses_file, 'r') as f:
+                analyses = json.load(f)
+            
+            if limit:
+                return analyses[-limit:]
+            return analyses
+            
+        except Exception as e:
+            logger.error(f"Failed to load analysis history: {e}")
+            return [] 

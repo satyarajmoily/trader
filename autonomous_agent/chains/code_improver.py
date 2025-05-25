@@ -372,4 +372,167 @@ Confidence Score: {analysis.confidence_score}
             
         except Exception as e:
             logger.error(f"Failed to load improvement history: {e}")
-            return [] 
+            return []
+    
+    def generate_improved_code_with_retry(self, analysis: AnalysisResult, 
+                                        improvement_focus: Optional[str] = None,
+                                        max_retries: int = 3) -> Optional[CodeImprovementResult]:
+        """
+        Generate improved prediction code with automatic retry on validation failures.
+        
+        Args:
+            analysis: AnalysisResult from code analysis
+            improvement_focus: Optional specific focus for improvement
+            max_retries: Maximum number of retry attempts
+            
+        Returns:
+            CodeImprovementResult if successful, None if all retries failed
+        """
+        from ..tools.code_validator import CodeValidator
+        
+        validator = CodeValidator()
+        last_error = None
+        
+        for attempt in range(max_retries + 1):
+            try:
+                logger.info(f"Code generation attempt {attempt + 1}/{max_retries + 1}")
+                
+                # Generate improved code
+                if attempt == 0:
+                    # First attempt - use original analysis
+                    improvement = self.generate_improved_code(analysis, improvement_focus)
+                else:
+                    # Retry attempt - include validation feedback
+                    enhanced_focus = self._create_retry_focus(improvement_focus, last_error, attempt)
+                    improvement = self.generate_improved_code(analysis, enhanced_focus)
+                
+                if not improvement:
+                    last_error = "Code generation failed - no improvement result"
+                    continue
+                
+                # Validate the generated code
+                logger.info(f"Validating generated code (attempt {attempt + 1})")
+                validation_result = validator.comprehensive_validation(
+                    improvement.improved_code, 
+                    test_execution=True
+                )
+                
+                if validation_result.get("overall_valid", False):
+                    # Success! Update improvement with validation status
+                    improvement.validation_status = "passed"
+                    logger.info(f"✅ Code generation successful on attempt {attempt + 1}")
+                    return improvement
+                else:
+                    # Validation failed - prepare for retry
+                    last_error = self._extract_validation_errors(validation_result)
+                    improvement.validation_status = f"failed_attempt_{attempt + 1}"
+                    
+                    logger.warning(f"❌ Validation failed on attempt {attempt + 1}: {last_error}")
+                    
+                    if attempt < max_retries:
+                        logger.info(f"Retrying with validation feedback...")
+                    else:
+                        logger.error(f"All {max_retries + 1} attempts failed")
+                        
+            except Exception as e:
+                last_error = f"Generation error: {str(e)}"
+                logger.error(f"Code generation attempt {attempt + 1} failed: {e}")
+                
+                if attempt >= max_retries:
+                    break
+        
+        # All retries failed
+        logger.error(f"Failed to generate valid code after {max_retries + 1} attempts. Last error: {last_error}")
+        return None
+    
+    def _create_retry_focus(self, original_focus: Optional[str], validation_error: str, attempt: int) -> str:
+        """Create enhanced improvement focus based on validation failures."""
+        
+        retry_focus = f"""RETRY ATTEMPT #{attempt} - PREVIOUS VALIDATION FAILED
+
+VALIDATION ERRORS TO FIX:
+{validation_error}
+
+ORIGINAL FOCUS:
+{original_focus or "Focus on the primary failure reasons from analysis"}
+
+CRITICAL RETRY REQUIREMENTS:
+1. Fix the specific validation errors mentioned above
+2. Pay special attention to Python syntax and indentation
+3. Ensure proper f-string formatting (no line breaks in f-strings)
+4. Verify all code is properly indented within the method
+5. Test that logger statements are syntactically correct
+6. Ensure no missing class context or method structure issues
+
+COMMON FIXES NEEDED:
+- Fix IndentationError: Add proper 4-space indentation for all code inside the method
+- Fix f-string syntax errors: Don't break f-strings across lines, use proper escaping
+- Fix missing class context: Generate only the method body, not standalone code
+- Fix execution errors: Ensure the method can actually run with test data
+
+VALIDATION FOCUS:
+Generate clean, properly indented Python code that will pass both syntax validation and execution testing.
+
+IMPORTANT CODE STRUCTURE:
+Your response must contain ONLY the analyze() method implementation with proper indentation:
+
+```python
+def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    # Method body starts here with 4-space indentation
+    # All code inside the method must be indented
+    # No code should be at the top level
+    
+    # Example structure:
+    if len(price_data) < 5:
+        return AnalysisResult(...)
+    
+    # Calculate indicators
+    short_ma = sum(d.close for d in price_data[-3:]) / 3
+    
+    # Return result
+    return AnalysisResult(
+        short_ma=short_ma,
+        # ... other fields
+    )
+```
+
+Make sure every line inside the method is indented with 4 spaces."""
+        
+        return retry_focus
+    
+    def _extract_validation_errors(self, validation_result: Dict[str, Any]) -> str:
+        """Extract key validation errors for retry feedback."""
+        errors = []
+        
+        # Check interface compatibility errors
+        interface_result = validation_result.get("interface_compatibility", {})
+        
+        # Syntax errors
+        syntax_result = interface_result.get("syntax", {})
+        if not syntax_result.get("valid", False):
+            error_msg = syntax_result.get("message", "Unknown syntax error")
+            line = syntax_result.get("line", "unknown")
+            errors.append(f"SYNTAX ERROR (line {line}): {error_msg}")
+        
+        # Execution errors
+        exec_result = validation_result.get("execution_test", {})
+        if not exec_result.get("valid", False):
+            exec_error = exec_result.get("error", "Unknown execution error")
+            errors.append(f"EXECUTION ERROR: {exec_error}")
+        
+        # Signature errors
+        sig_result = interface_result.get("signature", {})
+        if not sig_result.get("valid", False):
+            sig_error = sig_result.get("message", "Function signature issues")
+            errors.append(f"SIGNATURE ERROR: {sig_error}")
+        
+        # Return type errors
+        return_result = interface_result.get("return_type", {})
+        if not return_result.get("valid", False):
+            return_error = return_result.get("message", "Return type issues")
+            errors.append(f"RETURN TYPE ERROR: {return_error}")
+        
+        if not errors:
+            errors.append("Validation failed with unknown errors")
+        
+        return "\n".join(errors) 

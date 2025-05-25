@@ -415,6 +415,48 @@
       "actual_price": 108099,
       "evaluation_timestamp": "2025-05-25T11:37:27.466811",
       "success": false
+    },
+    {
+      "id": "pred_20250525T120011546608",
+      "prediction": "down",
+      "timestamp": "2025-05-25T12:00:11.546608",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1m",
+      "actual_outcome": null,
+      "actual_price": null,
+      "evaluation_timestamp": null,
+      "success": null
+    },
+    {
+      "id": "pred_20250525T120019916209",
+      "prediction": "down",
+      "timestamp": "2025-05-25T12:00:19.916209",
+      "latest_price": 108202.0,
+      "data_points": 30,
+      "analysis_period": "2025-05-20 to 2025-05-25",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1d",
+      "actual_outcome": null,
+      "actual_price": null,
+      "evaluation_timestamp": null,
+      "success": null
+    },
+    {
+      "id": "pred_20250525T120043135230",
+      "prediction": "down",
+      "timestamp": "2025-05-25T12:00:43.135230",
+      "latest_price": 45800.0,
+      "data_points": 30,
+      "analysis_period": "2024-01-01 to 2024-01-30",
+      "confidence": 0.8999999999999999,
+      "timeframe": "1m",
+      "actual_outcome": null,
+      "actual_price": null,
+      "evaluation_timestamp": null,
+      "success": null
     }
   ],
   "metadata": {
