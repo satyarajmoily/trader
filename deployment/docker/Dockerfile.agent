@@ -1,0 +1,80 @@
+# Multi-stage Dockerfile for Bitcoin Predictor Autonomous Agent
+# Phase 5: Production Deployment
+
+# Stage 1: Builder
+FROM python:3.9-slim as builder
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy requirements and install dependencies
+COPY requirements.txt /tmp/
+RUN pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt
+
+# Stage 2: Production
+FROM python:3.9-slim as production
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PATH="/opt/venv/bin:$PATH"
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+
+# Create app user for security
+RUN useradd --create-home --shell /bin/bash agent
+
+# Set working directory
+WORKDIR /app
+
+# Copy application code
+COPY --chown=agent:agent bitcoin_predictor/ bitcoin_predictor/
+COPY --chown=agent:agent autonomous_agent/ autonomous_agent/
+COPY --chown=agent:agent monitoring/ monitoring/
+COPY --chown=agent:agent main.py .
+COPY --chown=agent:agent mock_bitcoin_data.csv .
+
+# Create directories for logs, data, and agent artifacts
+RUN mkdir -p logs data backups \
+    code_analyses_log.json \
+    code_improvements_log.json \
+    code_validation_log.json \
+    code_deployment_log.json \
+    predictions_log.json \
+    evaluations_log.json && \
+    chown -R agent:agent logs data backups *.json 2>/dev/null || true
+
+# Health check for agent system
+HEALTHCHECK --interval=30s --timeout=15s --start-period=10s --retries=3 \
+    CMD python3 -c "from autonomous_agent.main import test_agent_system; exit(0 if test_agent_system() else 1)"
+
+# Switch to agent user
+USER agent
+
+# Expose port (if needed for future API/monitoring)
+EXPOSE 8001
+
+# Default command - autonomous agent cycle
+CMD ["python3", "main.py", "agent", "auto-cycle"] 

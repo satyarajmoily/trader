@@ -671,5 +671,32 @@
     ],
     "confidence_score": 0.3,
     "timestamp": "2025-05-25T12:20:31.190591"
+  },
+  {
+    "prediction_id": "pred_20250525T113600524853",
+    "failure_reason": "The prediction failed due to an unexpected bullish market movement that was not captured by the technical indicators, leading to a miscalculation of the market trend.",
+    "market_context": "During the prediction period, the market experienced a sudden surge in demand, resulting in a price increase that was not anticipated by the existing indicators.",
+    "improvement_opportunities": [
+      "Enhance moving average calculations to include weighted averages for better responsiveness to recent price changes.",
+      "Adjust momentum calculations to account for sudden price spikes and incorporate a longer lookback period for stability.",
+      "Implement a more dynamic volume analysis that considers recent market volatility and adjusts thresholds accordingly.",
+      "Optimize signal weighting to give more importance to recent trends and less to historical averages during volatile periods.",
+      "Introduce adaptive thresholds for bullish signals based on market conditions to improve prediction accuracy."
+    ],
+    "technical_indicators_analysis": {
+      "moving_averages": "The moving averages used were simple averages, which may not have adequately reflected rapid price changes. A weighted moving average could provide better responsiveness.",
+      "momentum": "The momentum calculation was based on a fixed lookback period, which may not capture sudden market shifts effectively. A dynamic approach could improve accuracy.",
+      "volume": "The volume analysis did not account for recent spikes in trading activity, which can indicate strong market sentiment. A more nuanced approach is needed.",
+      "signal_weighting": "The current signal weighting does not sufficiently differentiate between strong and weak signals, leading to potential misclassifications in predictions."
+    },
+    "suggested_modifications": [
+      "Change the moving average calculation to a weighted moving average to prioritize recent price data.",
+      "Modify the momentum calculation to use an exponential moving average for the base price to better capture recent trends.",
+      "Revise the volume analysis to include a comparison against a rolling average of the last 7 days to account for recent volatility.",
+      "Adjust the signal weighting logic to increase the impact of bullish signals during periods of high volatility.",
+      "Implement adaptive thresholds for bullish signals based on historical volatility metrics to improve prediction reliability."
+    ],
+    "confidence_score": 0.65,
+    "timestamp": "2025-05-25T13:25:43.960725"
   }
 ]

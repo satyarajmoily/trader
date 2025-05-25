@@ -1013,3 +1013,105 @@ llm.is-instance[Runnable]
 2025-05-25 12:45:31,155 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
 2025-05-25 12:45:31,155 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
 2025-05-25 12:45:31,155 - autonomous_agent.orchestrator - INFO - Listing GitHub PRs...
+2025-05-25 13:25:17,521 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 13:25:17,521 - autonomous_agent.main - INFO - Starting Autonomous Agent in pattern-analysis mode
+2025-05-25 13:25:17,521 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T13:25:17.521768
+2025-05-25 13:25:17,522 - autonomous_agent.chains.pattern_analyzer - INFO - Saved self-correction patterns
+2025-05-25 13:25:25,274 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 13:25:25,274 - autonomous_agent.main - INFO - Starting Autonomous Agent in self-correction-metrics mode
+2025-05-25 13:25:25,274 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T13:25:25.274385
+2025-05-25 13:25:25,425 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:25:25,425 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:25:35,541 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:25:35,541 - __main__ - INFO - Starting Autonomous Agent in improve-retry mode
+2025-05-25 13:25:35,541 - __main__ - INFO - Timestamp: 2025-05-25T13:25:35.541723
+2025-05-25 13:25:35,725 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:25:35,736 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,736 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,736 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113600524853', prediction='down', timestamp='2025-05-25T11:36:00.524853', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1h', actual_outcome='up', actual_price=108099, evaluation_timestamp='2025-05-25T11:37:27.466811', success=False) not found
+2025-05-25 13:25:35,736 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,736 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113359090840', prediction='down', timestamp='2025-05-25T11:33:59.090840', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='5m', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:19.061787', success=False) not found
+2025-05-25 13:25:35,737 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,737 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113353351093', prediction='down', timestamp='2025-05-25T11:33:53.351093', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1h', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:15.172319', success=False) not found
+2025-05-25 13:25:35,737 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,737 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113346158985', prediction='down', timestamp='2025-05-25T11:33:46.158985', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1m', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:11.603538', success=False) not found
+2025-05-25 13:25:35,737 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:35,737 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T110858935794', prediction='down', timestamp='2025-05-25T11:08:58.935794', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1d', actual_outcome='up', actual_price=108124, evaluation_timestamp='2025-05-25T11:11:04.555966', success=False) not found
+2025-05-25 13:25:43,492 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:25:43,492 - __main__ - INFO - Starting Autonomous Agent in analyze mode
+2025-05-25 13:25:43,492 - __main__ - INFO - Timestamp: 2025-05-25T13:25:43.492497
+2025-05-25 13:25:43,628 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:43,628 - autonomous_agent.chains.code_analyzer - INFO - Analyzing failed prediction pred_20250525T113600524853
+2025-05-25 13:25:43,629 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 13:25:43,959 - autonomous_agent.tools.bitcoin_api - INFO - Current Bitcoin price: $107,663.00 (-0.30%)
+2025-05-25 13:25:53,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 13:25:53,553 - autonomous_agent.chains.code_analyzer - INFO - Saved analysis for prediction pred_20250525T113600524853
+2025-05-25 13:25:53,553 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis for failed prediction pred_20250525T113600524853
+2025-05-25 13:25:53,553 - autonomous_agent.chains.code_analyzer - INFO - Completed analysis of 1 failed predictions
+2025-05-25 13:26:00,189 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:26:00,189 - __main__ - INFO - Starting Autonomous Agent in improve-retry mode
+2025-05-25 13:26:00,189 - __main__ - INFO - Timestamp: 2025-05-25T13:26:00.189975
+2025-05-25 13:26:00,314 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:26:00,324 - __main__ - ERROR - Code improvement error: attempted relative import beyond top-level package
+2025-05-25 13:26:15,829 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:26:15,830 - __main__ - INFO - Starting Autonomous Agent in improve-retry mode
+2025-05-25 13:26:15,830 - __main__ - INFO - Timestamp: 2025-05-25T13:26:15.830041
+2025-05-25 13:26:15,954 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:26:15,966 - autonomous_agent.chains.pattern_analyzer - INFO - Saved self-correction patterns
+2025-05-25 13:26:15,966 - autonomous_agent.chains.code_improver - INFO - 📊 Pattern Analysis: 0 error types identified
+2025-05-25 13:26:15,966 - autonomous_agent.chains.code_improver - INFO - 🔄 Code generation attempt 1/3
+2025-05-25 13:26:39,447 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 13:26:39,467 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_132639
+2025-05-25 13:26:39,467 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_132639 for analysis pred_20250525T113600524853
+2025-05-25 13:26:39,467 - autonomous_agent.chains.code_improver - INFO - 🔍 Validating generated code (attempt 1)
+2025-05-25 13:26:39,500 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_132639
+2025-05-25 13:26:39,501 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 1: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmp0ts04wpb.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 13:26:39,501 - autonomous_agent.chains.code_improver - INFO - 🔍 Error type detected: indentation_error
+2025-05-25 13:26:39,501 - autonomous_agent.chains.code_improver - INFO - 🔄 Retrying with pattern-based feedback...
+2025-05-25 13:26:39,501 - autonomous_agent.chains.code_improver - INFO - 🔄 Code generation attempt 2/3
+2025-05-25 13:27:01,838 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 13:27:01,846 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_132701
+2025-05-25 13:27:01,846 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_132701 for analysis pred_20250525T113600524853
+2025-05-25 13:27:01,846 - autonomous_agent.chains.code_improver - INFO - 🔍 Validating generated code (attempt 2)
+2025-05-25 13:27:01,876 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_132701
+2025-05-25 13:27:01,876 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 2: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpiqf9xt5m.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 13:27:01,876 - autonomous_agent.chains.code_improver - INFO - 🔍 Error type detected: indentation_error
+2025-05-25 13:27:01,876 - autonomous_agent.chains.code_improver - INFO - 🔄 Retrying with pattern-based feedback...
+2025-05-25 13:27:01,877 - autonomous_agent.chains.code_improver - INFO - 🔄 Code generation attempt 3/3
+2025-05-25 13:27:23,326 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 13:27:23,333 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_132723
+2025-05-25 13:27:23,333 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_132723 for analysis pred_20250525T113600524853
+2025-05-25 13:27:23,333 - autonomous_agent.chains.code_improver - INFO - 🔍 Validating generated code (attempt 3)
+2025-05-25 13:27:23,364 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_132723
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 3: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpqcbly4d8.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - INFO - 🔍 Error type detected: indentation_error
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - ERROR - 💥 All 3 attempts failed
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - ERROR - 💥 Failed to generate valid code after 3 attempts.
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - ERROR - 📊 Current success rate: 0.0%
+2025-05-25 13:27:23,365 - autonomous_agent.chains.code_improver - ERROR - 🔍 Last error: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpqcbly4d8.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 13:27:31,517 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:27:31,517 - __main__ - INFO - Starting Autonomous Agent in pattern-analysis mode
+2025-05-25 13:27:31,518 - __main__ - INFO - Timestamp: 2025-05-25T13:27:31.518024
+2025-05-25 13:27:31,518 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:27:31,519 - autonomous_agent.chains.pattern_analyzer - INFO - Saved self-correction patterns
+2025-05-25 13:27:43,205 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 13:27:43,205 - __main__ - INFO - Starting Autonomous Agent in self-correction-metrics mode
+2025-05-25 13:27:43,205 - __main__ - INFO - Timestamp: 2025-05-25T13:27:43.205231
+2025-05-25 13:27:43,365 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns
+2025-05-25 13:27:43,366 - autonomous_agent.chains.pattern_analyzer - INFO - Loaded existing self-correction patterns

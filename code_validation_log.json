@@ -828,5 +828,146 @@
     },
     "overall_valid": false,
     "summary": "\u274c Validation failed: Syntax errors, Function signature issues, Unsafe imports, Return type issues, Execution test failed"
+  },
+  {
+    "validation_id": "val_20250525_132639",
+    "timestamp": "2025-05-25T13:26:39.468041",
+    "code_length": 4060,
+    "interface_compatibility": {
+      "valid": true,
+      "syntax": {
+        "valid": true,
+        "has_function": true,
+        "message": "Syntax validation passed",
+        "ast_nodes": 667
+      },
+      "signature": {
+        "valid": true,
+        "function_found": true,
+        "has_self": true,
+        "has_price_data": true,
+        "arg_count": 2,
+        "args": [
+          "self",
+          "price_data"
+        ],
+        "message": "Function signature validation passed"
+      },
+      "imports": {
+        "valid": true,
+        "imports": [],
+        "dangerous_imports": [],
+        "message": "Safe imports"
+      },
+      "return_type": {
+        "valid": true,
+        "return_count": 1,
+        "has_analysis_result": true,
+        "message": "Return type validation passed"
+      },
+      "message": "Interface compatibility validated"
+    },
+    "execution_test": {
+      "valid": false,
+      "executed": false,
+      "error": "  File \"/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmp0ts04wpb.py\", line 30\n    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:\n    ^\nIndentationError: expected an indented block\n",
+      "message": "Code execution failed"
+    },
+    "overall_valid": false,
+    "summary": "\u274c Validation failed: Execution test failed"
+  },
+  {
+    "validation_id": "val_20250525_132701",
+    "timestamp": "2025-05-25T13:27:01.846539",
+    "code_length": 3974,
+    "interface_compatibility": {
+      "valid": true,
+      "syntax": {
+        "valid": true,
+        "has_function": true,
+        "message": "Syntax validation passed",
+        "ast_nodes": 667
+      },
+      "signature": {
+        "valid": true,
+        "function_found": true,
+        "has_self": true,
+        "has_price_data": true,
+        "arg_count": 2,
+        "args": [
+          "self",
+          "price_data"
+        ],
+        "message": "Function signature validation passed"
+      },
+      "imports": {
+        "valid": true,
+        "imports": [],
+        "dangerous_imports": [],
+        "message": "Safe imports"
+      },
+      "return_type": {
+        "valid": true,
+        "return_count": 1,
+        "has_analysis_result": true,
+        "message": "Return type validation passed"
+      },
+      "message": "Interface compatibility validated"
+    },
+    "execution_test": {
+      "valid": false,
+      "executed": false,
+      "error": "  File \"/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpiqf9xt5m.py\", line 30\n    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:\n    ^\nIndentationError: expected an indented block\n",
+      "message": "Code execution failed"
+    },
+    "overall_valid": false,
+    "summary": "\u274c Validation failed: Execution test failed"
+  },
+  {
+    "validation_id": "val_20250525_132723",
+    "timestamp": "2025-05-25T13:27:23.333730",
+    "code_length": 3909,
+    "interface_compatibility": {
+      "valid": true,
+      "syntax": {
+        "valid": true,
+        "has_function": true,
+        "message": "Syntax validation passed",
+        "ast_nodes": 667
+      },
+      "signature": {
+        "valid": true,
+        "function_found": true,
+        "has_self": true,
+        "has_price_data": true,
+        "arg_count": 2,
+        "args": [
+          "self",
+          "price_data"
+        ],
+        "message": "Function signature validation passed"
+      },
+      "imports": {
+        "valid": true,
+        "imports": [],
+        "dangerous_imports": [],
+        "message": "Safe imports"
+      },
+      "return_type": {
+        "valid": true,
+        "return_count": 1,
+        "has_analysis_result": true,
+        "message": "Return type validation passed"
+      },
+      "message": "Interface compatibility validated"
+    },
+    "execution_test": {
+      "valid": false,
+      "executed": false,
+      "error": "  File \"/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpqcbly4d8.py\", line 30\n    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:\n    ^\nIndentationError: expected an indented block\n",
+      "message": "Code execution failed"
+    },
+    "overall_valid": false,
+    "summary": "\u274c Validation failed: Execution test failed"
   }
 ]

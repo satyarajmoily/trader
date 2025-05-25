@@ -1,0 +1,226 @@
+version: '3.8'
+
+services:
+  # Core Bitcoin Predictor System
+  bitcoin-predictor-core:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.core
+    container_name: bitcoin-predictor-core
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    volumes:
+      - core-data:/app/data
+      - core-logs:/app/logs
+      - core-backups:/app/backups
+      - ./env/production.env:/app/.env:ro
+    networks:
+      - bitcoin-predictor-network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "from bitcoin_predictor.main import test_core_system; exit(0 if test_core_system() else 1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "com.bitcoin-predictor.service=core"
+      - "com.bitcoin-predictor.environment=production"
+
+  # Autonomous Agent System
+  bitcoin-predictor-agent:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.agent
+    container_name: bitcoin-predictor-agent
+    restart: unless-stopped
+    depends_on:
+      bitcoin-predictor-core:
+        condition: service_healthy
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - CORE_SYSTEM_HOST=bitcoin-predictor-core
+      - CORE_SYSTEM_PORT=8000
+    volumes:
+      - agent-data:/app/data
+      - agent-logs:/app/logs
+      - agent-backups:/app/backups
+      - ./env/production.env:/app/.env:ro
+      # Mount shared prediction logs for agent access
+      - core-data:/app/shared-data:ro
+    networks:
+      - bitcoin-predictor-network
+    healthcheck:
+      test: ["CMD", "python3", "-c", "from autonomous_agent.main import test_agent_system; exit(0 if test_agent_system() else 1)"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "com.bitcoin-predictor.service=agent"
+      - "com.bitcoin-predictor.environment=production"
+
+  # Health Monitoring Service
+  health-monitor:
+    build:
+      context: ../..
+      dockerfile: deployment/docker/Dockerfile.agent
+    container_name: bitcoin-predictor-monitor
+    restart: unless-stopped
+    depends_on:
+      - bitcoin-predictor-core
+      - bitcoin-predictor-agent
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - MONITOR_MODE=true
+    volumes:
+      - monitor-data:/app/data
+      - monitor-logs:/app/logs
+      - ./env/production.env:/app/.env:ro
+    networks:
+      - bitcoin-predictor-network
+    ports:
+      - "8080:8080"  # Health monitoring dashboard
+    command: ["python3", "main.py", "health", "monitor", "--dashboard"]
+    labels:
+      - "com.bitcoin-predictor.service=monitor"
+      - "com.bitcoin-predictor.environment=production"
+
+  # Redis for caching (Phase 5 performance optimization)
+  redis:
+    image: redis:7-alpine
+    container_name: bitcoin-predictor-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - bitcoin-predictor-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    labels:
+      - "com.bitcoin-predictor.service=cache"
+      - "com.bitcoin-predictor.environment=production"
+
+  # Log aggregation with minimal ELK
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
+    container_name: bitcoin-predictor-elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - bitcoin-predictor-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.bitcoin-predictor.service=search"
+      - "com.bitcoin-predictor.environment=production"
+
+  # Kibana for log visualization
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.8.0
+    container_name: bitcoin-predictor-kibana
+    restart: unless-stopped
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - bitcoin-predictor-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - "com.bitcoin-predictor.service=dashboard"
+      - "com.bitcoin-predictor.environment=production"
+
+networks:
+  bitcoin-predictor-network:
+    driver: bridge
+    labels:
+      - "com.bitcoin-predictor.environment=production"
+
+volumes:
+  # Core system volumes
+  core-data:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=core"
+      - "com.bitcoin-predictor.type=data"
+  
+  core-logs:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=core"
+      - "com.bitcoin-predictor.type=logs"
+  
+  core-backups:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=core"
+      - "com.bitcoin-predictor.type=backups"
+  
+  # Agent system volumes
+  agent-data:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=agent"
+      - "com.bitcoin-predictor.type=data"
+  
+  agent-logs:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=agent"
+      - "com.bitcoin-predictor.type=logs"
+  
+  agent-backups:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=agent"
+      - "com.bitcoin-predictor.type=backups"
+  
+  # Monitoring volumes
+  monitor-data:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=monitor"
+      - "com.bitcoin-predictor.type=data"
+  
+  monitor-logs:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=monitor"
+      - "com.bitcoin-predictor.type=logs"
+  
+  # Infrastructure volumes
+  redis-data:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=cache"
+      - "com.bitcoin-predictor.type=data"
+  
+  elasticsearch-data:
+    driver: local
+    labels:
+      - "com.bitcoin-predictor.service=search"
+      - "com.bitcoin-predictor.type=data" 

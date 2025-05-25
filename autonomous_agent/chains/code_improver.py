@@ -1,4 +1,7 @@
-"""LangChain code improvement chain for generating enhanced Bitcoin prediction algorithms."""
+"""LangChain code improvement chain for generating enhanced Bitcoin prediction algorithms.
+
+Phase 5: Enhanced Self-Correction with Pattern Analysis
+"""
 
 import json
 import logging
@@ -14,6 +17,7 @@ from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 from .code_analyzer import AnalysisResult
+from .pattern_analyzer import PatternAnalyzer
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +63,7 @@ class CodeImprovementOutputParser(BaseOutputParser[Dict[str, Any]]):
 
 
 class CodeImproverChain:
-    """LangChain-based code improver for Bitcoin prediction algorithms."""
+    """LangChain-based code improver for Bitcoin prediction algorithms with enhanced self-correction."""
     
     def __init__(self, llm: Optional[ChatOpenAI] = None):
         """
@@ -76,6 +80,14 @@ class CodeImproverChain:
         
         self.improvement_chain = self._create_improvement_chain()
         self.improvements_file = Path("code_improvements_log.json")
+        
+        # Phase 5: Enhanced Self-Correction
+        self.pattern_analyzer = PatternAnalyzer()
+        self.self_correction_metrics = {
+            "total_attempts": 0,
+            "successful_corrections": 0,
+            "pattern_guided_improvements": 0
+        }
         
     def _create_improvement_chain(self) -> LLMChain:
         """Create the LangChain code improvement chain."""
@@ -378,7 +390,7 @@ Confidence Score: {analysis.confidence_score}
                                         improvement_focus: Optional[str] = None,
                                         max_retries: int = 3) -> Optional[CodeImprovementResult]:
         """
-        Generate improved prediction code with automatic retry on validation failures.
+        Generate improved prediction code with enhanced pattern-based self-correction.
         
         Args:
             analysis: AnalysisResult from code analysis
@@ -388,51 +400,91 @@ Confidence Score: {analysis.confidence_score}
         Returns:
             CodeImprovementResult if successful, None if all retries failed
         """
-        from ..tools.code_validator import CodeValidator
+        try:
+            from ..tools.code_validator import CodeValidator
+        except ImportError:
+            from autonomous_agent.tools.code_validator import CodeValidator
+        
+        try:
+            from ...monitoring.metrics_collector import record_metric, increment_counter
+        except ImportError:
+            # Create mock functions if monitoring not available
+            def record_metric(name, value, tags=None):
+                logger.debug(f"Metric: {name}={value} {tags or ''}")
+            def increment_counter(name):
+                logger.debug(f"Counter: {name}++")
         
         validator = CodeValidator()
         last_error = None
+        error_type_detected = None
+        
+        # Phase 5: Track self-correction metrics
+        self.self_correction_metrics["total_attempts"] += 1
+        record_metric("self_correction_attempt", 1)
+        
+        # Phase 5: Analyze patterns before starting
+        pattern_analysis = self.pattern_analyzer.analyze_improvement_history()
+        logger.info(f"📊 Pattern Analysis: {len(pattern_analysis.get('error_patterns', {}).get('most_common_errors', {}))} error types identified")
         
         for attempt in range(max_retries + 1):
             try:
-                logger.info(f"Code generation attempt {attempt + 1}/{max_retries + 1}")
+                logger.info(f"🔄 Code generation attempt {attempt + 1}/{max_retries + 1}")
                 
-                # Generate improved code
+                # Generate improved code with pattern-based enhancement
                 if attempt == 0:
-                    # First attempt - use original analysis
-                    improvement = self.generate_improved_code(analysis, improvement_focus)
-                else:
-                    # Retry attempt - include validation feedback
-                    enhanced_focus = self._create_retry_focus(improvement_focus, last_error, attempt)
+                    # First attempt - use original analysis with pattern insights
+                    enhanced_focus = self._enhance_focus_with_patterns(improvement_focus, pattern_analysis)
                     improvement = self.generate_improved_code(analysis, enhanced_focus)
+                else:
+                    # Retry attempt - include validation feedback AND pattern-specific strategies
+                    enhanced_focus = self._create_pattern_aware_retry_focus(
+                        improvement_focus, last_error, attempt, error_type_detected, pattern_analysis
+                    )
+                    improvement = self.generate_improved_code(analysis, enhanced_focus)
+                    self.self_correction_metrics["pattern_guided_improvements"] += 1
                 
                 if not improvement:
                     last_error = "Code generation failed - no improvement result"
                     continue
                 
                 # Validate the generated code
-                logger.info(f"Validating generated code (attempt {attempt + 1})")
+                logger.info(f"🔍 Validating generated code (attempt {attempt + 1})")
                 validation_result = validator.comprehensive_validation(
                     improvement.improved_code, 
                     test_execution=True
                 )
                 
                 if validation_result.get("overall_valid", False):
-                    # Success! Update improvement with validation status
+                    # Success! Track metrics and update status
                     improvement.validation_status = "passed"
+                    self.self_correction_metrics["successful_corrections"] += 1
+                    
+                    # Phase 5: Record success metrics
+                    record_metric("self_correction_success", 1, {"attempt": attempt + 1})
+                    increment_counter("successful_self_corrections")
+                    
                     logger.info(f"✅ Code generation successful on attempt {attempt + 1}")
+                    logger.info(f"📈 Success rate: {self._get_success_rate():.1%}")
                     return improvement
                 else:
-                    # Validation failed - prepare for retry
+                    # Validation failed - analyze error type for pattern recognition
                     last_error = self._extract_validation_errors(validation_result)
+                    error_type_detected = self._detect_error_type(last_error, improvement.improved_code)
                     improvement.validation_status = f"failed_attempt_{attempt + 1}"
                     
+                    # Phase 5: Record failure metrics
+                    record_metric("self_correction_failure", 1, {
+                        "attempt": attempt + 1, 
+                        "error_type": error_type_detected
+                    })
+                    
                     logger.warning(f"❌ Validation failed on attempt {attempt + 1}: {last_error}")
+                    logger.info(f"🔍 Error type detected: {error_type_detected}")
                     
                     if attempt < max_retries:
-                        logger.info(f"Retrying with validation feedback...")
+                        logger.info(f"🔄 Retrying with pattern-based feedback...")
                     else:
-                        logger.error(f"All {max_retries + 1} attempts failed")
+                        logger.error(f"💥 All {max_retries + 1} attempts failed")
                         
             except Exception as e:
                 last_error = f"Generation error: {str(e)}"
@@ -441,8 +493,13 @@ Confidence Score: {analysis.confidence_score}
                 if attempt >= max_retries:
                     break
         
-        # All retries failed
-        logger.error(f"Failed to generate valid code after {max_retries + 1} attempts. Last error: {last_error}")
+        # All retries failed - record final failure
+        record_metric("self_correction_total_failure", 1)
+        increment_counter("failed_self_correction_sequences")
+        
+        logger.error(f"💥 Failed to generate valid code after {max_retries + 1} attempts.")
+        logger.error(f"📊 Current success rate: {self._get_success_rate():.1%}")
+        logger.error(f"🔍 Last error: {last_error}")
         return None
     
     def _create_retry_focus(self, original_focus: Optional[str], validation_error: str, attempt: int) -> str:
@@ -535,4 +592,121 @@ Make sure every line inside the method is indented with 4 spaces."""
         if not errors:
             errors.append("Validation failed with unknown errors")
         
-        return "\n".join(errors) 
+        return "\n".join(errors)
+    
+    def _enhance_focus_with_patterns(self, original_focus: Optional[str], pattern_analysis: Dict[str, Any]) -> str:
+        """Enhance improvement focus with pattern analysis insights."""
+        pattern_insights = ""
+        
+        # Add insights from common error patterns
+        error_patterns = pattern_analysis.get('error_patterns', {})
+        common_errors = error_patterns.get('most_common_errors', {})
+        
+        if common_errors:
+            pattern_insights += "\nPATTERN-BASED PREVENTION:\n"
+            for error_type, count in list(common_errors.items())[:3]:  # Top 3 errors
+                strategy = self.pattern_analyzer.get_adaptive_prompting_strategy(error_type)
+                pattern_insights += f"- Avoid {error_type} ({count} occurrences): {strategy}\n"
+        
+        # Add success pattern insights
+        success_patterns = pattern_analysis.get('success_patterns', {})
+        effective_strategies = success_patterns.get('most_effective_strategies', {})
+        
+        if effective_strategies:
+            pattern_insights += "\nSUCCESSFUL STRATEGIES TO EMPHASIZE:\n"
+            for strategy, count in list(effective_strategies.items())[:3]:  # Top 3 strategies
+                pattern_insights += f"- {strategy} (successful {count} times)\n"
+        
+        enhanced_focus = f"""
+{original_focus or "Focus on the primary failure reasons from analysis"}
+
+{pattern_insights}
+
+PATTERN-BASED ENHANCEMENT:
+Based on historical analysis of {pattern_analysis.get('total_attempts', 0)} attempts:
+- Success rate: {success_patterns.get('success_rate', 0):.1%}
+- Most common errors have been identified and should be actively avoided
+- Proven successful strategies should be prioritized
+"""
+        return enhanced_focus
+    
+    def _create_pattern_aware_retry_focus(
+        self, 
+        original_focus: Optional[str], 
+        validation_error: str, 
+        attempt: int,
+        error_type: Optional[str],
+        pattern_analysis: Dict[str, Any]
+    ) -> str:
+        """Create retry focus with pattern-aware strategies."""
+        
+        # Get specific strategy for detected error type
+        error_specific_strategy = ""
+        if error_type:
+            error_specific_strategy = self.pattern_analyzer.get_adaptive_prompting_strategy(error_type)
+            likelihood = self.pattern_analyzer.get_error_likelihood(error_type)
+            error_specific_strategy += f"\nERROR LIKELIHOOD: {likelihood:.1%} - This is a known problematic pattern.\n"
+        
+        pattern_aware_focus = f"""RETRY ATTEMPT #{attempt} - PATTERN-AWARE CORRECTION
+
+CURRENT VALIDATION ERRORS TO FIX:
+{validation_error}
+
+PATTERN-SPECIFIC STRATEGY:
+{error_specific_strategy}
+
+HISTORICAL CONTEXT:
+- This error type occurred {self.pattern_analyzer.error_patterns.get(error_type, 0)} times previously
+- Current system success rate: {self._get_success_rate():.1%}
+- Retry success rate: {pattern_analysis.get('retry_effectiveness', {}).get('retry_success_rate', 0):.1%}
+
+ORIGINAL FOCUS:
+{original_focus or "Focus on the primary failure reasons from analysis"}
+
+ADAPTIVE REQUIREMENTS:
+1. Apply the pattern-specific strategy above with HIGH PRIORITY
+2. Learn from the specific error type and implement targeted fixes
+3. Follow proven successful patterns from historical analysis
+4. Avoid the most common error patterns identified in system history
+
+ENHANCED VALIDATION FOCUS:
+Generate clean, properly structured Python code that addresses both the current error AND prevents the historically common errors.
+"""
+        return pattern_aware_focus
+    
+    def _detect_error_type(self, validation_error: str, code: str) -> str:
+        """Detect the specific error type for pattern analysis."""
+        error_lower = validation_error.lower()
+        
+        if 'indentation' in error_lower or 'indent' in error_lower:
+            return 'indentation_error'
+        elif 'f-string' in error_lower or ('f"' in code and '\n' in code):
+            return 'f_string_line_break'
+        elif 'syntax' in error_lower and 'logger' in code:
+            return 'logger_f_string_error'
+        elif 'signature' in error_lower or 'def analyze(' in validation_error:
+            return 'method_structure_error'
+        elif 'syntax' in error_lower:
+            return 'general_syntax_error'
+        elif 'execution' in error_lower:
+            return 'execution_error'
+        else:
+            return 'unknown_error'
+    
+    def _get_success_rate(self) -> float:
+        """Calculate current self-correction success rate."""
+        total = self.self_correction_metrics["total_attempts"]
+        successful = self.self_correction_metrics["successful_corrections"]
+        return successful / total if total > 0 else 0.0
+    
+    def get_self_correction_metrics(self) -> Dict[str, Any]:
+        """Get comprehensive self-correction metrics."""
+        success_rate = self._get_success_rate()
+        pattern_metrics = self.pattern_analyzer.get_success_rate_metrics()
+        
+        return {
+            "current_session": self.self_correction_metrics,
+            "success_rate": success_rate,
+            "pattern_analysis": pattern_metrics,
+            "performance_status": "excellent" if success_rate > 0.8 else "good" if success_rate > 0.6 else "needs_improvement"
+        } 

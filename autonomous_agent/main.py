@@ -282,9 +282,24 @@ def cmd_improve(args):
                     print(result.improved_code)
                     print("=" * 40)
                 
+                # Phase 5: Show enhanced self-correction metrics
+                metrics = improver.get_self_correction_metrics()
+                print(f"\n📊 ENHANCED SELF-CORRECTION METRICS:")
+                print(f"   Session Success Rate: {metrics['success_rate']:.1%}")
+                print(f"   Performance Status: {metrics['performance_status']}")
+                print(f"   Pattern-Guided Improvements: {metrics['current_session']['pattern_guided_improvements']}")
+                
                 return True
             else:
                 print("❌ Failed to generate valid improvement after all retries")
+                
+                # Phase 5: Show metrics even on failure for learning
+                metrics = improver.get_self_correction_metrics()
+                print(f"\n📊 SELF-CORRECTION ANALYSIS:")
+                print(f"   Session Success Rate: {metrics['success_rate']:.1%}")
+                print(f"   Total Attempts: {metrics['current_session']['total_attempts']}")
+                print(f"   Pattern Analysis Available: {not metrics['pattern_analysis']['improvement_needed']}")
+                
                 return False
         else:
             # Multiple results from batch processing
@@ -327,6 +342,143 @@ def cmd_improve_with_retry(args):
     print("The agent will automatically fix validation errors and retry until successful\n")
     
     return cmd_improve(args)
+
+
+def cmd_pattern_analysis(args):
+    """Analyze self-correction patterns for optimization insights."""
+    print("📊 Enhanced Self-Correction Pattern Analysis")
+    print("=" * 45)
+    
+    try:
+        from .chains.pattern_analyzer import PatternAnalyzer
+        
+        analyzer = PatternAnalyzer()
+        
+        # Perform comprehensive pattern analysis
+        print("🔍 Analyzing self-correction patterns...")
+        analysis = analyzer.analyze_improvement_history()
+        
+        if "error" in analysis:
+            print(f"❌ Analysis failed: {analysis['error']}")
+            return False
+        
+        # Display pattern analysis results
+        print(f"\n📈 PATTERN ANALYSIS RESULTS:")
+        print(f"Total Attempts Analyzed: {analysis.get('total_attempts', 0)}")
+        
+        # Error patterns
+        error_patterns = analysis.get('error_patterns', {})
+        print(f"\n🚨 ERROR PATTERNS:")
+        common_errors = error_patterns.get('most_common_errors', {})
+        if common_errors:
+            for error_type, count in list(common_errors.items())[:5]:
+                likelihood = analyzer.get_error_likelihood(error_type)
+                print(f"   • {error_type}: {count} occurrences ({likelihood:.1%} likelihood)")
+        else:
+            print("   • No significant error patterns detected")
+        
+        # Success patterns
+        success_patterns = analysis.get('success_patterns', {})
+        print(f"\n✅ SUCCESS PATTERNS:")
+        print(f"   Overall Success Rate: {success_patterns.get('success_rate', 0):.1%}")
+        print(f"   Successful Attempts: {success_patterns.get('total_successful', 0)}")
+        
+        effective_strategies = success_patterns.get('most_effective_strategies', {})
+        if effective_strategies:
+            print(f"   Most Effective Strategies:")
+            for strategy, count in list(effective_strategies.items())[:3]:
+                print(f"     • {strategy} ({count} successes)")
+        
+        # Retry effectiveness
+        retry_patterns = analysis.get('retry_effectiveness', {})
+        print(f"\n🔄 RETRY EFFECTIVENESS:")
+        print(f"   Improvements with Retries: {retry_patterns.get('improvements_with_retries', 0)}")
+        print(f"   Average Retries to Success: {retry_patterns.get('average_retries_to_success', 0):.1f}")
+        print(f"   Retry Success Rate: {retry_patterns.get('retry_success_rate', 0):.1%}")
+        
+        # Recommendations
+        recommendations = analysis.get('recommendations', [])
+        if recommendations:
+            print(f"\n💡 OPTIMIZATION RECOMMENDATIONS:")
+            for i, rec in enumerate(recommendations, 1):
+                print(f"   {i}. {rec}")
+        
+        # Export option
+        if args.export:
+            filename = analyzer.export_pattern_analysis()
+            print(f"\n📋 Pattern analysis exported to: {filename}")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Pattern analysis failed: {e}")
+        logger.error(f"Pattern analysis error: {e}")
+        return False
+
+
+def cmd_self_correction_metrics(args):
+    """Display comprehensive self-correction metrics and health."""
+    print("📊 Self-Correction System Health & Metrics")
+    print("=" * 45)
+    
+    try:
+        from .chains.code_improver import CodeImproverChain
+        from .chains.pattern_analyzer import PatternAnalyzer
+        
+        # Initialize components
+        improver = CodeImproverChain()
+        analyzer = PatternAnalyzer()
+        
+        # Get current session metrics
+        metrics = improver.get_self_correction_metrics()
+        
+        print(f"🎯 CURRENT SESSION METRICS:")
+        print(f"   Total Attempts: {metrics['current_session']['total_attempts']}")
+        print(f"   Successful Corrections: {metrics['current_session']['successful_corrections']}")
+        print(f"   Pattern-Guided Improvements: {metrics['current_session']['pattern_guided_improvements']}")
+        print(f"   Success Rate: {metrics['success_rate']:.1%}")
+        print(f"   Performance Status: {metrics['performance_status']}")
+        
+        # Get historical patterns
+        pattern_metrics = analyzer.get_success_rate_metrics()
+        
+        print(f"\n📈 HISTORICAL PERFORMANCE:")
+        print(f"   Overall Success Rate: {pattern_metrics['overall_success_rate']:.1%}")
+        print(f"   Retry Success Rate: {pattern_metrics['retry_success_rate']:.1%}")
+        print(f"   Improvement Needed: {'Yes' if pattern_metrics['improvement_needed'] else 'No'}")
+        
+        # Performance assessment
+        overall_rate = pattern_metrics['overall_success_rate']
+        if overall_rate >= 0.8:
+            status = "🟢 EXCELLENT"
+            recommendation = "System performing optimally"
+        elif overall_rate >= 0.6:
+            status = "🟡 GOOD" 
+            recommendation = "Minor optimizations possible"
+        elif overall_rate >= 0.4:
+            status = "🟠 NEEDS IMPROVEMENT"
+            recommendation = "Pattern analysis recommended for optimization"
+        else:
+            status = "🔴 CRITICAL"
+            recommendation = "Immediate pattern analysis and strategy adjustment needed"
+        
+        print(f"\n🎯 SYSTEM STATUS: {status}")
+        print(f"   Recommendation: {recommendation}")
+        
+        # Error pattern summary
+        if analyzer.error_patterns:
+            print(f"\n🚨 TOP ERROR PATTERNS:")
+            sorted_errors = sorted(analyzer.error_patterns.items(), key=lambda x: x[1], reverse=True)
+            for error_type, count in sorted_errors[:3]:
+                likelihood = analyzer.get_error_likelihood(error_type)
+                print(f"   • {error_type}: {count} occurrences ({likelihood:.1%})")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Metrics retrieval failed: {e}")
+        logger.error(f"Self-correction metrics error: {e}")
+        return False
 
 
 def cmd_validate(args):
@@ -754,7 +906,7 @@ def cmd_auto_cycle(args):
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Autonomous Bitcoin Prediction Agent - Phase 4",
+        description="Autonomous Bitcoin Prediction Agent - Phase 5: Enhanced Self-Correction",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -765,6 +917,7 @@ Examples:
   # Phase 3: Code Improvement Commands
   python -m autonomous_agent.main analyze              # Analyze failed predictions
   python -m autonomous_agent.main improve              # Generate improved code
+  python -m autonomous_agent.main improve-retry        # 🤖 Self-correcting code improvement
   python -m autonomous_agent.main validate             # Validate generated code
   python -m autonomous_agent.main deploy               # Deploy improved code
   
@@ -774,6 +927,10 @@ Examples:
   python -m autonomous_agent.main list-prs             # List autonomous PRs
   python -m autonomous_agent.main check-pr <number>    # Check PR status
   python -m autonomous_agent.main auto-cycle           # Run complete autonomous cycle
+  
+  # Phase 5: Enhanced Self-Correction Commands 🚀
+  python -m autonomous_agent.main pattern-analysis     # 📊 Analyze error patterns for optimization
+  python -m autonomous_agent.main self-correction-metrics  # 📈 View system health & metrics
   
   # Testing
   python -m autonomous_agent.main test                 # Test all components
@@ -884,6 +1041,21 @@ Examples:
         help='Show generated code'
     )
     improve_retry_parser.set_defaults(func=cmd_improve_with_retry)
+    
+    # === PHASE 5: ENHANCED SELF-CORRECTION COMMANDS ===
+    
+    # Pattern analysis command
+    pattern_parser = subparsers.add_parser('pattern-analysis', help='Analyze self-correction patterns for optimization')
+    pattern_parser.add_argument(
+        '--export',
+        action='store_true',
+        help='Export detailed pattern analysis to file'
+    )
+    pattern_parser.set_defaults(func=cmd_pattern_analysis)
+    
+    # Self-correction metrics command
+    metrics_parser = subparsers.add_parser('self-correction-metrics', help='Display self-correction system health and metrics')
+    metrics_parser.set_defaults(func=cmd_self_correction_metrics)
     
     # Validate command (Phase 3)
     validate_parser = subparsers.add_parser('validate', help='Validate generated code')
