@@ -42,6 +42,11 @@ Examples:
   python main.py agent test                # Test agent system
   python main.py agent auto-cycle          # Full autonomous cycle
   
+  # Phase 5: Enhanced Autonomous Operations 🚀
+  python main.py agent autonomous --mode local --continuous      # Local continuous operation
+  python main.py agent autonomous --mode production              # Production PR workflow  
+  python main.py agent demo                                      # Fast demonstration mode
+  
   # Phase 5: Production & Monitoring
   python main.py health check              # System health check
   python main.py health detailed           # Detailed health report

@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.schedulers.background import BackgroundScheduler
+import time
 
 from .interfaces.predictor_interface import PredictorInterface
 from .chains.evaluator import EvaluatorChain
@@ -20,6 +21,9 @@ from .tools.core_system_manager import CoreSystemManager
 from .tools.github_manager import GitHubManager
 from .chains.pr_generator import PRGenerator
 
+# Phase 5: Enhanced deployment imports
+from .tools.deployment_manager import EnhancedDeploymentManager, DeploymentMode
+
 logger = logging.getLogger(__name__)
 
 
@@ -27,12 +31,13 @@ class AutonomousAgent:
     """
     Main orchestrator for the autonomous Bitcoin prediction agent.
     
-    Phase 4: Enhanced with GitHub automation
+    Phase 5: Enhanced with multiple deployment modes
     - Makes predictions via the core system
     - Evaluates predictions against real market data
     - Analyzes failed predictions for improvements (Phase 3)
     - Generates improved code using LLM (Phase 3)
     - Creates GitHub PRs for autonomous improvements (Phase 4)
+    - Supports local CI/CD simulation and production deployment (Phase 5)
     """
     
     def __init__(self, 
@@ -46,7 +51,9 @@ class AutonomousAgent:
                  core_manager: Optional[CoreSystemManager] = None,
                  # Phase 4: GitHub components
                  github_manager: Optional[GitHubManager] = None,
-                 pr_generator: Optional[PRGenerator] = None):
+                 pr_generator: Optional[PRGenerator] = None,
+                 # Phase 5: Enhanced deployment
+                 deployment_mode: DeploymentMode = DeploymentMode.LOCAL):
         """
         Initialize the autonomous agent.
         
@@ -60,6 +67,7 @@ class AutonomousAgent:
             core_manager: Core system management (Phase 3)
             github_manager: GitHub integration manager (Phase 4)
             pr_generator: PR content generator (Phase 4)
+            deployment_mode: Deployment mode for improvements (Phase 5)
         """
         # Core components
         self.predictor_interface = predictor_interface or PredictorInterface()
@@ -75,6 +83,10 @@ class AutonomousAgent:
         # Phase 4: GitHub components
         self.github_manager = github_manager
         self.pr_generator = pr_generator
+        
+        # Phase 5: Enhanced deployment
+        self.deployment_mode = deployment_mode
+        self.deployment_manager = EnhancedDeploymentManager(deployment_mode)
         
         # Initialize Phase 3 components on first use
         self._phase3_initialized = False
@@ -815,4 +827,282 @@ class AutonomousAgent:
             logger.info(f"PR creation logged to {log_file}")
             
         except Exception as e:
-            logger.error(f"Failed to log PR creation: {e}") 
+            logger.error(f"Failed to log PR creation: {e}")
+
+    def run_enhanced_autonomous_cycle(
+        self, 
+        create_pr: bool = True, 
+        auto_restart: bool = True,
+        min_age_hours: int = 24
+    ) -> Dict[str, Any]:
+        """
+        Run enhanced autonomous improvement cycle with deployment mode support.
+        
+        This implements the PR-first approach:
+        - Production: Create PR, wait for review, deploy via CI/CD
+        - Local: Create branch, commit, auto-merge, deploy, restart
+        - Demo: Fast local cycle for demonstration
+        
+        Args:
+            create_pr: Whether to create GitHub PR (production/staging modes)
+            auto_restart: Whether to restart process after local deployment
+            min_age_hours: Minimum age for predictions to evaluate
+            
+        Returns:
+            Dict with cycle results
+        """
+        try:
+            logger.info(f"Starting enhanced autonomous cycle in {self.deployment_mode.value} mode...")
+            
+            # Step 1: Evaluate predictions
+            eval_result = self.evaluate_predictions(min_age_hours)
+            if not eval_result["success"]:
+                return {
+                    "success": False,
+                    "error": "Evaluation failed",
+                    "response": f"❌ Cycle failed at evaluation: {eval_result['error']}"
+                }
+            
+            # Check if we have failed predictions to analyze
+            failed_predictions = [e for e in eval_result.get("evaluations", []) if not e.is_correct]
+            
+            if not failed_predictions:
+                return {
+                    "success": True,
+                    "skipped": True,
+                    "response": f"ℹ️ No failed predictions to analyze in {self.deployment_mode.value} mode - cycle skipped"
+                }
+            
+            # Ensure Phase 3 components are available
+            if not self._ensure_phase3_components():
+                return {
+                    "success": False,
+                    "error": "Phase 3 components not available",
+                    "response": "❌ Code improvement features not configured"
+                }
+            
+            # Step 2: Analyze failed predictions
+            logger.info(f"Analyzing {len(failed_predictions)} failed predictions...")
+            analysis_result = self.code_analyzer.analyze_failed_predictions(failed_predictions)
+            
+            if not analysis_result.get("should_improve", False):
+                return {
+                    "success": True,
+                    "skipped": True,
+                    "response": "ℹ️ Analysis suggests no improvements needed - cycle skipped"
+                }
+            
+            # Step 3: Generate improved code
+            logger.info("Generating code improvements...")
+            improvement_result = self.code_improver.generate_improved_code(
+                analysis_result, failed_predictions
+            )
+            
+            # Step 4: Validate improvements
+            logger.info("Validating generated improvements...")
+            validation_result = self.code_validator.validate_code(
+                improvement_result["improved_code"],
+                improvement_result["target_file"]
+            )
+            
+            if not validation_result["valid"]:
+                return {
+                    "success": False,
+                    "error": "Generated code validation failed",
+                    "response": f"❌ Cycle failed: {validation_result['error']}"
+                }
+            
+            # Step 5: Deploy using enhanced deployment manager
+            logger.info(f"Deploying improvements using {self.deployment_mode.value} mode...")
+            
+            # Convert improvement_result to CodeImprovementResult if needed
+            from .chains.code_improver import CodeImprovementResult
+            if isinstance(improvement_result, dict):
+                improvement = CodeImprovementResult(**improvement_result)
+            else:
+                improvement = improvement_result
+            
+            deployment_result = self.deployment_manager.deploy_improvement(
+                improvement, auto_restart=auto_restart
+            )
+            
+            if not deployment_result.get("success", False):
+                return {
+                    "success": False,
+                    "error": "Enhanced deployment failed",
+                    "response": f"❌ Cycle failed at deployment: {deployment_result.get('error', 'Unknown error')}"
+                }
+            
+            # Compile results based on deployment mode
+            response = f"🤖 Enhanced Autonomous Cycle Complete ({self.deployment_mode.value} mode)!\n"
+            response += "=" * 60 + "\n\n"
+            response += f"📊 Analyzed {len(failed_predictions)} failed predictions\n"
+            response += f"🔧 Generated and validated code improvements\n"
+            
+            if self.deployment_mode == DeploymentMode.PRODUCTION:
+                response += f"📋 Created GitHub PR: #{deployment_result.get('pr_number', 'N/A')}\n"
+                response += f"🔗 PR URL: {deployment_result.get('pr_url', 'N/A')}\n"
+                response += f"⏳ Next: Wait for human review and CI/CD deployment\n"
+                
+            elif self.deployment_mode == DeploymentMode.LOCAL:
+                response += f"🌿 Created git branch: {deployment_result.get('branch_name', 'N/A')}\n"
+                response += f"✅ Committed improvement: {deployment_result.get('commit_hash', 'N/A')[:8]}\n"
+                response += f"🔀 Auto-merged to main: {deployment_result.get('merge_success', False)}\n"
+                response += f"🚀 Local deployment: {improvement.improvement_id}\n"
+                
+                if deployment_result.get('restart_scheduled', False):
+                    response += f"🔄 System restart scheduled\n"
+                    response += f"⚡ Next: System will restart with new prediction logic\n"
+                else:
+                    response += f"🎯 Next: Manual restart required to use new logic\n"
+                    
+            elif self.deployment_mode == DeploymentMode.DEMO:
+                response += f"🎬 Demo deployment completed\n"
+                response += f"✨ Improvement: {improvement.improvement_id}\n"
+                response += f"🔄 Fast cycle demonstration complete\n"
+            
+            return {
+                "success": True,
+                "deployment_mode": self.deployment_mode.value,
+                "improvement_id": improvement.improvement_id,
+                "deployment_result": deployment_result,
+                "failed_predictions_count": len(failed_predictions),
+                "response": response
+            }
+            
+        except Exception as e:
+            logger.error(f"Enhanced autonomous cycle failed: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "response": f"❌ Enhanced autonomous cycle failed: {e}"
+            }
+
+    def start_continuous_autonomous_operation(
+        self,
+        timeframe: str = "1m",
+        prediction_interval_minutes: int = 1,
+        evaluation_interval_minutes: int = 2,
+        auto_restart: bool = True,
+        max_cycles: Optional[int] = None
+    ) -> Dict[str, Any]:
+        """
+        Start continuous autonomous operation with rapid cycles.
+        
+        This implements the complete predict → evaluate → improve → deploy → restart cycle
+        optimized for local demonstration and testing.
+        
+        Args:
+            timeframe: Prediction timeframe (1m, 5m, etc.)
+            prediction_interval_minutes: Minutes between predictions
+            evaluation_interval_minutes: Minutes between evaluation checks
+            auto_restart: Whether to auto-restart after deployments
+            max_cycles: Maximum number of cycles (None for infinite)
+            
+        Returns:
+            Dict with operation results
+        """
+        try:
+            cycle_count = 0
+            logger.info(f"Starting continuous autonomous operation in {self.deployment_mode.value} mode")
+            logger.info(f"Timeframe: {timeframe}, Prediction: every {prediction_interval_minutes}m, "
+                       f"Evaluation: every {evaluation_interval_minutes}m")
+            
+            print(f"\n🤖 Autonomous Agent - Continuous Operation ({self.deployment_mode.value} mode)")
+            print("=" * 70)
+            print(f"⏰ Making predictions every {prediction_interval_minutes} minute(s)")
+            print(f"🔍 Evaluating predictions every {evaluation_interval_minutes} minute(s)")
+            print(f"🎯 Timeframe: {timeframe}")
+            print(f"🚀 Auto-restart: {'enabled' if auto_restart else 'disabled'}")
+            print(f"🔧 Auto-improvement: enabled")
+            print()
+            
+            last_prediction_time = 0
+            last_evaluation_time = 0
+            
+            while max_cycles is None or cycle_count < max_cycles:
+                current_time = time.time()
+                
+                # Check if it's time to make a prediction
+                if current_time - last_prediction_time >= (prediction_interval_minutes * 60):
+                    try:
+                        print(f"[{datetime.now().strftime('%H:%M:%S')}] 🔮 Making prediction...")
+                        prediction_result = self.make_prediction(timeframe=timeframe)
+                        
+                        if prediction_result["success"]:
+                            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✅ {prediction_result['response']}")
+                        else:
+                            print(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Prediction failed: {prediction_result.get('error', 'Unknown error')}")
+                        
+                        last_prediction_time = current_time
+                        
+                    except Exception as e:
+                        print(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Prediction error: {e}")
+                
+                # Check if it's time to evaluate and potentially improve
+                if current_time - last_evaluation_time >= (evaluation_interval_minutes * 60):
+                    try:
+                        print(f"[{datetime.now().strftime('%H:%M:%S')}] 🔍 Evaluating predictions...")
+                        
+                        # Use shorter evaluation window for rapid testing
+                        min_age_minutes = max(1, evaluation_interval_minutes // 2)
+                        min_age_hours = min_age_minutes / 60.0
+                        
+                        cycle_result = self.run_enhanced_autonomous_cycle(
+                            auto_restart=auto_restart,
+                            min_age_hours=min_age_hours
+                        )
+                        
+                        if cycle_result["success"]:
+                            if cycle_result.get("skipped", False):
+                                print(f"[{datetime.now().strftime('%H:%M:%S')}] ℹ️ {cycle_result['response']}")
+                            else:
+                                print(f"[{datetime.now().strftime('%H:%M:%S')}] 🎉 Improvement cycle completed!")
+                                
+                                # Show deployment details
+                                if self.deployment_mode == DeploymentMode.LOCAL:
+                                    deployment = cycle_result.get("deployment_result", {})
+                                    if deployment.get("restart_scheduled", False):
+                                        print(f"[{datetime.now().strftime('%H:%M:%S')}] 🔄 System will restart in 3 seconds...")
+                                        print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚡ New prediction logic will be active after restart")
+                                        # Exit gracefully - restart manager will handle restart
+                                        return {
+                                            "success": True,
+                                            "cycles_completed": cycle_count + 1,
+                                            "restart_scheduled": True,
+                                            "message": "Continuous operation completed - system restarting with improved code"
+                                        }
+                                
+                                cycle_count += 1
+                        else:
+                            print(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Improvement cycle failed: {cycle_result.get('error', 'Unknown error')}")
+                        
+                        last_evaluation_time = current_time
+                        
+                    except Exception as e:
+                        print(f"[{datetime.now().strftime('%H:%M:%S')}] ❌ Evaluation error: {e}")
+                
+                # Small sleep to prevent excessive CPU usage
+                time.sleep(5)
+            
+            return {
+                "success": True,
+                "cycles_completed": cycle_count,
+                "message": f"Continuous operation completed after {cycle_count} improvement cycles"
+            }
+            
+        except KeyboardInterrupt:
+            print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 🛑 Continuous operation stopped by user")
+            return {
+                "success": True,
+                "cycles_completed": cycle_count,
+                "message": "Continuous operation stopped by user"
+            }
+        except Exception as e:
+            logger.error(f"Continuous operation failed: {e}")
+            return {
+                "success": False,
+                "error": str(e),
+                "cycles_completed": cycle_count,
+                "message": f"Continuous operation failed: {e}"
+            } 

@@ -3,7 +3,7 @@
 import logging
 import time
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Any
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -231,30 +231,40 @@ class BitcoinPriceTool:
         """
         Get historical OHLCV data for different time intervals.
         
+        NOTE: CoinGecko free tier uses automatic granularity:
+        - 1 day from current time = 5-minutely data
+        - 2-90 days from current time = hourly data  
+        - Above 90 days = daily data
+        
         Args:
             days: Number of days of historical data
-            interval: Data interval ("1", "5", "15", "hourly", "daily")
+            interval: Data interval preference ("1m", "5m", "15m", "1h", "daily")
+                     Note: Minute intervals only work with days=1 on free tier
             
         Returns:
-            List of OHLCV data points
+            List of OHLCV data points with automatic granularity
         """
         try:
-            # Map intervals to CoinGecko API parameters
-            interval_mapping = {
-                "1": "1",      # 1-minute (requires Pro API)
-                "5": "5",      # 5-minute (requires Pro API)
-                "15": "15",    # 15-minute (requires Pro API)
-                "hourly": "hourly",
-                "daily": "daily"
-            }
-            
-            if interval not in interval_mapping:
-                raise ValueError(f"Unsupported interval: {interval}")
-            
-            # For minute/hour intervals, we need the market_chart API
-            if interval in ["1", "5", "15", "hourly"]:
+            # For free tier, we work with automatic granularity
+            # Map user preferences to what's possible
+            if interval in ["1m", "5m", "15m"]:
+                if days > 1:
+                    logger.info(f"Minute-level intervals require days=1 on free tier, adjusting")
+                    days = 1
                 return self._get_intraday_ohlcv(days, interval)
+                
+            elif interval in ["1h", "hourly"]:
+                if days > 90:
+                    logger.info(f"Hourly data limited to 90 days on free tier, adjusting")
+                    days = 90
+                return self._get_intraday_ohlcv(days, "hourly")
+                
+            elif interval == "daily":
+                # For daily data, use OHLC endpoint which gives proper OHLC values
+                return self._get_daily_ohlcv(days)
+                
             else:
+                logger.warning(f"Unknown interval '{interval}', defaulting to daily")
                 return self._get_daily_ohlcv(days)
                 
         except Exception as e:
@@ -262,30 +272,43 @@ class BitcoinPriceTool:
             raise
     
     def _get_intraday_ohlcv(self, days: int, interval: str) -> List[Dict]:
-        """Get intraday OHLCV data (requires processing from market_chart)."""
+        """Get intraday OHLCV data using automatic granularity (free tier compatible)."""
         try:
-            # CoinGecko free API limitations for intraday data
-            if days > 1 and interval in ["1", "5", "15"]:
-                logger.warning(f"Minute-level data limited to 1 day on free tier, adjusting days to 1")
-                days = 1
+            # Important: CoinGecko interval parameter is ONLY for Enterprise subscribers
+            # For free/non-Enterprise users, we must use automatic granularity:
+            # - 1 day from current time = 5-minutely data
+            # - 2-90 days from current time = hourly data
+            # - Above 90 days = daily data
             
-            data = self._make_request(
-                "coins/bitcoin/market_chart",
-                params={
-                    "vs_currency": "usd",
-                    "days": str(days),
-                    "interval": interval if interval != "hourly" else "hourly"
-                }
-            )
+            # Adjust days for automatic granularity
+            if interval in ["1m", "5m", "15m"] and days > 1:
+                logger.info(f"Adjusting to 1 day for {interval} granularity (free tier limitation)")
+                days = 1
+            elif interval == "hourly" and days > 90:
+                logger.info(f"Adjusting to 90 days for hourly granularity (free tier limitation)")
+                days = 90
+            
+            # Make request WITHOUT interval parameter (automatic granularity)
+            params = {
+                "vs_currency": "usd",
+                "days": str(days)
+            }
+            
+            logger.info(f"Fetching Bitcoin market chart data for {days} days (auto-granularity)")
+            data = self._make_request("coins/bitcoin/market_chart", params=params)
             
             prices = data.get("prices", [])
             market_caps = data.get("market_caps", [])
             total_volumes = data.get("total_volumes", [])
             
+            if not prices:
+                logger.warning("No price data received from CoinGecko API")
+                return []
+            
             # Convert to OHLCV format (simplified - using price as OHLC)
             ohlcv_data = []
             for i, (timestamp, price) in enumerate(prices):
-                # Get corresponding volume
+                # Get corresponding volume and market cap
                 volume = total_volumes[i][1] if i < len(total_volumes) else 0
                 market_cap = market_caps[i][1] if i < len(market_caps) else 0
                 
@@ -299,7 +322,16 @@ class BitcoinPriceTool:
                     "market_cap": market_cap
                 })
             
-            logger.info(f"Fetched {len(ohlcv_data)} {interval} data points for {days} days")
+            # Determine actual granularity received
+            if len(ohlcv_data) > 1:
+                time_diff = datetime.fromisoformat(ohlcv_data[1]["timestamp"]) - datetime.fromisoformat(ohlcv_data[0]["timestamp"])
+                actual_interval = str(int(time_diff.total_seconds() / 60)) + "m"
+                if time_diff.total_seconds() >= 3600:
+                    actual_interval = str(int(time_diff.total_seconds() / 3600)) + "h"
+                logger.info(f"Received {len(ohlcv_data)} data points with ~{actual_interval} granularity for {days} days")
+            else:
+                logger.info(f"Received {len(ohlcv_data)} data points for {days} days")
+            
             return ohlcv_data
             
         except Exception as e:
@@ -420,4 +452,87 @@ class BitcoinPriceTool:
             
         except Exception as e:
             logger.error(f"Failed to get recent price data for {target_time}: {e}")
-            return None 
+            return None
+    
+    def test_api_connection(self) -> Dict[str, Any]:
+        """
+        Test the API connection and verify no 401 errors with free tier.
+        
+        Returns:
+            Dict with test results
+        """
+        try:
+            results = {
+                "current_price": False,
+                "historical_price": False,
+                "market_chart_1d": False,
+                "market_chart_auto": False,
+                "errors": []
+            }
+            
+            # Test 1: Current price
+            try:
+                price_data = self.get_current_price()
+                results["current_price"] = True
+                logger.info(f"✅ Current price test passed: ${price_data['price']:,.2f}")
+            except Exception as e:
+                results["errors"].append(f"Current price test failed: {e}")
+                logger.error(f"❌ Current price test failed: {e}")
+            
+            # Test 2: Historical price
+            try:
+                yesterday = (datetime.now() - timedelta(days=1)).isoformat()
+                hist_data = self.get_price_at_timestamp(yesterday)
+                if hist_data:
+                    results["historical_price"] = True
+                    logger.info(f"✅ Historical price test passed")
+                else:
+                    results["errors"].append("Historical price returned None")
+            except Exception as e:
+                results["errors"].append(f"Historical price test failed: {e}")
+                logger.error(f"❌ Historical price test failed: {e}")
+            
+            # Test 3: Market chart with 1 day (should get 5-minute data)
+            try:
+                ohlcv_data = self.get_historical_ohlcv(days=1, interval="1m")
+                if ohlcv_data and len(ohlcv_data) > 0:
+                    results["market_chart_1d"] = True
+                    logger.info(f"✅ Market chart 1-day test passed: {len(ohlcv_data)} data points")
+                else:
+                    results["errors"].append("Market chart 1-day returned no data")
+            except Exception as e:
+                results["errors"].append(f"Market chart 1-day test failed: {e}")
+                logger.error(f"❌ Market chart 1-day test failed: {e}")
+            
+            # Test 4: Market chart with automatic granularity
+            try:
+                ohlcv_data = self.get_historical_ohlcv(days=7, interval="1h")
+                if ohlcv_data and len(ohlcv_data) > 0:
+                    results["market_chart_auto"] = True
+                    logger.info(f"✅ Market chart auto-granularity test passed: {len(ohlcv_data)} data points")
+                else:
+                    results["errors"].append("Market chart auto-granularity returned no data")
+            except Exception as e:
+                results["errors"].append(f"Market chart auto-granularity test failed: {e}")
+                logger.error(f"❌ Market chart auto-granularity test failed: {e}")
+            
+            # Overall success
+            tests_passed = sum([results["current_price"], results["historical_price"], 
+                              results["market_chart_1d"], results["market_chart_auto"]])
+            results["overall_success"] = tests_passed >= 3  # At least 3 out of 4 should pass
+            results["tests_passed"] = f"{tests_passed}/4"
+            
+            if results["overall_success"]:
+                logger.info("🎉 Bitcoin API connection test PASSED - Free tier compatible!")
+            else:
+                logger.warning(f"⚠️ Bitcoin API test partially failed: {tests_passed}/4 tests passed")
+            
+            return results
+            
+        except Exception as e:
+            logger.error(f"API connection test failed completely: {e}")
+            return {
+                "overall_success": False,
+                "tests_passed": "0/4",
+                "errors": [f"Complete test failure: {e}"]
+            } 

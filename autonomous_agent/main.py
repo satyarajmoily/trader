@@ -12,6 +12,7 @@ import os
 import sys
 from pathlib import Path
 from datetime import datetime
+from typing import Optional
 
 # Add the parent directory to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
@@ -23,6 +24,8 @@ from .tools.bitcoin_api import BitcoinPriceTool
 from .tools.code_validator import CodeValidator
 from .tools.core_system_manager import CoreSystemManager
 from .interfaces.predictor_interface import PredictorInterface
+from .tools.deployment_manager import DeploymentMode
+import bitcoin_predictor.config as config
 
 logger = logging.getLogger(__name__)
 
@@ -903,10 +906,85 @@ def cmd_auto_cycle(args):
         return False
 
 
+def cmd_autonomous(args):
+    """Run autonomous operation in different deployment modes."""
+    try:
+        # Import deployment mode first
+        from .tools.deployment_manager import DeploymentMode
+        
+        mode_map = {
+            'production': DeploymentMode.PRODUCTION,
+            'staging': DeploymentMode.STAGING, 
+            'local': DeploymentMode.LOCAL,
+            'demo': DeploymentMode.DEMO
+        }
+        
+        mode = mode_map.get(args.mode, DeploymentMode.LOCAL)
+        timeframe = getattr(args, 'timeframe', '1d')
+        
+        print(f"🤖 Autonomous Agent - {mode.value.title()} Mode ({timeframe})")
+        print("=" * 55)
+        
+        agent = AutonomousAgent(deployment_mode=mode)
+        
+        if args.continuous:
+            # Continuous operation mode
+            result = agent.start_continuous_autonomous_operation(
+                timeframe=timeframe,
+                prediction_interval_minutes=getattr(args, 'prediction_interval', 1),
+                evaluation_interval_minutes=getattr(args, 'evaluation_interval', 2),
+                auto_restart=getattr(args, 'auto_restart', True),
+                max_cycles=getattr(args, 'max_cycles', None)
+            )
+        else:
+            # Single cycle mode
+            result = agent.run_enhanced_autonomous_cycle(
+                auto_restart=getattr(args, 'auto_restart', True),
+                min_age_hours=getattr(args, 'min_age_hours', 0)  # Faster for demo
+            )
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ Autonomous operation failed: {e}")
+        return False
+
+
+def cmd_demo(args):
+    """Run fast demonstration of the autonomous improvement cycle."""
+    print("🎬 Autonomous Agent - Fast Demo Mode")
+    print("=" * 40)
+    print("Demonstrating complete predict → improve → deploy → restart cycle")
+    print("Using 5-minute predictions with rapid evaluation for demonstration")
+    print()
+    
+    try:
+        from .tools.deployment_manager import DeploymentMode
+        
+        agent = AutonomousAgent(deployment_mode=DeploymentMode.DEMO)
+        
+        # Fast demo cycle with 5-minute intervals
+        result = agent.start_continuous_autonomous_operation(
+            timeframe="5m",
+            prediction_interval_minutes=5,
+            evaluation_interval_minutes=5,  # Aligned with API data granularity
+            auto_restart=True,
+            max_cycles=3  # Limited cycles for demo
+        )
+        
+        print(result["response"])
+        return result["success"]
+        
+    except Exception as e:
+        print(f"❌ Demo failed: {e}")
+        return False
+
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Autonomous Bitcoin Prediction Agent - Phase 5: Enhanced Self-Correction",
+        description="Autonomous Bitcoin Prediction Agent - Phase 5: Enhanced Deployment Pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -928,9 +1006,17 @@ Examples:
   python -m autonomous_agent.main check-pr <number>    # Check PR status
   python -m autonomous_agent.main auto-cycle           # Run complete autonomous cycle
   
-  # Phase 5: Enhanced Self-Correction Commands 🚀
-  python -m autonomous_agent.main pattern-analysis     # 📊 Analyze error patterns for optimization
-  python -m autonomous_agent.main self-correction-metrics  # 📈 View system health & metrics
+  # Phase 5: Enhanced Autonomous Operations 🚀
+  python -m autonomous_agent.main autonomous --mode local --continuous     # Local continuous operation
+  python -m autonomous_agent.main autonomous --mode production             # Production PR workflow
+  python -m autonomous_agent.main demo                                     # Fast demonstration mode
+  
+  # Local Development & Testing
+  python -m autonomous_agent.main autonomous --mode local --timeframe 5m --continuous
+  python -m autonomous_agent.main autonomous --mode local --prediction-interval 5 --evaluation-interval 5
+  
+  # Production Deployment
+  python -m autonomous_agent.main autonomous --mode production --timeframe 1h
   
   # Testing
   python -m autonomous_agent.main test                 # Test all components
@@ -1144,6 +1230,66 @@ Examples:
     # Test command
     test_parser = subparsers.add_parser('test', help='Test all agent components')
     test_parser.set_defaults(func=cmd_test)
+    
+    # Enhanced Autonomous Operation Commands (Phase 5)
+    autonomous_parser = subparsers.add_parser('autonomous', help='Run autonomous operation with deployment modes')
+    autonomous_parser.add_argument(
+        '--mode',
+        choices=['production', 'staging', 'local', 'demo'],
+        default='local',
+        help='Deployment mode (default: local)'
+    )
+    autonomous_parser.add_argument(
+        '--timeframe',
+        choices=['1m', '5m', '15m', '1h', '4h', '1d'],
+        default='5m',
+        help='Time interval for predictions (default: 5m)'
+    )
+    autonomous_parser.add_argument(
+        '--continuous',
+        action='store_true',
+        help='Run continuous operation with rapid cycles'
+    )
+    autonomous_parser.add_argument(
+        '--prediction-interval',
+        type=int,
+        default=5,
+        help='Minutes between predictions (continuous mode)'
+    )
+    autonomous_parser.add_argument(
+        '--evaluation-interval',
+        type=int,
+        default=5,
+        help='Minutes between evaluation cycles (continuous mode)'
+    )
+    autonomous_parser.add_argument(
+        '--auto-restart',
+        action='store_true',
+        default=True,
+        help='Auto-restart after code deployment (local mode)'
+    )
+    autonomous_parser.add_argument(
+        '--max-cycles',
+        type=int,
+        help='Maximum number of improvement cycles (continuous mode)'
+    )
+    autonomous_parser.add_argument(
+        '--min-age-hours',
+        type=float,
+        default=0,
+        help='Minimum age in hours before evaluation (for testing)'
+    )
+    autonomous_parser.set_defaults(func=cmd_autonomous)
+    
+    # Demo command
+    demo_parser = subparsers.add_parser('demo', help='Run fast demonstration of autonomous cycle')
+    demo_parser.add_argument(
+        '--max-cycles',
+        type=int,
+        default=3,
+        help='Maximum demo cycles to run'
+    )
+    demo_parser.set_defaults(func=cmd_demo)
     
     args = parser.parse_args()
     

@@ -23,6 +23,7 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
         "short_ma_periods": 3,        # 3-minute moving average
         "long_ma_periods": 5,         # 5-minute moving average  
         "momentum_periods": 5,        # 5-minute momentum
+        "volume_periods": 10,         # 10-minute volume analysis
         "eval_after_minutes": 2,      # Evaluate after 2 minutes
         "data_points_needed": 10,     # Need 10 minutes of data
         "coingecko_interval": "1",    # 1-minute data from API
@@ -33,6 +34,7 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
         "short_ma_periods": 3,        # 3 * 5-minute = 15-minute MA
         "long_ma_periods": 5,         # 5 * 5-minute = 25-minute MA
         "momentum_periods": 5,        # 25-minute momentum
+        "volume_periods": 8,          # 8 * 5-minute = 40-minute volume analysis
         "eval_after_minutes": 10,     # Evaluate after 10 minutes
         "data_points_needed": 10,     # Need 50 minutes of data
         "coingecko_interval": "5",
@@ -43,6 +45,7 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
         "short_ma_periods": 3,        # 3 * 15-minute = 45-minute MA
         "long_ma_periods": 5,         # 5 * 15-minute = 75-minute MA
         "momentum_periods": 5,        # 75-minute momentum
+        "volume_periods": 8,          # 8 * 15-minute = 2-hour volume analysis
         "eval_after_minutes": 30,     # Evaluate after 30 minutes
         "data_points_needed": 10,     # Need 150 minutes of data
         "coingecko_interval": "15",
@@ -52,7 +55,8 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
     "1h": {
         "short_ma_periods": 3,        # 3-hour MA
         "long_ma_periods": 5,         # 5-hour MA
-        "momentum_periods": 5,        # 5-hour momentum  
+        "momentum_periods": 5,        # 5-hour momentum
+        "volume_periods": 10,         # 10-hour volume analysis  
         "eval_after_minutes": 120,    # Evaluate after 2 hours
         "data_points_needed": 10,     # Need 10 hours of data
         "coingecko_interval": "hourly",
@@ -63,6 +67,7 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
         "short_ma_periods": 3,        # 3 * 4-hour = 12-hour MA
         "long_ma_periods": 5,         # 5 * 4-hour = 20-hour MA
         "momentum_periods": 5,        # 20-hour momentum
+        "volume_periods": 8,          # 8 * 4-hour = 32-hour volume analysis
         "eval_after_minutes": 480,    # Evaluate after 8 hours
         "data_points_needed": 10,     # Need 40 hours of data
         "coingecko_interval": "4h",
@@ -73,6 +78,7 @@ TIMEFRAME_CONFIG: Dict[str, Dict[str, Any]] = {
         "short_ma_periods": 3,        # 3-day MA (current default)
         "long_ma_periods": 5,         # 5-day MA (current default)
         "momentum_periods": 5,        # 5-day momentum (current default)
+        "volume_periods": 30,         # 30-day volume analysis (current default)
         "eval_after_minutes": 1440,   # Evaluate after 24 hours
         "data_points_needed": 30,     # Need 30 days (current default)
         "coingecko_interval": "daily",
