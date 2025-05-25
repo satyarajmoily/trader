@@ -18,3 +18,31 @@
 2025-05-25 01:02:17,146 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T010217145672 to storage
 2025-05-25 01:02:17,146 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T010217145672: down
 2025-05-25 01:02:17,146 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 01:32:32,571 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 01:32:32,571 - autonomous_agent.main - INFO - Starting Autonomous Agent in test mode
+2025-05-25 01:32:32,571 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T01:32:32.571884
+2025-05-25 01:32:32,733 - autonomous_agent.orchestrator - INFO - Making Bitcoin price prediction...
+2025-05-25 01:32:32,734 - bitcoin_predictor.data_loader - INFO - Loaded 30 days of Bitcoin price data from mock_bitcoin_data.csv
+2025-05-25 01:32:32,734 - bitcoin_predictor.predictor - INFO - Technical Analysis - MA: 45933.33/46140.00, Momentum: -0.0172, Volume: 0.982
+2025-05-25 01:32:32,734 - bitcoin_predictor.predictor - INFO - Bullish signals: 0/3.0 → down
+2025-05-25 01:32:32,735 - bitcoin_predictor.storage - INFO - Saved prediction pred_20250525T013232734234 to storage
+2025-05-25 01:32:32,735 - bitcoin_predictor.predictor - INFO - Generated prediction pred_20250525T013232734234: down
+2025-05-25 01:32:32,735 - autonomous_agent.orchestrator - INFO - Prediction successful: DOWN ($45,800.00)
+2025-05-25 01:32:42,008 - autonomous_agent.main - INFO - Environment setup completed successfully
+2025-05-25 01:32:42,008 - autonomous_agent.main - INFO - Starting Autonomous Agent in analyze mode
+2025-05-25 01:32:42,009 - autonomous_agent.main - INFO - Timestamp: 2025-05-25T01:32:42.009002
+2025-05-25 01:32:42,142 - bitcoin_predictor.storage - INFO - Loaded 22 predictions from storage
+2025-05-25 01:32:42,142 - autonomous_agent.chains.code_analyzer - INFO - No recent failed predictions found
+2025-05-25 10:19:33,080 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 10:19:33,080 - __main__ - INFO - Starting Autonomous Agent in validate mode
+2025-05-25 10:19:33,080 - __main__ - INFO - Timestamp: 2025-05-25T10:19:33.080485
+2025-05-25 10:19:33,122 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_101933
+2025-05-25 10:19:55,568 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 10:19:55,568 - __main__ - INFO - Starting Autonomous Agent in validate mode
+2025-05-25 10:19:55,568 - __main__ - INFO - Timestamp: 2025-05-25T10:19:55.568678
+2025-05-25 10:19:55,594 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_101955
+2025-05-25 10:20:07,244 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 10:20:07,244 - __main__ - INFO - Starting Autonomous Agent in improve mode
+2025-05-25 10:20:07,244 - __main__ - INFO - Timestamp: 2025-05-25T10:20:07.244961
+2025-05-25 10:20:07,444 - bitcoin_predictor.storage - INFO - Loaded 22 predictions from storage
+2025-05-25 10:20:07,444 - autonomous_agent.chains.code_analyzer - INFO - No recent failed predictions found
