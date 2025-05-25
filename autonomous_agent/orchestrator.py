@@ -424,6 +424,13 @@ class AutonomousAgent:
             Dict with PR creation results
         """
         try:
+            if not self._ensure_phase3_components():
+                return {
+                    "success": False,
+                    "error": "Phase 3 components not available",
+                    "response": "❌ Code improvement components not configured"
+                }
+            
             if not self._ensure_phase4_components():
                 return {
                     "success": False,
@@ -433,8 +440,14 @@ class AutonomousAgent:
             
             logger.info(f"Creating GitHub PR for improvement {improvement_id}...")
             
-            # Load improvement data
-            improvement_data = self.core_manager.get_improvement_data(improvement_id)
+            # Load improvement data from code improver
+            improvements = self.code_improver.get_improvement_history()
+            improvement_data = None
+            for imp in improvements:
+                if imp.get('improvement_id') == improvement_id:
+                    improvement_data = imp
+                    break
+            
             if not improvement_data:
                 return {
                     "success": False,

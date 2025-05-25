@@ -1,0 +1,38 @@
+[
+  {
+    "action": "deploy",
+    "deployment_id": "deploy_20250525_124329",
+    "timestamp": "2025-05-25T12:43:29.999783",
+    "details": {
+      "deployment_id": "deploy_20250525_124329",
+      "improvement_id": "imp_20250525_122440",
+      "analysis_id": "pred_20250525T113359090840",
+      "backup_info": {
+        "backup_id": "pre_deploy_deploy_20250525_124329",
+        "backup_file": "backups/predictor_code/pre_deploy_deploy_20250525_124329.py",
+        "original_file": "bitcoin_predictor/predictor.py",
+        "timestamp": "2025-05-25T12:43:29.997462",
+        "file_size": 8997,
+        "success": true,
+        "message": "Backup created successfully: pre_deploy_deploy_20250525_124329"
+      },
+      "timestamp": "2025-05-25T12:43:29.999779",
+      "changes_made": [
+        "Replaced simple moving averages with exponential moving averages for better sensitivity.",
+        "Adjusted momentum calculation to use a longer lookback period.",
+        "Enhanced volume analysis by comparing current volume to a historical average.",
+        "Optimized signal weighting to account for market volatility.",
+        "Refined thresholds for bullish signals based on historical performance."
+      ],
+      "expected_benefits": [
+        "Improved detection of bullish trends in volatile markets.",
+        "Reduced false negatives during rapid price movements.",
+        "Enhanced volume analysis to better identify significant market activity.",
+        "More accurate predictions aligned with historical market conditions."
+      ],
+      "confidence_score": 0.75,
+      "success": true,
+      "message": "Successfully deployed improvement imp_20250525_122440"
+    }
+  }
+]

@@ -868,3 +868,148 @@ RETURN TYPE ERROR: unexpected indent (<unknown>, line 1)
 EXECUTION ERROR: 
 SIGNATURE ERROR: unexpected indent (<unknown>, line 1)
 RETURN TYPE ERROR: unexpected indent (<unknown>, line 1)
+2025-05-25 12:39:35,831 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:39:35,832 - __main__ - INFO - Starting Autonomous Agent in setup-github mode
+2025-05-25 12:39:35,832 - __main__ - INFO - Timestamp: 2025-05-25T12:39:35.832062
+2025-05-25 12:39:35,984 - autonomous_agent.orchestrator - INFO - Setting up GitHub integration...
+2025-05-25 12:39:36,475 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 12:39:36,475 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 12:39:36,492 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 12:39:36,492 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 12:39:37,092 - autonomous_agent.tools.github_manager - INFO - GitHub access validation successful
+2025-05-25 12:39:43,563 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:39:43,563 - __main__ - INFO - Starting Autonomous Agent in improve mode
+2025-05-25 12:39:43,563 - __main__ - INFO - Timestamp: 2025-05-25T12:39:43.563534
+2025-05-25 12:39:43,694 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,695 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,695 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113600524853', prediction='down', timestamp='2025-05-25T11:36:00.524853', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1h', actual_outcome='up', actual_price=108099, evaluation_timestamp='2025-05-25T11:37:27.466811', success=False) not found
+2025-05-25 12:39:43,695 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,695 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113359090840', prediction='down', timestamp='2025-05-25T11:33:59.090840', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='5m', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:19.061787', success=False) not found
+2025-05-25 12:39:43,695 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,695 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113353351093', prediction='down', timestamp='2025-05-25T11:33:53.351093', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1h', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:15.172319', success=False) not found
+2025-05-25 12:39:43,696 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,696 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T113346158985', prediction='down', timestamp='2025-05-25T11:33:46.158985', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1m', actual_outcome='up', actual_price=108095, evaluation_timestamp='2025-05-25T11:36:11.603538', success=False) not found
+2025-05-25 12:39:43,696 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:39:43,696 - autonomous_agent.chains.code_analyzer - ERROR - Prediction PredictionRecord(id='pred_20250525T110858935794', prediction='down', timestamp='2025-05-25T11:08:58.935794', latest_price=45800.0, data_points=30, analysis_period='2024-01-01 to 2024-01-30', confidence=0.8999999999999999, timeframe='1d', actual_outcome='up', actual_price=108124, evaluation_timestamp='2025-05-25T11:11:04.555966', success=False) not found
+2025-05-25 12:40:02,910 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:40:02,910 - __main__ - INFO - Starting Autonomous Agent in validate mode
+2025-05-25 12:40:02,910 - __main__ - INFO - Timestamp: 2025-05-25T12:40:02.910293
+2025-05-25 12:40:03,070 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_124003
+2025-05-25 12:40:10,626 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:40:10,626 - __main__ - INFO - Starting Autonomous Agent in improve-retry mode
+2025-05-25 12:40:10,626 - __main__ - INFO - Timestamp: 2025-05-25T12:40:10.626473
+2025-05-25 12:40:10,760 - autonomous_agent.chains.code_improver - INFO - Code generation attempt 1/4
+2025-05-25 12:40:35,561 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 12:40:35,576 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_124035
+2025-05-25 12:40:35,576 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_124035 for analysis pred_20250525T113359090840
+2025-05-25 12:40:35,576 - autonomous_agent.chains.code_improver - INFO - Validating generated code (attempt 1)
+2025-05-25 12:40:35,601 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_124035
+2025-05-25 12:40:35,601 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 1: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmp5u6ac15w.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 12:40:35,601 - autonomous_agent.chains.code_improver - INFO - Retrying with validation feedback...
+2025-05-25 12:40:35,601 - autonomous_agent.chains.code_improver - INFO - Code generation attempt 2/4
+2025-05-25 12:41:08,329 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 12:41:08,339 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_124108
+2025-05-25 12:41:08,339 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_124108 for analysis pred_20250525T113359090840
+2025-05-25 12:41:08,339 - autonomous_agent.chains.code_improver - INFO - Validating generated code (attempt 2)
+2025-05-25 12:41:08,386 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_124108
+2025-05-25 12:41:08,386 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 2: SYNTAX ERROR (line 1): unexpected indent (<unknown>, line 1)
+EXECUTION ERROR: 
+SIGNATURE ERROR: unexpected indent (<unknown>, line 1)
+RETURN TYPE ERROR: unexpected indent (<unknown>, line 1)
+2025-05-25 12:41:08,386 - autonomous_agent.chains.code_improver - INFO - Retrying with validation feedback...
+2025-05-25 12:41:08,386 - autonomous_agent.chains.code_improver - INFO - Code generation attempt 3/4
+2025-05-25 12:41:31,573 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 12:41:31,584 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_124131
+2025-05-25 12:41:31,584 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_124131 for analysis pred_20250525T113359090840
+2025-05-25 12:41:31,584 - autonomous_agent.chains.code_improver - INFO - Validating generated code (attempt 3)
+2025-05-25 12:41:31,613 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_124131
+2025-05-25 12:41:31,613 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 3: EXECUTION ERROR:   File "/var/folders/yv/c_ls0vg15_ldl51dnk_6p_880000gn/T/tmpvc894_7e.py", line 30
+    def analyze(self, price_data: List[OHLCVData]) -> AnalysisResult:
+    ^
+IndentationError: expected an indented block
+
+2025-05-25 12:41:31,613 - autonomous_agent.chains.code_improver - INFO - Retrying with validation feedback...
+2025-05-25 12:41:31,613 - autonomous_agent.chains.code_improver - INFO - Code generation attempt 4/4
+2025-05-25 12:41:57,275 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-05-25 12:41:57,283 - autonomous_agent.chains.code_improver - INFO - Saved improvement imp_20250525_124157
+2025-05-25 12:41:57,283 - autonomous_agent.chains.code_improver - INFO - Generated code improvement imp_20250525_124157 for analysis pred_20250525T113359090840
+2025-05-25 12:41:57,283 - autonomous_agent.chains.code_improver - INFO - Validating generated code (attempt 4)
+2025-05-25 12:41:57,326 - autonomous_agent.tools.code_validator - INFO - Saved validation result val_20250525_124157
+2025-05-25 12:41:57,327 - autonomous_agent.chains.code_improver - WARNING - ❌ Validation failed on attempt 4: SYNTAX ERROR (line 1): unexpected indent (<unknown>, line 1)
+EXECUTION ERROR: 
+SIGNATURE ERROR: unexpected indent (<unknown>, line 1)
+RETURN TYPE ERROR: unexpected indent (<unknown>, line 1)
+2025-05-25 12:41:57,327 - autonomous_agent.chains.code_improver - ERROR - All 4 attempts failed
+2025-05-25 12:41:57,327 - autonomous_agent.chains.code_improver - ERROR - Failed to generate valid code after 4 attempts. Last error: SYNTAX ERROR (line 1): unexpected indent (<unknown>, line 1)
+EXECUTION ERROR: 
+SIGNATURE ERROR: unexpected indent (<unknown>, line 1)
+RETURN TYPE ERROR: unexpected indent (<unknown>, line 1)
+2025-05-25 12:42:04,933 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:42:04,934 - __main__ - INFO - Starting Autonomous Agent in auto-cycle mode
+2025-05-25 12:42:04,934 - __main__ - INFO - Timestamp: 2025-05-25T12:42:04.934098
+2025-05-25 12:42:05,058 - autonomous_agent.orchestrator - INFO - Evaluating predictions older than 24 hours...
+2025-05-25 12:42:05,058 - bitcoin_predictor.storage - INFO - Loaded 35 predictions from storage
+2025-05-25 12:42:05,058 - autonomous_agent.chains.evaluator - INFO - Evaluated 0 pending predictions
+2025-05-25 12:42:05,058 - autonomous_agent.orchestrator - INFO - No predictions ready for evaluation
+2025-05-25 12:42:12,132 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:42:12,132 - __main__ - INFO - Starting Autonomous Agent in create-pr mode
+2025-05-25 12:42:12,132 - __main__ - INFO - Timestamp: 2025-05-25T12:42:12.132860
+2025-05-25 12:42:47,668 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:42:47,668 - __main__ - INFO - Starting Autonomous Agent in create-pr mode
+2025-05-25 12:42:47,668 - __main__ - INFO - Timestamp: 2025-05-25T12:42:47.668446
+2025-05-25 12:42:48,228 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 12:42:48,228 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 12:42:48,248 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 12:42:48,249 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 12:42:48,249 - autonomous_agent.orchestrator - INFO - Creating GitHub PR for improvement imp_20250525_122440...
+2025-05-25 12:42:48,249 - autonomous_agent.orchestrator - ERROR - Failed to create PR for improvement imp_20250525_122440: 'NoneType' object has no attribute 'get_improvement_data'
+2025-05-25 12:42:55,659 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:42:55,659 - __main__ - INFO - Starting Autonomous Agent in deploy mode
+2025-05-25 12:42:55,659 - __main__ - INFO - Timestamp: 2025-05-25T12:42:55.659656
+2025-05-25 12:42:55,659 - __main__ - ERROR - Deployment error: 'Namespace' object has no attribute 'improvement_id'
+2025-05-25 12:43:29,873 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:43:29,873 - __main__ - INFO - Starting Autonomous Agent in deploy mode
+2025-05-25 12:43:29,873 - __main__ - INFO - Timestamp: 2025-05-25T12:43:29.873585
+2025-05-25 12:43:29,997 - autonomous_agent.tools.core_system_manager - INFO - Created backup pre_deploy_deploy_20250525_124329 at backups/predictor_code/pre_deploy_deploy_20250525_124329.py
+2025-05-25 12:43:30,000 - autonomous_agent.tools.core_system_manager - INFO - Logged deployment action: deploy
+2025-05-25 12:43:30,000 - autonomous_agent.tools.core_system_manager - INFO - Successfully deployed improvement imp_20250525_122440
+2025-05-25 12:43:36,196 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:43:36,196 - __main__ - INFO - Starting Autonomous Agent in create-pr mode
+2025-05-25 12:43:36,196 - __main__ - INFO - Timestamp: 2025-05-25T12:43:36.196532
+2025-05-25 12:43:36,724 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 12:43:36,724 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 12:43:36,738 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 12:43:36,738 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 12:43:36,738 - autonomous_agent.orchestrator - INFO - Creating GitHub PR for improvement imp_20250525_122440...
+2025-05-25 12:43:36,738 - autonomous_agent.orchestrator - ERROR - Failed to create PR for improvement imp_20250525_122440: 'NoneType' object has no attribute 'get_improvement_data'
+2025-05-25 12:44:51,312 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:44:51,312 - __main__ - INFO - Starting Autonomous Agent in create-pr mode
+2025-05-25 12:44:51,312 - __main__ - INFO - Timestamp: 2025-05-25T12:44:51.312808
+2025-05-25 12:44:51,878 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 12:44:51,878 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 12:44:51,900 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 12:44:51,901 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 12:44:51,901 - autonomous_agent.orchestrator - INFO - Creating GitHub PR for improvement imp_20250525_122440...
+2025-05-25 12:44:51,901 - autonomous_agent.orchestrator - ERROR - Failed to create PR for improvement imp_20250525_122440: 'NoneType' object has no attribute 'get_improvement_history'
+2025-05-25 12:45:22,308 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:45:22,308 - __main__ - INFO - Starting Autonomous Agent in create-pr mode
+2025-05-25 12:45:22,308 - __main__ - INFO - Timestamp: 2025-05-25T12:45:22.308359
+2025-05-25 12:45:22,430 - autonomous_agent.orchestrator - ERROR - Failed to initialize Phase 3 components: 2 validation errors for LLMChain
+llm.is-instance[Runnable]
+  Input should be an instance of Runnable [type=is_instance_of, input_value='sk-proj-eNDRJx9wMPjgc5G3...xCfon2DrP8dqlDY79WYBs8A', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/is_instance_of
+llm.is-instance[Runnable]
+  Input should be an instance of Runnable [type=is_instance_of, input_value='sk-proj-eNDRJx9wMPjgc5G3...xCfon2DrP8dqlDY79WYBs8A', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/is_instance_of
+2025-05-25 12:45:30,582 - __main__ - INFO - Environment setup completed successfully
+2025-05-25 12:45:30,582 - __main__ - INFO - Starting Autonomous Agent in list-prs mode
+2025-05-25 12:45:30,582 - __main__ - INFO - Timestamp: 2025-05-25T12:45:30.582692
+2025-05-25 12:45:31,134 - autonomous_agent.tools.github_manager - INFO - Successfully connected to repository: satyarajmoily/trader
+2025-05-25 12:45:31,134 - autonomous_agent.tools.github_manager - INFO - GitHub manager initialized for satyarajmoily/trader
+2025-05-25 12:45:31,155 - autonomous_agent.chains.pr_generator - INFO - PR Generator initialized successfully
+2025-05-25 12:45:31,155 - autonomous_agent.orchestrator - INFO - Phase 4 GitHub components initialized successfully
+2025-05-25 12:45:31,155 - autonomous_agent.orchestrator - INFO - Listing GitHub PRs...

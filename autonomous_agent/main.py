@@ -907,7 +907,7 @@ Examples:
     # Deploy command (Phase 3)
     deploy_parser = subparsers.add_parser('deploy', help='Deploy improved code to core system')
     deploy_parser.add_argument(
-        'improvement-id',
+        'improvement_id',
         help='Improvement ID to deploy'
     )
     deploy_parser.add_argument(
@@ -926,7 +926,7 @@ Examples:
     # Create PR command
     create_pr_parser = subparsers.add_parser('create-pr', help='Create GitHub PR for improvement')
     create_pr_parser.add_argument(
-        'improvement-id',
+        'improvement_id',
         help='Improvement ID to create PR for'
     )
     create_pr_parser.set_defaults(func=cmd_create_pr)
